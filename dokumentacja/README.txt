@@ -1,0 +1,1 @@
+W tym folderze będzie znajdować się dokumentacja projektowa
