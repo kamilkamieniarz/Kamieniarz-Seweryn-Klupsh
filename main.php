@@ -8,7 +8,7 @@ if (!isset($_SESSION['logged_id'])) {
 	if (isset($_POST['login'])) {
 		
 		$login = filter_input(INPUT_POST, 'login');
-		$password = filter_input(INPUT_POST, 'password');
+		$password = filter_input(INPUT_POST, 'pass');
 		
 		//echo $login . " " .$password;
 		
@@ -42,14 +42,14 @@ if (!isset($_SESSION['logged_id'])) {
 <html lang="pl">
 <head>
     <meta charset="utf-8">
-    <title>Panel Użytkownika</title>
+    <title>strona glowna</title>
    
-	<a href="stan magazynu.php">Stan magazynów</a></br>
-	<a href="documents/documents.php?strona=1">Dokumenty</a></br>
-	<a href="magazine/magazine.php">Magazyny</a> </br>
-	<a href="goods/goods.php?strona=1">Towary</a> </br>
-	<a href="contractors/contractors.php?strona=1">Kontrahenci</a> </br>
-	<a href="logout.php">Wyloguj się</a> </br>
+	<a href="stan magazynu.php">stan magazynów</a></br>
+	<a href="documents/documents.php?strona=1">dokumenty</a></br>
+	<a href="magazine/magazine.php">magazyny</a> </br>
+	<a href="goods/goods.php?strona=1">towary</a> </br>
+	<a href="contractors/contractors.php?strona=1">kontrehenci</a> </br>
+	<a href="logout.php">wyloguj się</a> </br>
 </head>
 
  <body> 

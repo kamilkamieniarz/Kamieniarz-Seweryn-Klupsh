@@ -12,7 +12,7 @@ if (!isset($_SESSION['logged_id'])) {
 		
 		//echo $login . " " .$password;
 		
-		$userQuery = $db->prepare('SELECT id, password FROM admins WHERE login = :login');
+		$userQuery = $db->prepare('SELECT id, password FROM users WHERE login = :login');
 		$userQuery->bindValue(':login', $login, PDO::PARAM_STR);
 		$userQuery->execute();
 		
@@ -62,7 +62,8 @@ if (!isset($_SESSION['logged_id'])) {
 						$records = mysqli_query($db,"select * from goods"); // fetch data from database
 						echo '<table><tr>	
 							<th>Nazwa</th>
-							<th>skrót</th>						
+							<th>producent</th>						
+							<th>cena jednostkowa</th>
 							<th>jednostka miary</th>
 							<th>opcje</th>
 							</tr>';
@@ -80,9 +81,10 @@ if (!isset($_SESSION['logged_id'])) {
 							<tr>
 							
 							<td><p style="display: none"> <?php echo ['id']?></p><?php echo $resultat['name']; ?></td>
-							<td><?php echo $resultat['shortcut']; ?></td>
-							<td><?php echo $resultat['unit']; ?></td>   
-							  
+							<td><?php echo $resultat['producer']; ?></td>
+							<td><?php echo $resultat['unit_price']; ?></td>   
+							<td><?php echo $resultat['unit_of_measure']; ?></td>   
+							
 																				
 							<td><a href="edycja.php?id=<?php echo $resultat['id']; ?>">edycja</a>
 							<a href="goods-delete.php?id=<?php echo $resultat['id']; ?>">Usuń</a><br></td>

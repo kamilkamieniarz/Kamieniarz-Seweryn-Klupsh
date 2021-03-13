@@ -47,19 +47,14 @@ if (!isset($_SESSION['logged_id'])) {
 <html lang="pl">
 <body>
 		<header class="page-header">
-		<h1 class="page-title">Dodaj kontrahtenta</h1>
+		<h1 class="page-title">Dodaj kontraktenta</h1>
 		</header>	
 			<form name="form1" method="post" action='contractors-add-accept.php'>
-			<p>Nazwa: </p> <input type="text" name="contractorname" size="30" placeholder="KowCem betorniarnia Sp. z o.o." require>
-			<p>Skrót: </p> <input type="text" name="contractorshortcut" size="5" placeholder="KowBud" require></br>
-			<p>Opis: </p> <input type="text" name="contractordescription" size="50" placeholder="Materiały budowlane"></br>
-			<p>Ulica: </p> <input type="text" name="contractorstreet" size="50" placeholder="Główna" require></br>
-			<p>Nr domu: </p> <input type="text" name="contractorhouse_number" size="5" placeholder="12/A" require></br>
-			<p>Nr mieszkania: </p> <input type="text" name="contractorapartment_number" size="3" placeholder="" ></br>
-			<p>Kod pocztowy: </p> <input type="text" name="contractorzip_code" size="6" placeholder="64-100" require></br>
-			<p>Miejscowość: </p> <input type="text" name="contractortown" size="50" placeholder="Leszno" require></br>
+			<p>nazwa: </p> <input type="text" name="contractorname" size="30" require>
+			<p>skrót: </p> <input type="text" name="contractorshortcut" size="5" require></br>
+			<p>adres: </p> <input type="text" name="contractoraddress" size="50" require></br>
 			</br>
-			<input type="submit" name="update" value="Dodaj"></left>		
+			<input type="submit" name="update" value="dodaj"></left>		
 		</form>
 </body>
 </html>

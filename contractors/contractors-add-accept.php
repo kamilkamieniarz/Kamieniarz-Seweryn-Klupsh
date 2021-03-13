@@ -9,20 +9,14 @@ if ($conn->connect_error) {
 }
 $contractorn= $_POST['contractorname'];
 $contractors= $_POST['contractorshortcut'];
-$contractord= $_POST['contractordescription'];
-$contractorst= $_POST['contractorstreet'];
-$contractorhn= $_POST['contractorhouse_number'];
-$contractoran= $_POST['contractorapartment_number'];
-$contractorzc= $_POST['contractorzip_code'];
-$contractort= $_POST['contractortown'];
-
+$contractora= $_POST['contractoraddress'];
 
 ?>
 <!DOCTYPE html>
 <html lang="pl">
 <head>
     <meta charset="utf-8">
-    <title>Kontahenci</title>
+    <title>kontrahenci</title>
   
 
     
@@ -36,11 +30,11 @@ $contractort= $_POST['contractortown'];
 </br>
 <?php
 	
-     $sql = "INSERT INTO `contractors`(`name`, `shortcut`, `description`, `street`, `house_number`, `apartment_number`, `zip_code`, `town`) VALUES ('$contractorn','$contractors','$contractord','$contractorst','$contractorhn','$contractoran','$contractorzc','$contractort')";
+     $sql = "INSERT INTO `contractors`(`id`, `name`, `Shortcut`, `address`) VALUES ('','$contractorn','$contractors','$contractora')";
 	 echo ("Kontrahent dodany pomyślnie");
 
 	  ?>
-	  <input type="button"  value="ok" onclick="window.location.href='contractors.php'">
+	  <center><input type="button"  value="ok" onclick="window.location.href='contractors.php'"></center>
 	  <?php
 	 $conn->close();
 	 ?>
