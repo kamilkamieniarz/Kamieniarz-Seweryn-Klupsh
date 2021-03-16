@@ -8,7 +8,7 @@ if (!isset($_SESSION['logged_id'])) {
 	if (isset($_POST['login'])) {
 		
 		$login = filter_input(INPUT_POST, 'login');
-		$password = filter_input(INPUT_POST, 'pass');
+		$password = filter_input(INPUT_POST, 'password');
 		
 		//echo $login . " " .$password;
 		
@@ -79,7 +79,7 @@ if (!isset($_SESSION['logged_id'])) {
 							?>
 							<tr>
 							
-							<td><p style="display: none"> <?php echo ['id']?></p><?php echo $resultat['name']; ?></td>
+							<td><?php echo $resultat['name']; ?></td>
 							<td><?php echo $resultat['shortcut']; ?></td>
 							<td><?php echo $resultat['location']; ?></td>   
 							  

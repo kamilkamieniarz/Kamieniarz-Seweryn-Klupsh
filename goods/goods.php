@@ -8,7 +8,7 @@ if (!isset($_SESSION['logged_id'])) {
 	if (isset($_POST['login'])) {
 		
 		$login = filter_input(INPUT_POST, 'login');
-		$password = filter_input(INPUT_POST, 'pass');
+		$password = filter_input(INPUT_POST, 'password');
 		
 		//echo $login . " " .$password;
 		
@@ -62,10 +62,11 @@ if (!isset($_SESSION['logged_id'])) {
 						$records = mysqli_query($db,"select * from goods"); // fetch data from database
 						echo '<table><tr>	
 							<th>Nazwa</th>
-							<th>producent</th>						
-							<th>cena jednostkowa</th>
-							<th>jednostka miary</th>
-							<th>opcje</th>
+							<th>Skrót</th>	
+							<th>Producent</th>
+							<th>Cena jednostkowa</th>					
+							<th>Jednostka miary</th>
+							<th>Opcje</th>
 							</tr>';
 						//wys
 						$ile = mysqli_num_rows($records);  //ilosc wszystkich rekordow (nie stron !!)
@@ -79,22 +80,17 @@ if (!isset($_SESSION['logged_id'])) {
 						{
 							?>
 							<tr>
-							
-							<td><p style="display: none"> <?php echo ['id']?></p><?php echo $resultat['name']; ?></td>
+							<td><?php echo $resultat['name']; ?></td>
+							<td><?php echo $resultat['shortcut']; ?></td>
 							<td><?php echo $resultat['producer']; ?></td>
 							<td><?php echo $resultat['unit_price']; ?></td>   
-							<td><?php echo $resultat['unit_of_measure']; ?></td>   
-							
-																				
+							<td><?php echo $resultat['unit_of_measure']; ?></td>   													
 							<td><a href="edycja.php?id=<?php echo $resultat['id']; ?>">edycja</a>
 							<a href="goods-delete.php?id=<?php echo $resultat['id']; ?>">Usuń</a><br></td>
-							
-
 						<?php
 						}
 						echo ' <a href="?strona=1"> 1</a> ';
 						for ($i = 1; $i < $stron; $i++) echo ' <a href="?strona='.($i+1).'"> '.($i+1).'</a> ';  //tak wyswietlasz numery;
-
 						?>
        
    

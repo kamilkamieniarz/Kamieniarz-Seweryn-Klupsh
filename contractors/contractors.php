@@ -8,7 +8,7 @@ if (!isset($_SESSION['logged_id'])) {
 	if (isset($_POST['login'])) {
 		
 		$login = filter_input(INPUT_POST, 'login');
-		$password = filter_input(INPUT_POST, 'pass');
+		$password = filter_input(INPUT_POST, 'password');
 		
 		//echo $login . " " .$password;
 		
@@ -62,10 +62,8 @@ if (!isset($_SESSION['logged_id'])) {
 						$records = mysqli_query($db,"select * from contractors"); // fetch data from database
 						echo '<table><tr>	
 							<th>Nazwa</th>
-							<th>skrót</th>	
-							<th>opis</th>
+							<th>skrót</th>						
 							<th>adres</th>
-							<th>miasto</th>
 							<th>opcje</th>
 							</tr>';
 						//wys
@@ -82,14 +80,8 @@ if (!isset($_SESSION['logged_id'])) {
 							<tr>
 							
 							<td><p style="display: none"> <?php echo ['id']?></p><?php echo $resultat['name']; ?></td>
-							<td><?php echo $resultat['shortcut']; ?></td>
-							<td><?php echo $resultat['description']; ?></td> 
-							<td><?php echo $resultat['street']; ?>  
-							<?php echo $resultat['house_number'];
-							echo "/";
-							echo $resultat['apartment_number']; ?>	
-							<td><?php echo $resultat['zip_code'];?>
-							    <?php echo $resultat['town']; ?></td>
+							<td><?php echo $resultat['Shortcut']; ?></td>
+							<td><?php echo $resultat['address']; ?></td>   
 							  
 																				
 							<td><a href="edycja.php?id=<?php echo $resultat['id']; ?>">edycja</a>

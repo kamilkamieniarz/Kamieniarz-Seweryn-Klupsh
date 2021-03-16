@@ -12,7 +12,7 @@ if (!isset($_SESSION['logged_id'])) {
 		
 		//echo $login . " " .$password;
 		
-		$userQuery = $db->prepare('SELECT id, password FROM users WHERE login = :login');
+		$userQuery = $db->prepare('SELECT id, password FROM admins WHERE login = :login');
 		$userQuery->bindValue(':login', $login, PDO::PARAM_STR);
 		$userQuery->execute();
 		
@@ -77,7 +77,7 @@ if (!isset($_SESSION['logged_id'])) {
 							?>
 							<tr>
 							
-							<td><p style="display: none"> <?php echo ['id']?></p><?php echo $resultat['type']; ?></td>
+							<td><?php echo $resultat['type']; ?></td>
 							<td><?php echo $resultat['date']; ?></td>
 							   
 							  
