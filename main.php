@@ -43,7 +43,7 @@ if (!isset($_SESSION['logged_id'])) {
 <html lang="pl">
 <head>
     <meta charset="utf-8"> 
-	<link rel="stylesheet" href="main.css" type="text/css" />
+	<link rel="stylesheet" href="style/main.css" type="text/css" />
      <title>Panel Użytkownika</title>
 	 
 </head>
