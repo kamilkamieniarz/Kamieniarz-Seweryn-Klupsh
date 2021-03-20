@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Czas generowania: 13 Mar 2021, 02:32
+-- Czas generowania: 20 Mar 2021, 18:46
 -- Wersja serwera: 10.4.11-MariaDB
 -- Wersja PHP: 7.4.1
 
@@ -77,18 +77,18 @@ INSERT INTO `goods` (`id`, `name`, `producer`, `unit_price`, `unit_of_measure`, 
 
 CREATE TABLE `users` (
   `id` int(11) NOT NULL,
-  `login` varchar(255) COLLATE utf8_polish_ci NOT NULL,
-  `password` varchar(255) COLLATE utf8_polish_ci NOT NULL,
+  `login` varchar(255) NOT NULL,
+  `password` varchar(255) NOT NULL,
   `admin` int(1) NOT NULL DEFAULT 0
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Zrzut danych tabeli `users`
 --
 
 INSERT INTO `users` (`id`, `login`, `password`, `admin`) VALUES
-(1, 'admin', 'admin', 1),
-(2, 'nieadmin', 'nieadmin', 0);
+(1, 'admin', '$2y$10$BcUUGq3bOpHGW.k9FKuhIOOeoqvTNRXzmO4Nq.6OEdM8nLACxYzNG', 1),
+(2, 'nieadmin', '$2y$10$e0HOXMfzFtCEOPJbF1ln1OoSVPN9rl4hZJCCcr6iu3VJYGj5cCUJm', 0);
 
 --
 -- Indeksy dla zrzutów tabel
@@ -132,7 +132,7 @@ ALTER TABLE `goods`
 -- AUTO_INCREMENT dla tabeli `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

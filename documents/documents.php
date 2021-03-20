@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-require_once 'database.php';
+require_once '../database.php';
 
 if (!isset($_SESSION['logged_id'])) {
 
@@ -38,12 +38,14 @@ if (!isset($_SESSION['logged_id'])) {
 	}
 }
 ?>
-
+<!DOCTYPE html>
 <html lang="pl">
 <head>
     <meta charset="utf-8">
-    <title>kontrahenci</title>
-	<a href="http://localhost/bauman-projekt/main.php">strona główna</a></br>
+	<link rel="stylesheet" href="../view/main.css">
+	<link rel="icon" href="../images/karton.ico" type="image/x-icon"/>
+    <title>Dokuemnty</title>
+	<a href="../main.php">HOME</a></br>
 </head>
  <body> 
   	<?php
