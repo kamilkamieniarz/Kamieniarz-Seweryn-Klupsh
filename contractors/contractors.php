@@ -64,8 +64,10 @@ if (!isset($_SESSION['logged_id'])) {
 						$records = mysqli_query($db,"select * from contractors"); // fetch data from database
 						echo '<table><tr>	
 							<th>Nazwa</th>
-							<th>skrót</th>						
+							<th>skrót</th>
+							<th>opis</th>							
 							<th>adres</th>
+							<th>miasto</th>
 							<th>opcje</th>
 							</tr>';
 						//wys
@@ -82,11 +84,13 @@ if (!isset($_SESSION['logged_id'])) {
 							<tr>
 							
 							<td><p style="display: none"> <?php echo ['id']?></p><?php echo $resultat['name']; ?></td>
-							<td><?php echo $resultat['Shortcut']; ?></td>
-							<td><?php echo $resultat['address']; ?></td>   
+							<td><?php echo $resultat['shortcut']; ?></td>  
+							<td><?php echo $resultat['description']; ?></td>
+							<td><?php echo "ul. ".$resultat['street'].' '.$resultat['house_number'].'/'.$resultat['apartment_number'] ; ?></td>
+							<td><?php echo $resultat['town'].' '.$resultat['zip_code']; ?></td>
 							  
 																				
-							<td><a href="edycja.php?id=<?php echo $resultat['id']; ?>">edycja</a>
+							<td><a href="contractors-edit-form.php?id=<?php echo $resultat['id']; ?>">edycja</a>
 							<a href="contractors-delete.php?id=<?php echo $resultat['id']; ?>">Usuń</a><br></td>
 							
 

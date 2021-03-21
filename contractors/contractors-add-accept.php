@@ -36,13 +36,17 @@ $contractort= $_POST['contractortown'];
 </br>
 <?php
 	
-     $sql = "INSERT INTO `contractors`(`name`, `shortcut`, `description`, `street`, `house_number`, `apartment_number`, `zip_code`, `town`) VALUES ('$contractorn','$contractors','$contractord','$contractorst','$contractorhn','$contractoran','$contractorzc','$contractort')";
+     $sql = "INSERT INTO `contractors`(`id`,`name`, `shortcut`, `description`, `street`, `house_number`, `apartment_number`, `zip_code`, `town`) VALUES ('','$contractorn','$contractors','$contractord','$contractorst','$contractorhn','$contractoran','$contractorzc','$contractort')";
 	 echo ("Kontrahent dodany pomyślnie");
 
 	  ?>
 	  <input type="button"  value="ok" onclick="window.location.href='contractors.php'">
 	  <?php
-	 $conn->close();
+	  if ($conn->query($sql) === TRUE) {
+  
+} else {
+  echo "Error: " . $sql . "<br>" . $conn->error;
+}
 	 ?>
 </body>
 </html>
