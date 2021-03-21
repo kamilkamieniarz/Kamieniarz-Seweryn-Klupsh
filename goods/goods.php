@@ -42,10 +42,10 @@ if (!isset($_SESSION['logged_id'])) {
 <html lang="pl">
 <head>
     <meta charset="utf-8">
-	<link rel="stylesheet" href="../.view/main.css">
+	<link rel="stylesheet" href="../view/main.css">
 	<link rel="icon" href="../images/karton.ico" type="image/x-icon"/>
     <title>Towary</title>
-	<a href="../main.php">Home</a></br>
+	<a href="../main.php">HOME</a></br>
 </head>
  <body> 
   	<?php
@@ -63,8 +63,7 @@ if (!isset($_SESSION['logged_id'])) {
 
 						$records = mysqli_query($db,"select * from goods"); // fetch data from database
 						echo '<table><tr>	
-							<th>Nazwa</th>
-							<th>Skrót</th>	
+							<th>Nazwa</th>	
 							<th>Producent</th>
 							<th>Cena jednostkowa</th>					
 							<th>Jednostka miary</th>
@@ -86,7 +85,7 @@ if (!isset($_SESSION['logged_id'])) {
 							<td><?php echo $resultat['producer']; ?></td>
 							<td><?php echo $resultat['unit_price']; ?></td>   
 							<td><?php echo $resultat['unit_of_measure']; ?></td>   													
-							<td><a href="edycja.php?id=<?php echo $resultat['id']; ?>">edycja</a>
+							<td><a href="goods-edit-form.php?id=<?php echo $resultat['id']; ?>">edycja</a>
 							<a href="goods-delete.php?id=<?php echo $resultat['id']; ?>">Usuń</a><br></td>
 						<?php
 						}
