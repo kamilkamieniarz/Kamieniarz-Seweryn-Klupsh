@@ -49,15 +49,11 @@ if (!isset($_SESSION['logged_id'])) {
 		<header class="page-header">
 		<h1 class="page-title">Dodaj kontrahtenta</h1>
 		</header>	
-			<form name="form1" method="post" action='contractors-add-accept.php'>
-			<p>Nazwa: </p> <input type="text" name="contractorname" size="30" placeholder="KowCem betorniarnia Sp. z o.o." require>
-			<p>Skrót: </p> <input type="text" name="contractorshortcut" size="5" placeholder="KowBud" require></br>
-			<p>Opis: </p> <input type="text" name="contractordescription" size="50" placeholder="Materiały budowlane"></br>
-			<p>Ulica: </p> <input type="text" name="contractorstreet" size="50" placeholder="Główna" require></br>
-			<p>Nr domu: </p> <input type="text" name="contractorhouse_number" size="5" placeholder="12/A" require></br>
-			<p>Nr mieszkania: </p> <input type="text" name="contractorapartment_number" size="3" placeholder="" ></br>
-			<p>Kod pocztowy: </p> <input type="text" name="contractorzip_code" size="6" placeholder="64-100" require></br>
-			<p>Miejscowość: </p> <input type="text" name="contractortown" size="50" placeholder="Leszno" require></br>
+			<form name="form1" method="post" action='goods-add-accept.php'>
+			<p>Nazwa: </p> <input type="text" name="goodname" size="30"  require>
+			<p>producer: </p> <input type="text" name="goodproducer" size="30"  require>
+			<p>cena jednostkowa: </p> <input type="text" name="good_unit_price" size="30"  require>
+			<p>jednostka miary: </p> <input type="text" name="good_unit_of_measure" size="30"  require>
 			</br>
 			<input type="submit" name="update" value="Dodaj"></left>		
 		</form>
