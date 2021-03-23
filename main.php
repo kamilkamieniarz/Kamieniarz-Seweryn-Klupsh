@@ -37,21 +37,62 @@ if (!isset($_SESSION['logged_id'])) {
 <head>
     <meta charset="utf-8">
 	<link rel="icon" href="images/karton.ico" type="image/x-icon"/>
-	<link rel="stylesheet" href="view/main.css" type="text/css" />
     <title>Panel Użytkownika</title>
-	 
+	 <!--css i bootstrap-->
+	 	<link rel="stylesheet" href="view/bootstrap.min.css">
+		<link rel="stylesheet" href="view/main.css" type="text/css" />
+		<link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700&amp;subset=latin-ext" rel="stylesheet">
 </head>
 
  <body> 
-<div class="topnav">
-  	<a class="active" href="main.php">HOME</a>
-  	<a href="stocks/stocks.php">STAN MAGAZYNÓW</a>
-	<a href="documents/documents.php?strona=1">DOKUMENTY</a>
-	<a href="magazine/magazine.php">MAGAZYNY</a> 
-	<a href="goods/goods.php?strona=1">TOWARY</a> 
-	<a href="contractors/contractors.php?strona=1">KONTRAHENCI</a> 
-	<a class="logout" href="logout.php">WYLOGUJ SIĘ</a> 
-</div>
+<header>
+	
+		<nav class="navbar navbar-dark bg-menu navbar-expand-xl">
+		
+			<a class="navbar-brand" href="#"><img src="view/logo.png" width="30" height="30" class="d-inline-block mr-1 align-bottom" alt=""> </a>
+		
+			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#mainmenu" aria-controls="mainmenu" aria-expanded="false" aria-label="Przełącznik nawigacji">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+		
+			<div class="collapse navbar-collapse" id="mainmenu">
+			
+				<ul class="navbar-nav mr-auto">
+				
+					<li class="nav-item active">
+						<a class="nav-link" href="main.php"> START </a>
+					</li>
+					
+					
+					
+					<li class="nav-item">
+						<a class="nav-link" href="stocks/stocks.php"> STAN MAGAZYNÓW </a>
+					</li>
+					
+					<li class="nav-item">
+						<a class="nav-link" href="documents/documents.php?strona=1"> DOKUMENTY </a>
+					</li>
+					
+					<li class="nav-item">
+						<a class="nav-link" href="magazine/magazine.php"> MAGAZYNY </a>
+					</li>
+					
+					<li class="nav-item">
+						<a class="nav-link" href="goods/goods.php?strona=1"> TOWARY </a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="contractors/contractors.php?strona=1"> KONTRAHENCI </a>
+					</li>
+				
+				</ul>
+			
+					<a  href="logout.php">WYLOGUJ SIĘ</a> 
+			
+			</div>
+		
+		</nav>
+	
+	</header>
 <div class ="witaj">
  <h1>
  	Witaj
@@ -62,5 +103,10 @@ if (!isset($_SESSION['logged_id'])) {
  </h1>
        
 <div>
+	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+	
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+	
+	<script src="js/bootstrap.min.js"></script>
 </body> 
 </html>
