@@ -47,7 +47,7 @@ if (!isset($_SESSION['logged_id'])) {
  <body> 
 <header>
 	
-		<nav class="navbar navbar-dark bg-menu navbar-expand-xl">
+		<nav class="navbar navbar-dark bg-menu navbar-expand-xl" style="z-index:1">
 		
 			<a class="navbar-brand" href="#"><img src="view/logo.png" width="30" height="30" class="d-inline-block mr-1 align-bottom" alt=""> </a>
 		
@@ -93,7 +93,7 @@ if (!isset($_SESSION['logged_id'])) {
 		</nav>
 	
 	</header>
-<div class ="witaj">
+<div class ="witaj" style="z-index:-1">
  <h1>
  	Witaj
  	<?php 
@@ -106,7 +106,7 @@ if (!isset($_SESSION['logged_id'])) {
 	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
 	
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
-	
-	<script src="js/bootstrap.min.js"></script>
+
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body> 
 </html>

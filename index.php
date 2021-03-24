@@ -10,11 +10,6 @@ if (isset($_SESSION['logged_id'])) {
 <html lang="pl">
 <head>
     <meta charset="utf-8">
-<<<<<<< Updated upstream
-    <title>Logowanie</title>
-   
-	
-=======
 	<link rel="stylesheet" href="view/main.css">
 	<link rel="icon" href="images/karton.ico" type="image/x-icon"/>
     <title>System Magazynowy</title>
@@ -24,19 +19,18 @@ if (isset($_SESSION['logged_id'])) {
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 	<!-- BOOTSTRAP -->
 	<link rel="stylesheet" href="view/style.css">
->>>>>>> Stashed changes
 </head>
 
  <body> 
   
        
-		<center><a><b>Zaloguj się</b></a></center>
+		<a><b>Zaloguj się</b></a>
 		
     
                 <form method="post" action="main.php">
-                   <center> <label><p >Login</p> <input type="text" name="login"></label></br></br>
+                   <label><p >Login</p> <input type="text" name="login"></label></br></br>
                     <label><p >Hasło</p> <input type="password" name="pass"></label></br></br>
-                    <input type="submit" value="Zaloguj się!"></center>
+                    <input type="submit" value="Zaloguj się!">
 					
 					<?php
 					if (isset($_SESSION['bad_attempt'])) {
