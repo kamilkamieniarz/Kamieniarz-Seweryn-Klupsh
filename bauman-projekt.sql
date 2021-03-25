@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Czas generowania: 25 Mar 2021, 13:43
+-- Czas generowania: 25 Mar 2021, 15:00
 -- Wersja serwera: 10.4.11-MariaDB
 -- Wersja PHP: 7.4.1
 
@@ -30,13 +30,13 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `contractors` (
   `id` int(11) NOT NULL,
-  `name` varchar(30) COLLATE utf8_polish_ci NOT NULL,
-  `shortcut` varchar(5) COLLATE utf8_polish_ci NOT NULL,
+  `name` varchar(150) COLLATE utf8_polish_ci NOT NULL,
+  `shortcut` varchar(10) COLLATE utf8_polish_ci NOT NULL,
   `description` varchar(50) COLLATE utf8_polish_ci NOT NULL,
   `street` varchar(50) COLLATE utf8_polish_ci NOT NULL,
   `house_number` varchar(5) COLLATE utf8_polish_ci NOT NULL,
   `apartment_number` varchar(5) COLLATE utf8_polish_ci NOT NULL,
-  `zip_code` varchar(6) COLLATE utf8_polish_ci NOT NULL,
+  `zip_code` varchar(15) COLLATE utf8_polish_ci NOT NULL,
   `town` varchar(50) COLLATE utf8_polish_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci;
 
@@ -50,11 +50,13 @@ CREATE TABLE `documents` (
   `id` int(11) NOT NULL,
   `type` varchar(10) COLLATE utf8_polish_ci NOT NULL,
   `number` int(50) NOT NULL,
-  `value` varchar(50) COLLATE utf8_polish_ci NOT NULL,
-  `date` timestamp NOT NULL DEFAULT current_timestamp(),
+  `value` decimal(50,0) NOT NULL,
+  `date` datetime NOT NULL,
+  `date_foreign_documents` datetime NOT NULL,
   `id_author` int(11) NOT NULL,
   `id_contractors` int(11) NOT NULL,
-  `id_producers` int(11) NOT NULL
+  `contractor_name_used_in_creation` varchar(150) COLLATE utf8_polish_ci NOT NULL,
+  `contractor_adress_used_in_creation` varchar(150) COLLATE utf8_polish_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci;
 
 -- --------------------------------------------------------
@@ -64,12 +66,13 @@ CREATE TABLE `documents` (
 --
 
 CREATE TABLE `documents_goods` (
-  `id` int(25) NOT NULL,
-  `amount` int(255) NOT NULL,
-  `total_value` varchar(255) COLLATE utf8_polish_ci NOT NULL,
-  `id_author` int(255) NOT NULL,
-  `id_documents` int(255) NOT NULL,
-  `id_goods` int(255) NOT NULL
+  `id` int(11) NOT NULL,
+  `quantity` varchar(20) COLLATE utf8_polish_ci NOT NULL,
+  `total_value` decimal(50,2) NOT NULL,
+  `id_author` int(11) NOT NULL,
+  `id_documents` int(11) NOT NULL,
+  `id_goods` int(11) NOT NULL,
+  `good_name_used_in_creation` varchar(100) COLLATE utf8_polish_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci;
 
 -- --------------------------------------------------------
@@ -80,26 +83,26 @@ CREATE TABLE `documents_goods` (
 
 CREATE TABLE `goods` (
   `id` int(11) NOT NULL,
-  `name` text COLLATE utf8mb4_polish_ci NOT NULL,
-  `producer` text COLLATE utf8mb4_polish_ci NOT NULL,
-  `unit_price` double(11,2) NOT NULL,
-  `unit_of_measure` text COLLATE utf8mb4_polish_ci NOT NULL,
-  `quantity` double(11,2) NOT NULL
+  `name` varchar(100) COLLATE utf8mb4_polish_ci NOT NULL,
+  `unit_price` decimal(11,2) NOT NULL,
+  `unit_of_measure` varchar(20) COLLATE utf8mb4_polish_ci NOT NULL,
+  `amount` decimal(11,2) NOT NULL,
+  `id_producer` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_polish_ci;
 
 --
 -- Zrzut danych tabeli `goods`
 --
 
-INSERT INTO `goods` (`id`, `name`, `producer`, `unit_price`, `unit_of_measure`, `quantity`) VALUES
-(1, 'Kapusta Biała', 'Kowalski', 3.00, 'kg', 25.00),
-(2, 'Kapusta czerwona', 'Kowalski', 2.50, 'kg', 15.00),
-(3, 'Jabłka Ligol', 'Renata Jabłońska', 2.65, 'kg', 23.00),
-(4, 'Mandarynka', 'Fritsource SA', 2.70, 'kg', 0.00),
-(5, 'Jabłka Jonagold', 'Gruszczyński i synowie sp. z o.o.', 2.21, 'kg', 5.00),
-(6, 'Arbuz', 'Exotic SA', 6.50, 'szt', 0.00),
-(7, 'Papryka czerwona', 'Piotr Tętnica', 2.80, 'kg', 0.00),
-(8, 'Papryka żółta', 'Piotr Tętnica', 2.50, 'kg', 23.00);
+INSERT INTO `goods` (`id`, `name`, `unit_price`, `unit_of_measure`, `amount`, `id_producer`) VALUES
+(1, 'Kapusta Biała', '3.00', 'kg', '25.00', 0),
+(2, 'Kapusta czerwona', '2.50', 'kg', '15.00', 0),
+(3, 'Jabłka Ligol', '2.65', 'kg', '23.00', 0),
+(4, 'Mandarynka', '2.70', 'kg', '0.00', 0),
+(5, 'Jabłka Jonagold', '2.21', 'kg', '5.00', 0),
+(6, 'Arbuz', '6.50', 'szt', '0.00', 0),
+(7, 'Papryka czerwona', '2.80', 'kg', '0.00', 0),
+(8, 'Papryka żółta', '2.50', 'kg', '23.00', 0);
 
 -- --------------------------------------------------------
 
@@ -157,8 +160,7 @@ ALTER TABLE `contractors`
 ALTER TABLE `documents`
   ADD PRIMARY KEY (`id`),
   ADD KEY `id_author` (`id_author`),
-  ADD KEY `id_contractors` (`id_contractors`),
-  ADD KEY `id_producers` (`id_producers`);
+  ADD KEY `id_contractors` (`id_contractors`);
 
 --
 -- Indeksy dla tabeli `documents_goods`
@@ -173,7 +175,8 @@ ALTER TABLE `documents_goods`
 -- Indeksy dla tabeli `goods`
 --
 ALTER TABLE `goods`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `id_producer` (`id_producer`);
 
 --
 -- Indeksy dla tabeli `producers`
@@ -207,7 +210,7 @@ ALTER TABLE `documents`
 -- AUTO_INCREMENT dla tabeli `documents_goods`
 --
 ALTER TABLE `documents_goods`
-  MODIFY `id` int(25) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT dla tabeli `goods`
@@ -236,8 +239,7 @@ ALTER TABLE `users`
 --
 ALTER TABLE `documents`
   ADD CONSTRAINT `documents_ibfk_1` FOREIGN KEY (`id_author`) REFERENCES `users` (`id`),
-  ADD CONSTRAINT `documents_ibfk_2` FOREIGN KEY (`id_contractors`) REFERENCES `contractors` (`id`),
-  ADD CONSTRAINT `documents_ibfk_3` FOREIGN KEY (`id_producers`) REFERENCES `producers` (`id`);
+  ADD CONSTRAINT `documents_ibfk_2` FOREIGN KEY (`id_contractors`) REFERENCES `contractors` (`id`);
 
 --
 -- Ograniczenia dla tabeli `documents_goods`
@@ -245,7 +247,13 @@ ALTER TABLE `documents`
 ALTER TABLE `documents_goods`
   ADD CONSTRAINT `documents_goods_ibfk_1` FOREIGN KEY (`id_author`) REFERENCES `users` (`id`),
   ADD CONSTRAINT `documents_goods_ibfk_2` FOREIGN KEY (`id_documents`) REFERENCES `documents` (`id`),
-  ADD CONSTRAINT `documents_goods_ibfk_3` FOREIGN KEY (`id_goods`) REFERENCES `goods` (`ID`);
+  ADD CONSTRAINT `documents_goods_ibfk_3` FOREIGN KEY (`id_goods`) REFERENCES `goods` (`id`);
+
+--
+-- Ograniczenia dla tabeli `goods`
+--
+ALTER TABLE `goods`
+  ADD CONSTRAINT `goods_ibfk_1` FOREIGN KEY (`id_producer`) REFERENCES `producers` (`id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
