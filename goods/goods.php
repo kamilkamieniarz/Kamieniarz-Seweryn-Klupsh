@@ -62,12 +62,13 @@
 				$stron = ceil ($ile / $na_strone);   //tutaj masz ilosc stron zaokraglanych w gore
 				echo 'strona:';
 				if (!isset($_GET['strona'])) $strona = 1; else $strona = (int)$_GET['strona'];
-				$sql = mysqli_query($db,"SELECT * FROM goods LIMIT ".(($strona-1)*$na_strone).','.$na_strone);	// tak odczytujesz
+				$sql = mysqli_query($db,"SELECT  goods.id, goods.name, goods.unit_price, goods.unit_of_measure ,producers.Name FROM goods LEFT OUTER JOIN producers ON producers.ID = goods.id_producer LIMIT ".(($strona-1)*$na_strone).','.$na_strone);	// tak odczytujesz
+				
 				while ($resultat=mysqli_fetch_array($sql)){
 	?>
 					<tr>
 						<td><?php echo $resultat['name']; ?></td>
-						<td><?php echo $resultat['producer']; ?></td>
+						<td><?php echo $resultat['Name']; ?></td>
 						<td><?php echo $resultat['unit_price']; ?></td>   
 						<td><?php echo $resultat['unit_of_measure']; ?></td>   													
 						<td><a href="goods-edit-form.php?id=<?php echo $resultat['id']; ?>">edycja</a>

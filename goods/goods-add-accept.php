@@ -32,7 +32,7 @@ $goodm= $_POST['good_unit_of_measure'];
 </br>
 <?php
 	
-     $sql = "INSERT INTO `goods`(`id`, `name`, `producer`, `unit_price`, `unit_of_measure`, `quantity`) VALUES ('','$goodn','$goodp','$goodu','$goodm','0')";
+     $sql = "INSERT INTO `goods`(`id`, `name`, `id_producer`, `unit_price`, `unit_of_measure`, `amount`) VALUES ('','$goodn','$goodp','$goodu','$goodm','0')";
 	 echo ("Kontrahent dodany pomyślnie");
 
 	  ?>
