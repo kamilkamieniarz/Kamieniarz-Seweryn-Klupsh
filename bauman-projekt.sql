@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Czas generowania: 20 Mar 2021, 18:46
+-- Czas generowania: 25 Mar 2021, 13:43
 -- Wersja serwera: 10.4.11-MariaDB
 -- Wersja PHP: 7.4.1
 
@@ -43,6 +43,38 @@ CREATE TABLE `contractors` (
 -- --------------------------------------------------------
 
 --
+-- Struktura tabeli dla tabeli `documents`
+--
+
+CREATE TABLE `documents` (
+  `id` int(11) NOT NULL,
+  `type` varchar(10) COLLATE utf8_polish_ci NOT NULL,
+  `number` int(50) NOT NULL,
+  `value` varchar(50) COLLATE utf8_polish_ci NOT NULL,
+  `date` timestamp NOT NULL DEFAULT current_timestamp(),
+  `id_author` int(11) NOT NULL,
+  `id_contractors` int(11) NOT NULL,
+  `id_producers` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Struktura tabeli dla tabeli `documents_goods`
+--
+
+CREATE TABLE `documents_goods` (
+  `id` int(25) NOT NULL,
+  `amount` int(255) NOT NULL,
+  `total_value` varchar(255) COLLATE utf8_polish_ci NOT NULL,
+  `id_author` int(255) NOT NULL,
+  `id_documents` int(255) NOT NULL,
+  `id_goods` int(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci;
+
+-- --------------------------------------------------------
+
+--
 -- Struktura tabeli dla tabeli `goods`
 --
 
@@ -68,6 +100,25 @@ INSERT INTO `goods` (`id`, `name`, `producer`, `unit_price`, `unit_of_measure`, 
 (6, 'Arbuz', 'Exotic SA', 6.50, 'szt', 0.00),
 (7, 'Papryka czerwona', 'Piotr Tętnica', 2.80, 'kg', 0.00),
 (8, 'Papryka żółta', 'Piotr Tętnica', 2.50, 'kg', 23.00);
+
+-- --------------------------------------------------------
+
+--
+-- Struktura tabeli dla tabeli `producers`
+--
+
+CREATE TABLE `producers` (
+  `id` int(11) NOT NULL,
+  `name` varchar(30) COLLATE utf8_polish_ci NOT NULL,
+  `shortcut` varchar(5) COLLATE utf8_polish_ci NOT NULL,
+  `description` varchar(50) COLLATE utf8_polish_ci NOT NULL,
+  `offered_products` varchar(50) COLLATE utf8_polish_ci NOT NULL,
+  `street` varchar(50) COLLATE utf8_polish_ci NOT NULL,
+  `house_number` varchar(5) COLLATE utf8_polish_ci NOT NULL,
+  `apartment_number` varchar(5) COLLATE utf8_polish_ci NOT NULL,
+  `zip_code` varchar(6) COLLATE utf8_polish_ci NOT NULL,
+  `town` varchar(50) COLLATE utf8_polish_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci;
 
 -- --------------------------------------------------------
 
@@ -101,9 +152,33 @@ ALTER TABLE `contractors`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indeksy dla tabeli `documents`
+--
+ALTER TABLE `documents`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `id_author` (`id_author`),
+  ADD KEY `id_contractors` (`id_contractors`),
+  ADD KEY `id_producers` (`id_producers`);
+
+--
+-- Indeksy dla tabeli `documents_goods`
+--
+ALTER TABLE `documents_goods`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `id_author` (`id_author`),
+  ADD KEY `id_documents` (`id_documents`),
+  ADD KEY `id_goods` (`id_goods`);
+
+--
 -- Indeksy dla tabeli `goods`
 --
 ALTER TABLE `goods`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indeksy dla tabeli `producers`
+--
+ALTER TABLE `producers`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -120,19 +195,57 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT dla tabeli `contractors`
 --
 ALTER TABLE `contractors`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT dla tabeli `documents`
+--
+ALTER TABLE `documents`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT dla tabeli `documents_goods`
+--
+ALTER TABLE `documents_goods`
+  MODIFY `id` int(25) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT dla tabeli `goods`
 --
 ALTER TABLE `goods`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+
+--
+-- AUTO_INCREMENT dla tabeli `producers`
+--
+ALTER TABLE `producers`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT dla tabeli `users`
 --
 ALTER TABLE `users`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- Ograniczenia dla zrzutów tabel
+--
+
+--
+-- Ograniczenia dla tabeli `documents`
+--
+ALTER TABLE `documents`
+  ADD CONSTRAINT `documents_ibfk_1` FOREIGN KEY (`id_author`) REFERENCES `users` (`id`),
+  ADD CONSTRAINT `documents_ibfk_2` FOREIGN KEY (`id_contractors`) REFERENCES `contractors` (`id`),
+  ADD CONSTRAINT `documents_ibfk_3` FOREIGN KEY (`id_producers`) REFERENCES `producers` (`id`);
+
+--
+-- Ograniczenia dla tabeli `documents_goods`
+--
+ALTER TABLE `documents_goods`
+  ADD CONSTRAINT `documents_goods_ibfk_1` FOREIGN KEY (`id_author`) REFERENCES `users` (`id`),
+  ADD CONSTRAINT `documents_goods_ibfk_2` FOREIGN KEY (`id_documents`) REFERENCES `documents` (`id`),
+  ADD CONSTRAINT `documents_goods_ibfk_3` FOREIGN KEY (`id_goods`) REFERENCES `goods` (`ID`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
