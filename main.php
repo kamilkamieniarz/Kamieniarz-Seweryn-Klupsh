@@ -78,6 +78,9 @@ if (!isset($_SESSION['logged_id'])) {
 					<li class="nav-item">
 						<a class="nav-link" href="contractors/contractors.php?strona=1"> KONTRAHENCI </a>
 					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="producers/producers.php?strona=1"> PRODUCENCI </a>
+					</li>
 				</ul>
 				<a  href="logout.php">WYLOGUJ SIĘ</a>
 			</div>

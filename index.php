@@ -23,18 +23,23 @@ if (isset($_SESSION['logged_id'])) {
 
  <body>
 	<main>
-		<a><b>Zaloguj się</b></a>
-		<form method="post" action="main.php">
-            <p>Login</p> <input type="text" name="login"></br></br>
-            <p>Hasło</p> <input type="password" name="pass"></br></br>
-            <input type="submit" value="Zaloguj się!">
-			<?php
-				if(isset($_SESSION['bad_attempt'])){
-					echo '<p style="color: red; text-align: center"> Błąd logowania!  </p>';
-					unset($_SESSION['bad_attempt']);
-				}
-			?>
-		</form>
+		<div class="d-flex justify-content-center mt-5">
+			<a><b>Zaloguj się</b></a>
+		</div>
+		
+		<div class="d-flex justify-content-center">
+			<form method="post" action="main.php">
+				<input type="text" name="login" placeholder="Login"><br>
+				<input type="password" name="pass" placeholder="Hasło"></br>
+				<input type="submit" value="Zaloguj się!">
+				<?php
+					if(isset($_SESSION['bad_attempt'])){
+						echo '<p style="color: red; text-align: center"> Błąd logowania!  </p>';
+						unset($_SESSION['bad_attempt']);
+					}
+				?>
+			</form>
+		</div>
     </main>
 </body> 
 </html>

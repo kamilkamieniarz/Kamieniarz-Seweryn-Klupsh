@@ -47,9 +47,9 @@
 		require_once('../header.php');
 		$db = mysqli_connect("localhost","root","","bauman-projekt");
 		if(!$db){die("Connection failed: " . mysqli_connect_error());}
-		echo "<a href='goods-add-form.php'>dodaj towar</a><br>";
+		echo "<a href='goods-add-form.php' class='effect effect-add'>Dodaj Towar</a><br>";
 		$records = mysqli_query($db,"select * from goods"); // fetch data from database
-		echo '<table>
+		echo '<table class="table table-striped table-hover">
 				<tr>	
 					<th>Nazwa</th>	
 					<th>Producent</th>
@@ -58,9 +58,9 @@
 					<th>Opcje</th>
 				</tr>';
 				$ile = mysqli_num_rows($records);  //ilosc wszystkich rekordow (nie stron !!)
-				$na_strone = 10; //tu podajesz ile rekordow na stronie max.
+				$na_strone = 6; //tu podajesz ile rekordow na stronie max.
 				$stron = ceil ($ile / $na_strone);   //tutaj masz ilosc stron zaokraglanych w gore
-				echo 'strona:';
+				echo 'Strona:';
 				if (!isset($_GET['strona'])) $strona = 1; else $strona = (int)$_GET['strona'];
 				$sql = mysqli_query($db,"SELECT  goods.id, goods.name, goods.unit_price, goods.unit_of_measure ,producers.Name FROM goods LEFT OUTER JOIN producers ON producers.ID = goods.id_producer LIMIT ".(($strona-1)*$na_strone).','.$na_strone);	// tak odczytujesz
 				
@@ -71,13 +71,13 @@
 						<td><?php echo $resultat['Name']; ?></td>
 						<td><?php echo $resultat['unit_price']; ?></td>   
 						<td><?php echo $resultat['unit_of_measure']; ?></td>   													
-						<td><a href="goods-edit-form.php?id=<?php echo $resultat['id']; ?>">edycja</a>
-						<a href="goods-delete.php?id=<?php echo $resultat['id']; ?>">Usuń</a><br></td>
+						<td><a href="goods-edit-form.php?id=<?php echo $resultat['id']; ?>" class='effect effect-edit'>Edytuj</a>
+						<a href="goods-delete.php?id=<?php echo $resultat['id']; ?>" class='effect effect-delete'>Usuń</a><br></td>
 					</tr>
 			<?php
 				}
-				echo ' <a href="?strona=1"> 1</a> ';
-				for ($i = 1; $i < $stron; $i++) echo ' <a href="?strona='.($i+1).'"> '.($i+1).'</a> ';  //tak wyswietlasz numery;
+				echo '<a href="?strona=1"> 1</a> ';
+				for ($i = 1; $i < $stron; $i++) echo '	<a href="?strona='.($i+1).'"> '.($i+1).'</a> ';  //tak wyswietlasz numery;
 			?>
 </body> 
 </html>
