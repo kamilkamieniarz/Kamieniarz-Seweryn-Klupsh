@@ -23,11 +23,11 @@ if (isset($_SESSION['logged_id'])) {
 
  <body>
 	<main>
-		<div class="d-flex justify-content-center mt-5">
-			<a><b>Zaloguj się</b></a>
-		</div>
-		
-		<div class="d-flex justify-content-center">
+			<div class=" col-12 d-flex justify-content-center mt-5 ">
+					<h1 class="h2">Zaloguj się</h1>
+			</div>
+				
+			<div class=" col-12 d-inline-flex justify-content-center">
 			<form method="post" action="main.php">
 				<input type="text" name="login" placeholder="Login"><br>
 				<input type="password" name="pass" placeholder="Hasło"></br>
