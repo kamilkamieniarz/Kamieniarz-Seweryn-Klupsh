@@ -47,11 +47,13 @@
 		require_once('../header.php');
 		$db = mysqli_connect("localhost","root","","bauman-projekt");
 		if(!$db){die("Connection failed: " . mysqli_connect_error());}
-		$records = mysqli_query($db,"select * from dokumenty"); // fetch data from database
+		$records = mysqli_query($db,"select * from documents"); // fetch data from database
 		echo '<table>
 				<tr>	
 					<th>typ</th>
-					<th>data utworzenia</th>						
+					<th>numer</th>
+					<th>wartość</th>
+					<th>data utworzenia</th>					
 					<th>opcje</th>
 				</tr>';
 				$ile = mysqli_num_rows($records);  //ilosc wszystkich rekordow (nie stron !!)
@@ -59,14 +61,15 @@
 				$stron = ceil ($ile / $na_strone);   //tutaj masz ilosc stron zaokraglanych w gore
 				echo 'strona:';
 				if (!isset($_GET['strona'])) $strona = 1; else $strona = (int)$_GET['strona'];
-				$sql = mysqli_query($db,"SELECT * FROM dokumenty LIMIT ".(($strona-1)*$na_strone).','.$na_strone);	// tak odczytujesz
+				$sql = mysqli_query($db,"SELECT * FROM documents LIMIT ".(($strona-1)*$na_strone).','.$na_strone);	// tak odczytujesz
  				while ($resultat=mysqli_fetch_array($sql)){
 	?>
 					<tr>
 						<td><?php echo $resultat['type']; ?></td>
+						<td><?php echo $resultat['number']; ?></td>
+						<td><?php echo $resultat['value']; ?></td>
 						<td><?php echo $resultat['date']; ?></td>
-						<td><a href="edycja.php?id=<?php echo $resultat['id']; ?>">Pobierz</a>
-						<a href="documents-delete.php?id=<?php echo $resultat['id']; ?>">Usuń</a><br></td>
+						<td><a href="documents-dowload.php?id=<?php echo $resultat['id']; ?>">Pobierz</a>
 					</tr>
 			<?php
 				}
