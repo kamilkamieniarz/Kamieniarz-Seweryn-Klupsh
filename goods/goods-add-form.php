@@ -47,7 +47,7 @@ if (!isset($_SESSION['logged_id'])) {
 <html lang="pl">
 <body>
 		<header class="page-header">
-		<h1 class="page-title">Dodaj kontrahtenta</h1>
+		<h1 class="page-title">Dodaj Towar</h1>
 		</header>	
 			<form name="form1" method="post" action='goods-add-accept.php'>
 			<p>Nazwa: </p> <input type="text" name="goodname" size="30"  require>

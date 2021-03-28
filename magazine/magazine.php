@@ -43,37 +43,43 @@
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </head>
  <body> 
-  	<?php	
+  	<?php
 		require_once('../header.php');
 		$db = mysqli_connect("localhost","root","","bauman-projekt");
 		if(!$db){die("Connection failed: " . mysqli_connect_error());}
-		echo "<a href='magazine-add-form.php'>Dodaj magazyn</a><br>";
-		$records = mysqli_query($db,"select * from magazine"); // fetch data from database
-		echo '<table>
+		echo "<a href='magazine-add-form.php' class='effect effect-add'>Dodaj magazyn</a><br>";
+		$records = mysqli_query($db,"select * from magazines"); // fetch data from database
+		echo '<table class="table table-striped table-hover">
 				<tr>	
 					<th>Nazwa</th>
-					<th>skrót</th>						
-					<th>lokalizacja</th>
-					<th>opcje</th>
+					<th>opis</th>
+					<th>skrót</th>
+					<th>adres</th>					
+					<th>miasto</th>	
+					<th>opcje</th>	
 				</tr>';
 				$ile = mysqli_num_rows($records);  //ilosc wszystkich rekordow (nie stron !!)
-				$na_strone = 10; //tu podajesz ile rekordow na stronie max.
+				$na_strone = 6; //tu podajesz ile rekordow na stronie max.
 				$stron = ceil ($ile / $na_strone);   //tutaj masz ilosc stron zaokraglanych w gore
-				echo 'strona:';
+				echo 'Strona:';
 				if (!isset($_GET['strona'])) $strona = 1; else $strona = (int)$_GET['strona'];
-				$sql = mysqli_query($db,"SELECT * FROM magazine LIMIT ".(($strona-1)*$na_strone).','.$na_strone);	// tak odczytujesz
-				while ($resultat=mysqli_fetch_array($sql)){?>
-				<tr>
-					<td><?php echo $resultat['name']; ?></td>
-					<td><?php echo $resultat['shortcut']; ?></td>
-					<td><?php echo $resultat['location']; ?></td>   													
-					<td><a href="edycja.php?id=<?php echo $resultat['id']; ?>">edycja</a>
-					<a href="magazine-delete.php?id=<?php echo $resultat['id']; ?>">Usuń</a><br></td>
-				</tr>
+				$sql = mysqli_query($db,"SELECT * FROM magazines LIMIT ".(($strona-1)*$na_strone).','.$na_strone);	// tak odczytujesz
+				
+				while ($resultat=mysqli_fetch_array($sql)){
+	?>
+					<tr>
+						<td><?php echo $resultat['name']; ?></td>
+						<td><?php echo $resultat['description']; ?></td>
+						<td><?php echo $resultat['shortcut']; ?></td>
+						<td><?php echo "ul. ".$resultat['street'].' '.$resultat['house_number'].'/'.$resultat['apartment_number'] ; ?></td>
+						<td><?php echo $resultat['town'].' '.$resultat['zip_code']; ?></td>   													
+						<td><a href="magazine-edit-form.php?id=<?php echo $resultat['id']; ?>" class='effect effect-edit'>Edytuj</a>
+						<a href="magazine-delete.php?id=<?php echo $resultat['id']; ?>" class='effect effect-delete'>Usuń</a><br></td>
+					</tr>
 			<?php
 				}
-				echo ' <a href="?strona=1"> 1</a> ';
-				for ($i = 1; $i < $stron; $i++) echo ' <a href="?strona='.($i+1).'"> '.($i+1).'</a> ';  //tak wyswietlasz numery;
+				echo '<a href="?strona=1"> 1</a> ';
+				for ($i = 1; $i < $stron; $i++) echo '	<a href="?strona='.($i+1).'"> '.($i+1).'</a> ';  //tak wyswietlasz numery;
 			?>
 </body> 
 </html>

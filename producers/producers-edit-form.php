@@ -13,7 +13,7 @@ $qry = mysqli_query($conn,"select * from producers where id='$id'"); // select q
 $data = mysqli_fetch_array($qry); // fetch data
 if(isset($_POST['update'])) // when click on Update button
 {   	
-    $edit = mysqli_query($conn,"UPDATE producers SET name='".$_POST['contractorname']."',shortcut='".$_POST['contractorshortcut']."',description='".$_POST['contractordescription']."',street='".$_POST['contractorstreet']."',house_number='".$_POST['contractorhouse_number']."',apartment_number='".$_POST['contractorapartment_number']."',zip_code='".$_POST['contractorzip_code']."',town='".$_POST['contractortown']."' WHERE id='$id'");
+    $edit = mysqli_query($conn,"UPDATE producers SET name='".$_POST['producername']."',shortcut='".$_POST['producershortcut']."',description='".$_POST['producerdescription']."',street='".$_POST['producerstreet']."',house_number='".$_POST['producerhouse_number']."',apartment_number='".$_POST['producerapartment_number']."',zip_code='".$_POST['producerzip_code']."',town='".$_POST['producertown']."' WHERE id='$id'");
 	
     if($edit)
     {
@@ -42,7 +42,7 @@ if(isset($_POST['update'])) // when click on Update button
 		</header>	
 			<form name="form1" method="post" action=''>
 			<p>Nazwa: </p> <input type="text" name="producername" size="30" value="<?php echo $data['name'] ?>" require>
-			<p>Skrót: </p> <input type="text" name="producerhortcut" size="5" value="<?php echo $data['shortcut'] ?>"</br>
+			<p>Skrót: </p> <input type="text" name="producershortcut" size="5" value="<?php echo $data['shortcut'] ?>"</br>
 			<p>Opis: </p> <input type="text" name="producerdescription" size="50" value="<?php echo $data['description'] ?>"</br>
 			<p>Ulica: </p> <input type="text" name="producerstreet" size="50" value="<?php echo $data['street'] ?>" require></br>
 			<p>Nr domu: </p> <input type="text" name="producerhouse_number" size="5" value="<?php echo $data['house_number'] ?>" require></br>

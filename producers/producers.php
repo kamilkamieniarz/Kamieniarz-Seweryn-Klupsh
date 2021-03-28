@@ -47,7 +47,7 @@
 		require_once('../header.php');
 		$db = mysqli_connect("localhost","root","","bauman-projekt");
 		if(!$db){die("Connection failed: " . mysqli_connect_error());}
-		echo "<a href='producers-add-form.php'>Dodaj producenta</a><br>";
+		echo "<a href='producers-add-form.php' class='effect effect-add'>Dodaj producenta</a><br>";
 		$records = mysqli_query($db,"select * from contractors"); // fetch data from database
 		echo '<table>
 				<tr>	

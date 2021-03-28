@@ -47,7 +47,7 @@
 		require_once('../header.php');
 		$db = mysqli_connect("localhost","root","","bauman-projekt");
 		if(!$db){die("Connection failed: " . mysqli_connect_error());}
-		echo "<a href='contractors-add-form.php'>Dodaj kontrahenta</a><br>";
+		echo "<a href='contractors-add-form.php' class='effect effect-add'>Dodaj kontrahenta</a><br>";
 		$records = mysqli_query($db,"select * from contractors"); // fetch data from database
 		echo '<table>
 				<tr>	
@@ -67,7 +67,7 @@
 				while ($resultat=mysqli_fetch_array($sql)){
 	?>
 					<tr>
-						<td><p style="display: none"> <?php echo ['id']?></p><?php echo $resultat['name']; ?></td>
+						<td><?php echo $resultat['name']; ?></td>
 						<td><?php echo $resultat['shortcut']; ?></td>  
 						<td><?php echo $resultat['description']; ?></td>
 						<td><?php echo "ul. ".$resultat['street'].' '.$resultat['house_number'].'/'.$resultat['apartment_number'] ; ?></td>
