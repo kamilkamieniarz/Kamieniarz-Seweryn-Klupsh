@@ -1,24 +1,11 @@
 <?php
-
-$db = mysqli_connect("localhost","root","","bauman-projekt");
-
-if(!$db)
-{
-    die("Connection failed: " . mysqli_connect_error());
-}
-
-$id = $_GET['id']; // get id through query string
-
-$del = mysqli_query($db,"delete from goods where id = '$id'"); // delete query
-
-if($del)
-{
-    mysqli_close($db); // Close connection
-    header("location:goods.php"); // redirects to all records page
+require_once("../connect.php");
+$id = $_GET['id'];
+$del = mysqli_query($conn,"delete from goods where id = '$id'");
+if($del){
+    mysqli_close($conn);
+    header("location:goods.php");
     exit;	
 }
-else
-{
-    echo "Error deleting record"; // display error message if not delete
-}
+else{echo "Error deleting record";}
 ?>

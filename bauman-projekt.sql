@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Czas generowania: 25 Mar 2021, 15:00
+-- Czas generowania: 06 Kwi 2021, 16:15
 -- Wersja serwera: 10.4.11-MariaDB
 -- Wersja PHP: 7.4.1
 
@@ -40,6 +40,13 @@ CREATE TABLE `contractors` (
   `town` varchar(50) COLLATE utf8_polish_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci;
 
+--
+-- Zrzut danych tabeli `contractors`
+--
+
+INSERT INTO `contractors` (`id`, `name`, `shortcut`, `description`, `street`, `house_number`, `apartment_number`, `zip_code`, `town`) VALUES
+(5, 'Kowalski sp.zoo', 'KOW', '', 'Jana Pawła', '12', 'A', '64-100', 'Leszno');
+
 -- --------------------------------------------------------
 
 --
@@ -58,6 +65,13 @@ CREATE TABLE `documents` (
   `contractor_name_used_in_creation` varchar(150) COLLATE utf8_polish_ci NOT NULL,
   `contractor_adress_used_in_creation` varchar(150) COLLATE utf8_polish_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci;
+
+--
+-- Zrzut danych tabeli `documents`
+--
+
+INSERT INTO `documents` (`id`, `type`, `number`, `value`, `date`, `date_foreign_documents`, `id_author`, `id_contractors`, `contractor_name_used_in_creation`, `contractor_adress_used_in_creation`) VALUES
+(3, 'pz', 111, '10', '2021-03-27 12:35:30', '2021-03-27 12:35:30', 2, 5, 'testowy kontraktor', 'TKS');
 
 -- --------------------------------------------------------
 
@@ -95,14 +109,61 @@ CREATE TABLE `goods` (
 --
 
 INSERT INTO `goods` (`id`, `name`, `unit_price`, `unit_of_measure`, `amount`, `id_producer`) VALUES
-(1, 'Kapusta Biała', '3.00', 'kg', '25.00', 0),
-(2, 'Kapusta czerwona', '2.50', 'kg', '15.00', 0),
-(3, 'Jabłka Ligol', '2.65', 'kg', '23.00', 0),
-(4, 'Mandarynka', '2.70', 'kg', '0.00', 0),
-(5, 'Jabłka Jonagold', '2.21', 'kg', '5.00', 0),
-(6, 'Arbuz', '6.50', 'szt', '0.00', 0),
-(7, 'Papryka czerwona', '2.80', 'kg', '0.00', 0),
-(8, 'Papryka żółta', '2.50', 'kg', '23.00', 0);
+(2, 'Kapusta czerwona', '2.50', 'kg', '15.00', 7),
+(3, 'Jabłka Ligol', '2.65', 'kg', '23.00', 7),
+(4, 'Mandarynka', '2.70', 'kg', '0.00', 7),
+(5, 'Jabłka Jonagold', '2.21', 'kg', '5.00', 7),
+(6, 'Arbuz', '6.50', 'szt', '0.00', 7),
+(7, 'Papryka czerwona', '2.80', 'kg', '0.00', 7),
+(8, 'Papryka żółta', '2.50', 'kg', '23.00', 7),
+(15, 'test', '0.00', 'szt.', '0.00', 7);
+
+-- --------------------------------------------------------
+
+--
+-- Struktura tabeli dla tabeli `magazines`
+--
+
+CREATE TABLE `magazines` (
+  `id` int(11) NOT NULL,
+  `name` varchar(50) NOT NULL,
+  `shortcut` varchar(5) NOT NULL,
+  `description` varchar(50) NOT NULL,
+  `street` varchar(50) NOT NULL,
+  `house_number` varchar(50) NOT NULL,
+  `apartment_number` varchar(50) NOT NULL,
+  `zip_code` varchar(6) NOT NULL,
+  `town` varchar(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Zrzut danych tabeli `magazines`
+--
+
+INSERT INTO `magazines` (`id`, `name`, `shortcut`, `description`, `street`, `house_number`, `apartment_number`, `zip_code`, `town`) VALUES
+(2, 'Magazyn-slep1', 'MGS', 'przetrzeń magazynowa w sklepie', 'Leszno', '12', '5', '64-100', 'Leszno'),
+(4, 'test', 'test', 'test', 'test', 'test', 'test', 'test', 'test');
+
+-- --------------------------------------------------------
+
+--
+-- Struktura tabeli dla tabeli `magazines_goods`
+--
+
+CREATE TABLE `magazines_goods` (
+  `id` int(11) NOT NULL,
+  `id_magazines` int(11) NOT NULL,
+  `id_goods` int(11) NOT NULL,
+  `amount` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Zrzut danych tabeli `magazines_goods`
+--
+
+INSERT INTO `magazines_goods` (`id`, `id_magazines`, `id_goods`, `amount`) VALUES
+(1, 2, 2, 5),
+(2, 4, 6, 10);
 
 -- --------------------------------------------------------
 
@@ -112,16 +173,23 @@ INSERT INTO `goods` (`id`, `name`, `unit_price`, `unit_of_measure`, `amount`, `i
 
 CREATE TABLE `producers` (
   `id` int(11) NOT NULL,
-  `name` varchar(30) COLLATE utf8_polish_ci NOT NULL,
-  `shortcut` varchar(5) COLLATE utf8_polish_ci NOT NULL,
+  `name` varchar(150) COLLATE utf8_polish_ci NOT NULL,
+  `shortcut` varchar(10) COLLATE utf8_polish_ci NOT NULL,
   `description` varchar(50) COLLATE utf8_polish_ci NOT NULL,
   `offered_products` varchar(50) COLLATE utf8_polish_ci NOT NULL,
   `street` varchar(50) COLLATE utf8_polish_ci NOT NULL,
   `house_number` varchar(5) COLLATE utf8_polish_ci NOT NULL,
   `apartment_number` varchar(5) COLLATE utf8_polish_ci NOT NULL,
-  `zip_code` varchar(6) COLLATE utf8_polish_ci NOT NULL,
+  `zip_code` varchar(15) COLLATE utf8_polish_ci NOT NULL,
   `town` varchar(50) COLLATE utf8_polish_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci;
+
+--
+-- Zrzut danych tabeli `producers`
+--
+
+INSERT INTO `producers` (`id`, `name`, `shortcut`, `description`, `offered_products`, `street`, `house_number`, `apartment_number`, `zip_code`, `town`) VALUES
+(7, 'Maspex', 'mas', '', '', 'Główna', '6', '', '01-385', 'Warszawa');
 
 -- --------------------------------------------------------
 
@@ -179,6 +247,20 @@ ALTER TABLE `goods`
   ADD KEY `id_producer` (`id_producer`);
 
 --
+-- Indeksy dla tabeli `magazines`
+--
+ALTER TABLE `magazines`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indeksy dla tabeli `magazines_goods`
+--
+ALTER TABLE `magazines_goods`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `id_goods` (`id_goods`),
+  ADD KEY `id_magazines` (`id_magazines`);
+
+--
 -- Indeksy dla tabeli `producers`
 --
 ALTER TABLE `producers`
@@ -198,13 +280,13 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT dla tabeli `contractors`
 --
 ALTER TABLE `contractors`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT dla tabeli `documents`
 --
 ALTER TABLE `documents`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT dla tabeli `documents_goods`
@@ -216,13 +298,25 @@ ALTER TABLE `documents_goods`
 -- AUTO_INCREMENT dla tabeli `goods`
 --
 ALTER TABLE `goods`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+
+--
+-- AUTO_INCREMENT dla tabeli `magazines`
+--
+ALTER TABLE `magazines`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- AUTO_INCREMENT dla tabeli `magazines_goods`
+--
+ALTER TABLE `magazines_goods`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT dla tabeli `producers`
 --
 ALTER TABLE `producers`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT dla tabeli `users`
@@ -250,10 +344,11 @@ ALTER TABLE `documents_goods`
   ADD CONSTRAINT `documents_goods_ibfk_3` FOREIGN KEY (`id_goods`) REFERENCES `goods` (`id`);
 
 --
--- Ograniczenia dla tabeli `goods`
+-- Ograniczenia dla tabeli `magazines_goods`
 --
-ALTER TABLE `goods`
-  ADD CONSTRAINT `goods_ibfk_1` FOREIGN KEY (`id_producer`) REFERENCES `producers` (`id`);
+ALTER TABLE `magazines_goods`
+  ADD CONSTRAINT `magazines_goods_ibfk_1` FOREIGN KEY (`id_goods`) REFERENCES `goods` (`id`),
+  ADD CONSTRAINT `magazines_goods_ibfk_2` FOREIGN KEY (`id_magazines`) REFERENCES `magazines` (`id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

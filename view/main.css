@@ -46,8 +46,8 @@ main {
   text-transform: capitalize;
   font-family: 'Arial';
   font-size: 20px;
-  padding: 20px 0px;
-  width: 150px;
+  padding: 20px;
+  width: 250px;
   overflow: hidden;
   -webkit-transition: all 0.2s linear 0s;
   transition: all 0.2s linear 0s;
@@ -180,4 +180,40 @@ main {
 }
 /*delete button */
 
+.pz:before {
+  content: "\f56d" !important;
+}
+
+.wz:before {
+  content: "\f574" !important;
+}
+
+.shift:before {
+  content: "\f0d1" !important;
+}
+
+.back:before {
+  content: "\f0e2" !important;
+}
+
+.document:before {
+  content: "\f15c" !important;
+}
+
+.magazine:before{
+  content: "\f494" !important;
+}
+
+.goods:before {
+  content: "\f6d7" !important;
+}
+
+.person:before {
+  content: "\f234" !important;
+}
+
 /*animowany przycisk */
+
+a:link {
+  color: #f0f0f0
+}
