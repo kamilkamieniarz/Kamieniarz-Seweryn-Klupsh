@@ -1,12 +1,12 @@
  html {
     margin:0px;
     padding:5px;
-	background: url('../images/tlo.png');
-	background-repeat: no-repeat;
-	background-min-height: 100%;
-	background-size: cover;
-
-	background-color: #F8F8FF;
+		background: url('../images/tlo2.png');
+		/*background-repeat: no-repeat;*/
+		background-min-height: 100%;
+		background-size: cover;
+		background-color: #F8F8FF;
+	
     color:black;
 	font-size: 25px;
 	font-family: arial;
@@ -15,12 +15,13 @@
 
 .d-flex{
 		background-color: transparent;
+
  		position: absolute;             
 		top: 30%;
 		transform: translateY(-70%);
 }  
 .d-inline-flex {
-			position: absolute;             
+         	position: absolute;    
 		top: 50%;
 		transform: translateY(-50%);
 }
