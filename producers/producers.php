@@ -49,8 +49,7 @@
 				<td>".$resultat['shortcut']."</td>  
 				<td>".$resultat['description']."</td>
 				<td>ul. ".$resultat['street']." ".$resultat['house_number']."/".$resultat['apartment_number']."</td>
-				<td>".$resultat['town']."</td>
-				<td>".$resultat['zip_code']."</td>
+				<td>".$resultat['town']." ".$resultat['zip_code']."</td>
 				<td><a href='producers-edit-form.php?id=".$resultat['id']."' class='effect effect-edit'>Edytuj</a>
 				<a href='producers-delete.php?id=".$resultat['id']."' class='effect effect-delete'>Usuń</a><br></td>
 			</tr>";
