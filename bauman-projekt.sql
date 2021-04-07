@@ -1,14 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 5.0.1
+-- version 5.0.3
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Czas generowania: 06 Kwi 2021, 16:15
--- Wersja serwera: 10.4.11-MariaDB
--- Wersja PHP: 7.4.1
+-- Czas generowania: 07 Kwi 2021, 14:37
+-- Wersja serwera: 10.4.14-MariaDB
+-- Wersja PHP: 7.2.34
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -61,17 +60,13 @@ CREATE TABLE `documents` (
   `date` datetime NOT NULL,
   `date_foreign_documents` datetime NOT NULL,
   `id_author` int(11) NOT NULL,
-  `id_contractors` int(11) NOT NULL,
+  `id_contractors` int(11) DEFAULT NULL,
   `contractor_name_used_in_creation` varchar(150) COLLATE utf8_polish_ci NOT NULL,
-  `contractor_adress_used_in_creation` varchar(150) COLLATE utf8_polish_ci NOT NULL
+  `contractor_adress_used_in_creation` varchar(150) COLLATE utf8_polish_ci NOT NULL,
+  `id_producers` int(11) DEFAULT NULL,
+  `producer_name_used_in_creation` varchar(150) COLLATE utf8_polish_ci NOT NULL,
+  `producer_adress_used_in_creation` varchar(150) COLLATE utf8_polish_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci;
-
---
--- Zrzut danych tabeli `documents`
---
-
-INSERT INTO `documents` (`id`, `type`, `number`, `value`, `date`, `date_foreign_documents`, `id_author`, `id_contractors`, `contractor_name_used_in_creation`, `contractor_adress_used_in_creation`) VALUES
-(3, 'pz', 111, '10', '2021-03-27 12:35:30', '2021-03-27 12:35:30', 2, 5, 'testowy kontraktor', 'TKS');
 
 -- --------------------------------------------------------
 
@@ -83,7 +78,6 @@ CREATE TABLE `documents_goods` (
   `id` int(11) NOT NULL,
   `quantity` varchar(20) COLLATE utf8_polish_ci NOT NULL,
   `total_value` decimal(50,2) NOT NULL,
-  `id_author` int(11) NOT NULL,
   `id_documents` int(11) NOT NULL,
   `id_goods` int(11) NOT NULL,
   `good_name_used_in_creation` varchar(100) COLLATE utf8_polish_ci NOT NULL
@@ -228,14 +222,14 @@ ALTER TABLE `contractors`
 ALTER TABLE `documents`
   ADD PRIMARY KEY (`id`),
   ADD KEY `id_author` (`id_author`),
-  ADD KEY `id_contractors` (`id_contractors`);
+  ADD KEY `id_contractors` (`id_contractors`),
+  ADD KEY `id_producers` (`id_producers`) USING BTREE;
 
 --
 -- Indeksy dla tabeli `documents_goods`
 --
 ALTER TABLE `documents_goods`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `id_author` (`id_author`),
   ADD KEY `id_documents` (`id_documents`),
   ADD KEY `id_goods` (`id_goods`);
 
@@ -273,7 +267,7 @@ ALTER TABLE `users`
   ADD PRIMARY KEY (`id`);
 
 --
--- AUTO_INCREMENT for dumped tables
+-- AUTO_INCREMENT dla zrzuconych tabel
 --
 
 --
@@ -286,13 +280,13 @@ ALTER TABLE `contractors`
 -- AUTO_INCREMENT dla tabeli `documents`
 --
 ALTER TABLE `documents`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
 
 --
 -- AUTO_INCREMENT dla tabeli `documents_goods`
 --
 ALTER TABLE `documents_goods`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT dla tabeli `goods`
@@ -333,13 +327,13 @@ ALTER TABLE `users`
 --
 ALTER TABLE `documents`
   ADD CONSTRAINT `documents_ibfk_1` FOREIGN KEY (`id_author`) REFERENCES `users` (`id`),
-  ADD CONSTRAINT `documents_ibfk_2` FOREIGN KEY (`id_contractors`) REFERENCES `contractors` (`id`);
+  ADD CONSTRAINT `documents_ibfk_2` FOREIGN KEY (`id_contractors`) REFERENCES `contractors` (`id`),
+  ADD CONSTRAINT `documents_ibfk_3` FOREIGN KEY (`id_producers`) REFERENCES `producers` (`id`);
 
 --
 -- Ograniczenia dla tabeli `documents_goods`
 --
 ALTER TABLE `documents_goods`
-  ADD CONSTRAINT `documents_goods_ibfk_1` FOREIGN KEY (`id_author`) REFERENCES `users` (`id`),
   ADD CONSTRAINT `documents_goods_ibfk_2` FOREIGN KEY (`id_documents`) REFERENCES `documents` (`id`),
   ADD CONSTRAINT `documents_goods_ibfk_3` FOREIGN KEY (`id_goods`) REFERENCES `goods` (`id`);
 
