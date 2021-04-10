@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Czas generowania: 07 Kwi 2021, 14:37
+-- Czas generowania: 10 Kwi 2021, 16:00
 -- Wersja serwera: 10.4.14-MariaDB
 -- Wersja PHP: 7.2.34
 
@@ -57,9 +57,9 @@ CREATE TABLE `documents` (
   `type` varchar(10) COLLATE utf8_polish_ci NOT NULL,
   `number` int(50) NOT NULL,
   `value` decimal(50,0) NOT NULL,
-  `date` datetime NOT NULL,
-  `date_foreign_documents` datetime NOT NULL,
-  `id_author` int(11) NOT NULL,
+  `date` datetime DEFAULT NULL,
+  `date_foreign_documents` datetime DEFAULT NULL,
+  `id_author` int(11) DEFAULT NULL,
   `id_contractors` int(11) DEFAULT NULL,
   `contractor_name_used_in_creation` varchar(150) COLLATE utf8_polish_ci NOT NULL,
   `contractor_adress_used_in_creation` varchar(150) COLLATE utf8_polish_ci NOT NULL,
@@ -67,6 +67,14 @@ CREATE TABLE `documents` (
   `producer_name_used_in_creation` varchar(150) COLLATE utf8_polish_ci NOT NULL,
   `producer_adress_used_in_creation` varchar(150) COLLATE utf8_polish_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci;
+
+--
+-- Zrzut danych tabeli `documents`
+--
+
+INSERT INTO `documents` (`id`, `type`, `number`, `value`, `date`, `date_foreign_documents`, `id_author`, `id_contractors`, `contractor_name_used_in_creation`, `contractor_adress_used_in_creation`, `id_producers`, `producer_name_used_in_creation`, `producer_adress_used_in_creation`) VALUES
+(177, 'PZ', 1, '18', '2021-04-10 15:49:29', NULL, NULL, NULL, '', '', 7, 'Maspex', ''),
+(178, 'PZ', 2, '17', '2021-04-10 15:50:01', NULL, NULL, NULL, '', '', 7, 'Maspex', '');
 
 -- --------------------------------------------------------
 
@@ -82,6 +90,16 @@ CREATE TABLE `documents_goods` (
   `id_goods` int(11) NOT NULL,
   `good_name_used_in_creation` varchar(100) COLLATE utf8_polish_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci;
+
+--
+-- Zrzut danych tabeli `documents_goods`
+--
+
+INSERT INTO `documents_goods` (`id`, `quantity`, `total_value`, `id_documents`, `id_goods`, `good_name_used_in_creation`) VALUES
+(75, '5', '12.50', 177, 2, 'Kapusta czerwona'),
+(77, '2', '5.40', 177, 4, 'Mandarynka'),
+(78, '4', '10.00', 178, 8, 'Papryka żółta'),
+(79, '3', '6.63', 178, 5, 'Jabłka Jonagold');
 
 -- --------------------------------------------------------
 
@@ -107,7 +125,7 @@ INSERT INTO `goods` (`id`, `name`, `unit_price`, `unit_of_measure`, `amount`, `i
 (3, 'Jabłka Ligol', '2.65', 'kg', '23.00', 7),
 (4, 'Mandarynka', '2.70', 'kg', '0.00', 7),
 (5, 'Jabłka Jonagold', '2.21', 'kg', '5.00', 7),
-(6, 'Arbuz', '6.50', 'szt', '0.00', 7),
+(6, 'Arbuz', '0.00', 'szt', '0.00', 9),
 (7, 'Papryka czerwona', '2.80', 'kg', '0.00', 7),
 (8, 'Papryka żółta', '2.50', 'kg', '23.00', 7),
 (15, 'test', '0.00', 'szt.', '0.00', 7);
@@ -183,7 +201,8 @@ CREATE TABLE `producers` (
 --
 
 INSERT INTO `producers` (`id`, `name`, `shortcut`, `description`, `offered_products`, `street`, `house_number`, `apartment_number`, `zip_code`, `town`) VALUES
-(7, 'Maspex', 'mas', '', '', 'Główna', '6', '', '01-385', 'Warszawa');
+(7, 'Maspex', 'mas', '', '', 'Główna', '6', '', '01-385', 'Warszawa'),
+(9, 'kowcem', '', '', '', '', '', '', '', '');
 
 -- --------------------------------------------------------
 
@@ -280,13 +299,13 @@ ALTER TABLE `contractors`
 -- AUTO_INCREMENT dla tabeli `documents`
 --
 ALTER TABLE `documents`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=179;
 
 --
 -- AUTO_INCREMENT dla tabeli `documents_goods`
 --
 ALTER TABLE `documents_goods`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=80;
 
 --
 -- AUTO_INCREMENT dla tabeli `goods`
@@ -310,7 +329,7 @@ ALTER TABLE `magazines_goods`
 -- AUTO_INCREMENT dla tabeli `producers`
 --
 ALTER TABLE `producers`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT dla tabeli `users`
