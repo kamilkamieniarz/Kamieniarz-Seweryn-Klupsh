@@ -23,7 +23,7 @@
  <body> 
   	<?php	
 		require_once('../header.php');
-		echo "<a href='magazine-add-form.php' class='effect effect-add document'>Dodaj dokument</a><br>";
+		/*echo "<a href='../stocks/stocks.php' class='effect effect-add document'>Dodaj dokument</a><br>";  Tutaj będzie wyszukiwarkas*/
 		$records = mysqli_query($conn,"select * from documents"); // fetch data from database
 		$ile = mysqli_num_rows($records);  //ilosc wszystkich rekordow (nie stron !!)
 		$na_strone = 10; //tu podajesz ile rekordow na stronie max.

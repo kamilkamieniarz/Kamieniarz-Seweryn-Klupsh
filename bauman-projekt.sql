@@ -1,13 +1,14 @@
 -- phpMyAdmin SQL Dump
--- version 5.0.3
+-- version 5.0.1
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Czas generowania: 10 Kwi 2021, 16:00
--- Wersja serwera: 10.4.14-MariaDB
--- Wersja PHP: 7.2.34
+-- Czas generowania: 16 Kwi 2021, 22:52
+-- Wersja serwera: 10.4.11-MariaDB
+-- Wersja PHP: 7.4.1
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -57,24 +58,20 @@ CREATE TABLE `documents` (
   `type` varchar(10) COLLATE utf8_polish_ci NOT NULL,
   `number` int(50) NOT NULL,
   `value` decimal(50,0) NOT NULL,
-  `date` datetime DEFAULT NULL,
+  `date` datetime NOT NULL,
   `date_foreign_documents` datetime DEFAULT NULL,
-  `id_author` int(11) DEFAULT NULL,
-  `id_contractors` int(11) DEFAULT NULL,
-  `contractor_name_used_in_creation` varchar(150) COLLATE utf8_polish_ci NOT NULL,
-  `contractor_adress_used_in_creation` varchar(150) COLLATE utf8_polish_ci NOT NULL,
-  `id_producers` int(11) DEFAULT NULL,
-  `producer_name_used_in_creation` varchar(150) COLLATE utf8_polish_ci NOT NULL,
-  `producer_adress_used_in_creation` varchar(150) COLLATE utf8_polish_ci NOT NULL
+  `id_author` int(11) NOT NULL,
+  `id_client` int(11) NOT NULL,
+  `client_name_used_in_creation` varchar(150) COLLATE utf8_polish_ci NOT NULL,
+  `client_adress_used_in_creation` varchar(150) COLLATE utf8_polish_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci;
 
 --
 -- Zrzut danych tabeli `documents`
 --
 
-INSERT INTO `documents` (`id`, `type`, `number`, `value`, `date`, `date_foreign_documents`, `id_author`, `id_contractors`, `contractor_name_used_in_creation`, `contractor_adress_used_in_creation`, `id_producers`, `producer_name_used_in_creation`, `producer_adress_used_in_creation`) VALUES
-(177, 'PZ', 1, '18', '2021-04-10 15:49:29', NULL, NULL, NULL, '', '', 7, 'Maspex', ''),
-(178, 'PZ', 2, '17', '2021-04-10 15:50:01', NULL, NULL, NULL, '', '', 7, 'Maspex', '');
+INSERT INTO `documents` (`id`, `type`, `number`, `value`, `date`, `date_foreign_documents`, `id_author`, `id_client`, `client_name_used_in_creation`, `client_adress_used_in_creation`) VALUES
+(72, 'WZ', 1, '0', '2021-04-16 22:51:14', NULL, 1, 5, 'Kowalski sp.zoo', 'ul. Jana Pawła 12/A 64-100 Leszno');
 
 -- --------------------------------------------------------
 
@@ -86,6 +83,7 @@ CREATE TABLE `documents_goods` (
   `id` int(11) NOT NULL,
   `quantity` varchar(20) COLLATE utf8_polish_ci NOT NULL,
   `total_value` decimal(50,2) NOT NULL,
+  `id_author` int(11) NOT NULL,
   `id_documents` int(11) NOT NULL,
   `id_goods` int(11) NOT NULL,
   `good_name_used_in_creation` varchar(100) COLLATE utf8_polish_ci NOT NULL
@@ -95,11 +93,9 @@ CREATE TABLE `documents_goods` (
 -- Zrzut danych tabeli `documents_goods`
 --
 
-INSERT INTO `documents_goods` (`id`, `quantity`, `total_value`, `id_documents`, `id_goods`, `good_name_used_in_creation`) VALUES
-(75, '5', '12.50', 177, 2, 'Kapusta czerwona'),
-(77, '2', '5.40', 177, 4, 'Mandarynka'),
-(78, '4', '10.00', 178, 8, 'Papryka żółta'),
-(79, '3', '6.63', 178, 5, 'Jabłka Jonagold');
+INSERT INTO `documents_goods` (`id`, `quantity`, `total_value`, `id_author`, `id_documents`, `id_goods`, `good_name_used_in_creation`) VALUES
+(46, '5', '25.00', 1, 72, 6, 'Arbuz'),
+(47, '4', '16.00', 1, 72, 6, 'Arbuz');
 
 -- --------------------------------------------------------
 
@@ -125,10 +121,10 @@ INSERT INTO `goods` (`id`, `name`, `unit_price`, `unit_of_measure`, `amount`, `i
 (3, 'Jabłka Ligol', '2.65', 'kg', '23.00', 7),
 (4, 'Mandarynka', '2.70', 'kg', '0.00', 7),
 (5, 'Jabłka Jonagold', '2.21', 'kg', '5.00', 7),
-(6, 'Arbuz', '0.00', 'szt', '0.00', 9),
+(6, 'Arbuz', '6.50', 'szt', '0.00', 7),
 (7, 'Papryka czerwona', '2.80', 'kg', '0.00', 7),
 (8, 'Papryka żółta', '2.50', 'kg', '23.00', 7),
-(15, 'test', '0.00', 'szt.', '0.00', 7);
+(18, 'tsda', '23.00', 'szt', '0.00', 7);
 
 -- --------------------------------------------------------
 
@@ -138,13 +134,13 @@ INSERT INTO `goods` (`id`, `name`, `unit_price`, `unit_of_measure`, `amount`, `i
 
 CREATE TABLE `magazines` (
   `id` int(11) NOT NULL,
-  `name` varchar(50) NOT NULL,
-  `shortcut` varchar(5) NOT NULL,
+  `name` varchar(150) NOT NULL,
+  `shortcut` varchar(10) NOT NULL,
   `description` varchar(50) NOT NULL,
   `street` varchar(50) NOT NULL,
-  `house_number` varchar(50) NOT NULL,
-  `apartment_number` varchar(50) NOT NULL,
-  `zip_code` varchar(6) NOT NULL,
+  `house_number` varchar(5) NOT NULL,
+  `apartment_number` varchar(5) NOT NULL,
+  `zip_code` varchar(15) NOT NULL,
   `town` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -175,7 +171,8 @@ CREATE TABLE `magazines_goods` (
 
 INSERT INTO `magazines_goods` (`id`, `id_magazines`, `id_goods`, `amount`) VALUES
 (1, 2, 2, 5),
-(2, 4, 6, 10);
+(2, 4, 6, 10),
+(3, 2, 6, 10);
 
 -- --------------------------------------------------------
 
@@ -201,8 +198,7 @@ CREATE TABLE `producers` (
 --
 
 INSERT INTO `producers` (`id`, `name`, `shortcut`, `description`, `offered_products`, `street`, `house_number`, `apartment_number`, `zip_code`, `town`) VALUES
-(7, 'Maspex', 'mas', '', '', 'Główna', '6', '', '01-385', 'Warszawa'),
-(9, 'kowcem', '', '', '', '', '', '', '', '');
+(7, 'Maspex', 'mas', '', '', 'Główna', '6', '', '01-385', 'Warszawa');
 
 -- --------------------------------------------------------
 
@@ -241,14 +237,14 @@ ALTER TABLE `contractors`
 ALTER TABLE `documents`
   ADD PRIMARY KEY (`id`),
   ADD KEY `id_author` (`id_author`),
-  ADD KEY `id_contractors` (`id_contractors`),
-  ADD KEY `id_producers` (`id_producers`) USING BTREE;
+  ADD KEY `id_contractors` (`id_client`);
 
 --
 -- Indeksy dla tabeli `documents_goods`
 --
 ALTER TABLE `documents_goods`
   ADD PRIMARY KEY (`id`),
+  ADD KEY `id_author` (`id_author`),
   ADD KEY `id_documents` (`id_documents`),
   ADD KEY `id_goods` (`id_goods`);
 
@@ -286,50 +282,50 @@ ALTER TABLE `users`
   ADD PRIMARY KEY (`id`);
 
 --
--- AUTO_INCREMENT dla zrzuconych tabel
+-- AUTO_INCREMENT for dumped tables
 --
 
 --
 -- AUTO_INCREMENT dla tabeli `contractors`
 --
 ALTER TABLE `contractors`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT dla tabeli `documents`
 --
 ALTER TABLE `documents`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=179;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=73;
 
 --
 -- AUTO_INCREMENT dla tabeli `documents_goods`
 --
 ALTER TABLE `documents_goods`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=80;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=48;
 
 --
 -- AUTO_INCREMENT dla tabeli `goods`
 --
 ALTER TABLE `goods`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT dla tabeli `magazines`
 --
 ALTER TABLE `magazines`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT dla tabeli `magazines_goods`
 --
 ALTER TABLE `magazines_goods`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT dla tabeli `producers`
 --
 ALTER TABLE `producers`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT dla tabeli `users`
@@ -346,13 +342,13 @@ ALTER TABLE `users`
 --
 ALTER TABLE `documents`
   ADD CONSTRAINT `documents_ibfk_1` FOREIGN KEY (`id_author`) REFERENCES `users` (`id`),
-  ADD CONSTRAINT `documents_ibfk_2` FOREIGN KEY (`id_contractors`) REFERENCES `contractors` (`id`),
-  ADD CONSTRAINT `documents_ibfk_3` FOREIGN KEY (`id_producers`) REFERENCES `producers` (`id`);
+  ADD CONSTRAINT `documents_ibfk_2` FOREIGN KEY (`id_client`) REFERENCES `contractors` (`id`);
 
 --
 -- Ograniczenia dla tabeli `documents_goods`
 --
 ALTER TABLE `documents_goods`
+  ADD CONSTRAINT `documents_goods_ibfk_1` FOREIGN KEY (`id_author`) REFERENCES `users` (`id`),
   ADD CONSTRAINT `documents_goods_ibfk_2` FOREIGN KEY (`id_documents`) REFERENCES `documents` (`id`),
   ADD CONSTRAINT `documents_goods_ibfk_3` FOREIGN KEY (`id_goods`) REFERENCES `goods` (`id`);
 

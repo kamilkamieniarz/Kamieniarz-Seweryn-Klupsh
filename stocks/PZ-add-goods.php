@@ -2,6 +2,8 @@
 	session_start();
 	require_once('../connect.php');
 	if(!isset($_SESSION['logged_id'])){
+		header('Location: ../index.php');
+		exit();
 	}
 ?>
 <!DOCTYPE html>
@@ -9,7 +11,7 @@
 <head>
     <meta charset="utf-8">
 	<link rel="icon" href="../images/karton.ico" type="image/x-icon"/>
-    <title>przyjęcie towaru</title>
+    <title>Przyjęcie Zewnętrzne</title>
 	<!--css i bootstrap-->
 	<link rel="stylesheet" href="../view/bootstrap.min.css">
 	<link rel="stylesheet" href="../view/main.css" type="text/css" />

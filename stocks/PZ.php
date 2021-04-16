@@ -2,6 +2,8 @@
 	session_start();
 	require_once('../connect.php');
 	if(!isset($_SESSION['logged_id'])){
+		header('Location: ../index.php');
+		exit();
 	}
 ?>
 <!DOCTYPE html>
@@ -9,7 +11,7 @@
 <head>
     <meta charset="utf-8">
 	<link rel="icon" href="../images/karton.ico" type="image/x-icon"/>
-    <title>przyjęcie towaru</title>
+    <title>Przyjęcie Zewnętrzne</title>
 	<!--css i bootstrap-->
 	<link rel="stylesheet" href="../view/bootstrap.min.css">
 	<link rel="stylesheet" href="../view/main.css" type="text/css" />
@@ -20,41 +22,29 @@
 	<script src="https://kit.fontawesome.com/168b28f506.js" crossorigin="anonymous"></script>
 </head>
  <body> 
-<?php
-	require_once('../header.php');
-?>
-			
-			<form name="form1" method="post" action=''>
+	<?php
+		require_once('../header.php');
+		echo "<form name='form1' method='post' action=''>
 			</select>
-			<p>wybierz producenta: </p> <select name="producer">
-			<?php
-			
-			if(!$conn){die("Connection failed: " . mysqli_connect_error());}
-			$sql = mysqli_query($conn,"SELECT * FROM `producers` ");
-			while ($row = mysqli_fetch_array($sql))
-												{
-													echo "<option value='".$row['id']."'>".$row['name']."</option>";
-												}
-			?> 
-			</select></br>
-			<input type="submit" name="create" value="dalej"></left>	
-			</form>
-			<?php
-			if(isset($_POST['create'])){
-				$sql = mysqli_query($conn,"SELECT * FROM `producers` WHERE id='".$_POST['producer']."'");
-				$resultat = mysqli_fetch_array($sql);
-				$addres=$resultat['street'].' '.$resultat['house_number'].'/'.$resultat['apartment_number'].' '.$resultat['zip_code'].' '.$resultat['town'];
-				$query ="INSERT INTO `documents`(`id`, `type`,`id_producers`, `producer_name_used_in_creation`) VALUES ('','PZ','".$resultat['id']."','".$resultat['name']."')";		
-				if($conn->query($query) === TRUE){
-					mysqli_query($db, $query);
-
-				 header('Location: PZ-add-goods.php?id='.mysqli_insert_id($conn));
-				}
-				else{ echo "Error: " . $query . "<br>" . $conn->error;}	
-				
+			Wybierz producenta:</br>
+			<select name='producer'>";
+		if(!$conn){die("Connection failed: " . mysqli_connect_error());}
+		$sql = mysqli_query($conn,"SELECT * FROM `producers` ");
+		while ($row = mysqli_fetch_array($sql)){echo "<option value='".$row['id']."'>".$row['name']."</option>";}
+		echo"</select></br>
+			<input type='submit' name='create' value='dalej'>	
+			</form>";
+		if(isset($_POST['create'])){
+			$sql = mysqli_query($conn,"SELECT * FROM `producers` WHERE id='".$_POST['producer']."'");
+			$resultat = mysqli_fetch_array($sql);
+			$addres=$resultat['street'].' '.$resultat['house_number'].'/'.$resultat['apartment_number'].' '.$resultat['zip_code'].' '.$resultat['town'];
+			$query ="INSERT INTO `documents`(`id`, `type`,`id_producers`, `producer_name_used_in_creation`) VALUES ('','PZ','".$resultat['id']."','".$resultat['name']."')";		
+			if($conn->query($query) === TRUE){
+				mysqli_query($db, $query);
+				header('Location: PZ-add-goods.php?id='.mysqli_insert_id($conn));
 			}
-				?>
-			</br>
-			</br>
-				
-		
+			else{echo "Error: " . $query . "<br>" . $conn->error;}		
+		}
+	?>
+</body>
+</html>	
