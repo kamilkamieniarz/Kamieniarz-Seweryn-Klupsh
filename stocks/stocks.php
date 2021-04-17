@@ -36,7 +36,7 @@
 		echo "</select></p><input type='submit' name='update' value='Flitruj'></form></br>";
 		if(isset($_POST['choosemagasin']) == TRUE){
 			$magazyn=$_POST['choosemagasin'];
-			$records = mysqli_query($conn,"select * from magazines_goods where magazines_goods.amount != '0' AND magazines_goods.id_magazines = '$magazyn'"); // fetch data from database
+			$records = mysqli_query($conn,"SELECT * FROM magazines_goods WHERE magazines_goods.amount != '0' AND magazines_goods.id_magazines = '$magazyn'"); // fetch data from database
 			$ile = mysqli_num_rows($records);  //ilosc wszystkich rekordow (nie stron !!)
 			$na_strone = 6; //tu podajesz ile rekordow na stronie max.
 			$stron = ceil ($ile / $na_strone);   //tutaj masz ilosc stron zaokraglanych w gore

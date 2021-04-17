@@ -9,19 +9,15 @@
 				<li class="nav-item active">
 					<a class="nav-link" href="../main.php"> START </a>
 				</li>
-
 				<li class="nav-item">
 					<a class="nav-link" href="../stocks/stocks.php"> STAN MAGAZYNÓW </a>
 				</li>
-					
 				<li class="nav-item">
 					<a class="nav-link" href="../documents/documents.php?strona=1"> DOKUMENTY </a>
 				</li>
-					
 				<li class="nav-item">
 					<a class="nav-link" href="../magazine/magazine.php"> MAGAZYNY </a>
 				</li>
-					
 				<li class="nav-item">
 					<a class="nav-link" href="../goods/goods.php?strona=1"> TOWARY </a>
 				</li>
@@ -32,7 +28,7 @@
 					<a class="nav-link" href="../producers/producers.php?strona=1"> PRODUCENCI </a>
 				</li>
 			</ul>
-			<a  href="../logout.php">WYLOGUJ SIĘ</a>
+			<a href="../logout.php" class="nav-link" style="color:#FFF;">WYLOGUJ SIĘ</a>
 		</div>
 	</nav>
 </header>

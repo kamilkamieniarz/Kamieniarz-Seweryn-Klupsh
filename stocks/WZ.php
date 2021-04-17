@@ -25,27 +25,27 @@
  	<?php
 		require_once('../header.php');
 		//wybór klienta
-		echo "<form name='form1' method='post' action=''>
-			</select>
-			Wybierz kontrahenta:</br>
-			<select name='contractor'>";
+		echo"<form name='form1' method='post' action=''>
+				</select>
+				Wybierz kontrahenta:</br>
+				<select name='contractor'>";
 		if(!$conn){die("Connection failed: " . mysqli_connect_error());}
 		$sql2 = mysqli_query($conn,"SELECT * FROM `contractors` ");
 		while ($row = mysqli_fetch_array($sql2)){echo "<option value='".$row['id']."'>".$row['shortcut']."</option>";}
-		echo"</select></br>
-			<input type='submit' name='create' value='Wybierz'>	
+		echo"	</select></br>
+				<input type='submit' name='create' value='Wybierz'>	
 			</form>";
 		if(isset($_POST['create'])){
 			$sql = mysqli_query($conn,"SELECT * FROM `contractors` WHERE id='".$_POST['contractor']."'");
 			$resultat = mysqli_fetch_array($sql);
 			if(isset($resultat['apartment_number'])){
-				$adres_used_in_creation = "ul. ".$resultat['street']." ".$resultat['house_number']."/".$resultat['apartment_number']." ".$resultat['zip_code']." ".$resultat['town'];
+				$adres_used_in_creation = "ul. ".$resultat['street']." ".$resultat['house_number']."/".$resultat['apartment_number']." ,".$resultat['zip_code']." ".$resultat['town'];
 			}
 			else{
-				$adres_used_in_creation = "ul. ".$resultat['street']." ".$resultat['$house_number']." ".$resultat['zip_code']." ".$resultat['town'];
+				$adres_used_in_creation = "ul. ".$resultat['street']." ".$resultat['house_number']." ,".$resultat['zip_code']." ".$resultat['town'];
 			}
 			$date = date("Y-m-d H:i:s");
-			$query ="INSERT INTO `documents`( `type`, `date`, `date_foreign_documents`, `id_author`, `id_client`, `client_name_used_in_creation`, `client_adress_used_in_creation`) VALUES ('WZ', '".$date."', NULL, '".$_SESSION['logged_id']."', '".$resultat['id']."','".$resultat['name']."','".$adres_used_in_creation."')";
+			$query ="INSERT INTO `documents`( `type`, `date`, `date_foreign_documents`, `id_author`, `id_client`, `client_name_used_in_creation`, `client_adress_used_in_creation`) VALUES ('WZ', '".$date."', NULL, '".$_SESSION['logged_id']."','".$resultat['id']."','".$resultat['name']."','".$adres_used_in_creation."')";
 			if($conn->query($query) === TRUE){
 				$id=mysqli_insert_id($conn);
 				$sql3 = "UPDATE documents SET `number` = (SELECT max(`number`) FROM documents) +1 WHERE `id`='$id'";

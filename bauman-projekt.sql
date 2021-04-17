@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Czas generowania: 17 Kwi 2021, 11:03
+-- Czas generowania: 17 Kwi 2021, 18:22
 -- Wersja serwera: 10.4.11-MariaDB
 -- Wersja PHP: 7.4.1
 
@@ -77,7 +77,36 @@ INSERT INTO `documents` (`id`, `type`, `number`, `value`, `date`, `date_foreign_
 (76, 'WZ', 4, '64', '2021-04-17 10:01:17', NULL, 1, 5, 'Kowalski sp.zoo', 'ul. Jana Pawła 12/A 64-100 Leszno'),
 (77, 'WZ', 5, '0', '2021-04-17 10:21:18', NULL, 1, 5, 'Kowalski sp.zoo', 'ul. Jana Pawła 12/A 64-100 Leszno'),
 (78, 'WZ', 6, '0', '2021-04-17 10:33:50', NULL, 1, 5, 'Kowalski sp.zoo', 'ul. Jana Pawła 12/A 64-100 Leszno'),
-(79, 'WZ', 7, '0', '2021-04-17 10:44:14', NULL, 1, 5, 'Kowalski sp.zoo', 'ul. Jana Pawła 12/A 64-100 Leszno');
+(79, 'WZ', 7, '0', '2021-04-17 10:44:14', NULL, 1, 5, 'Kowalski sp.zoo', 'ul. Jana Pawła 12/A 64-100 Leszno'),
+(80, 'PZ', 8, '0', '2021-04-17 16:38:27', NULL, 1, 7, 'Maspex', 'ul. Główna 6/ ,01-385 Warszawa'),
+(81, 'WZ', 9, '0', '2021-04-17 16:38:32', NULL, 1, 5, 'Kowalski sp.zoo', 'ul. Jana Pawła 12/A ,64-100 Leszno'),
+(82, 'PZ', 10, '0', '2021-04-17 16:38:34', NULL, 1, 7, 'Maspex', 'ul. Główna 6/ ,01-385 Warszawa'),
+(83, 'PZ', 11, '0', '2021-04-17 16:39:10', NULL, 1, 7, 'Maspex', 'ul. Główna 6/ ,01-385 Warszawa'),
+(84, 'PZ', 12, '0', '2021-04-17 16:39:17', NULL, 1, 7, 'Maspex', 'ul. Główna 6/ ,01-385 Warszawa'),
+(85, 'PZ', 13, '0', '2021-04-17 17:10:56', NULL, 1, 7, 'Maspex', 'ul. Główna 6/ ,01-385 Warszawa'),
+(86, 'WZ', 14, '0', '2021-04-17 17:12:17', NULL, 1, 5, 'Kowalski sp.zoo', 'ul. Jana Pawła 12/A ,64-100 Leszno'),
+(87, 'PZ', 15, '37', '2021-04-17 17:12:22', NULL, 1, 7, 'Maspex', 'ul. Główna 6/ ,01-385 Warszawa'),
+(88, 'WZ', 16, '0', '2021-04-17 17:13:36', NULL, 1, 5, 'Kowalski sp.zoo', 'ul. Jana Pawła 12/A ,64-100 Leszno'),
+(89, 'PZ', 17, '0', '2021-04-17 17:24:57', NULL, 1, 7, 'Maspex', 'ul. Główna 6/ ,01-385 Warszawa'),
+(90, 'PZ', 18, '0', '2021-04-17 17:31:34', NULL, 1, 7, 'Maspex', 'ul. Główna 6/ ,01-385 Warszawa'),
+(91, 'PZ', 19, '0', '2021-04-17 17:32:36', NULL, 1, 7, 'Maspex', 'ul. Główna 6/ ,01-385 Warszawa'),
+(92, 'PZ', 20, '13', '2021-04-17 17:34:42', NULL, 1, 7, 'Maspex', 'ul. Główna 6/ ,01-385 Warszawa'),
+(93, 'WZ', 21, '0', '2021-04-17 17:38:25', NULL, 1, 5, 'Kowalski sp.zoo', 'ul. Jana Pawła 12/A ,64-100 Leszno'),
+(94, 'PZ', 22, '27', '2021-04-17 17:53:39', NULL, 1, 7, 'Maspex', 'ul. Główna 6/ ,01-385 Warszawa'),
+(95, 'PZ', 23, '25', '2021-04-17 17:55:41', NULL, 1, 7, 'Maspex', 'ul. Główna 6/ ,01-385 Warszawa'),
+(96, 'PZ', 24, '86', '2021-04-17 17:57:26', NULL, 1, 7, 'Maspex', 'ul. Główna 6/ ,01-385 Warszawa'),
+(97, 'PZ', 25, '19', '2021-04-17 18:04:06', NULL, 1, 7, 'Maspex', 'ul. Główna 6/ ,01-385 Warszawa'),
+(98, 'WZ', 26, '61', '2021-04-17 18:05:58', NULL, 1, 5, 'Kowalski sp.zoo', 'ul. Jana Pawła 12/A ,64-100 Leszno'),
+(99, 'WZ', 27, '0', '2021-04-17 18:07:29', NULL, 1, 5, 'Kowalski sp.zoo', 'ul. Jana Pawła 12/A ,64-100 Leszno'),
+(100, 'PZ', 28, '0', '2021-04-17 18:10:53', NULL, 1, 7, 'Maspex', 'ul. Główna 6/ ,01-385 Warszawa'),
+(101, 'WZ', 29, '90', '2021-04-17 18:11:15', NULL, 1, 5, 'Kowalski sp.zoo', 'ul. Jana Pawła 12/A ,64-100 Leszno'),
+(102, 'PZ', 30, '14', '2021-04-17 18:11:45', NULL, 1, 7, 'Maspex', 'ul. Główna 6/ ,01-385 Warszawa'),
+(103, 'PZ', 31, '23', '2021-04-17 18:14:14', NULL, 1, 7, 'Maspex', 'ul. Główna 6/ ,01-385 Warszawa'),
+(104, 'PZ', 32, '250', '2021-04-17 18:16:57', NULL, 1, 7, 'Maspex', 'ul. Główna 6/ ,01-385 Warszawa'),
+(105, 'PZ', 33, '15', '2021-04-17 18:20:01', NULL, 1, 7, 'Maspex', 'ul. Główna 6/ ,01-385 Warszawa'),
+(106, 'PZ', 34, '15', '2021-04-17 18:20:18', NULL, 1, 7, 'Maspex', 'ul. Główna 6/ ,01-385 Warszawa'),
+(107, 'PZ', 35, '18', '2021-04-17 18:21:01', NULL, 1, 7, 'Maspex', 'ul. Główna 6/ ,01-385 Warszawa'),
+(108, 'PZ', 36, '246', '2021-04-17 18:21:27', NULL, 1, 7, 'Maspex', 'ul. Główna 6/ ,01-385 Warszawa');
 
 -- --------------------------------------------------------
 
@@ -104,7 +133,30 @@ INSERT INTO `documents_goods` (`id`, `amount`, `total_value`, `id_author`, `id_d
 (51, '1', '5.00', 1, 73, 6, 'Arbuz'),
 (52, '5', '25.00', 1, 74, 2, 'Kapusta czerwona'),
 (53, '6', '30.00', 1, 75, 2, 'Kapusta czerwona'),
-(54, '8', '64.00', 1, 76, 2, 'Kapusta czerwona');
+(54, '8', '64.00', 1, 76, 2, 'Kapusta czerwona'),
+(78, '4', '10.00', 1, 87, 2, 'Kapusta czerwona'),
+(79, '10', '26.50', 1, 87, 3, 'Jabłka Ligol'),
+(80, '5', '12.50', 1, 92, 8, 'Papryka żółta'),
+(82, '6', '36.00', 1, 93, 2, 'Kapusta czerwona'),
+(83, '10', '27.00', 1, 94, 4, 'Mandarynka'),
+(84, '5', '12.50', 1, 95, 2, 'Kapusta czerwona'),
+(85, '5', '12.50', 1, 95, 2, 'Kapusta czerwona'),
+(86, '8', '21.60', 1, 96, 4, 'Mandarynka'),
+(87, '8', '21.60', 1, 96, 4, 'Mandarynka'),
+(88, '8', '21.60', 1, 96, 4, 'Mandarynka'),
+(89, '8', '21.60', 1, 96, 4, 'Mandarynka'),
+(90, '7', '18.55', 1, 97, 3, 'Jabłka Ligol'),
+(91, '6', '36.00', 1, 98, 2, 'Kapusta czerwona'),
+(92, '5', '25.00', 1, 98, 4, 'Mandarynka'),
+(98, '10', '90.00', 1, 101, 2, 'Kapusta czerwona'),
+(99, '5', '14.00', 1, 102, 7, 'Papryka czerwona'),
+(100, '9', '22.50', 1, 103, 8, 'Papryka żółta'),
+(101, '100', '250.00', 1, 104, 2, 'Kapusta czerwona'),
+(102, '6', '15.00', 1, 105, 2, 'Kapusta czerwona'),
+(103, '6', '15.00', 1, 106, 2, 'Kapusta czerwona'),
+(104, '7', '17.50', 1, 107, 2, 'Kapusta czerwona'),
+(105, '67', '180.90', 1, 108, 4, 'Mandarynka'),
+(106, '10', '65.00', 1, 108, 6, 'Arbuz');
 
 -- --------------------------------------------------------
 
@@ -131,8 +183,7 @@ INSERT INTO `goods` (`id`, `name`, `unit_price`, `unit_of_measure`, `id_producer
 (5, 'Jabłka Jonagold', '2.21', 'kg', 7),
 (6, 'Arbuz', '6.50', 'szt', 7),
 (7, 'Papryka czerwona', '2.80', 'kg', 7),
-(8, 'Papryka żółta', '2.50', 'kg', 7),
-(18, 'tsda', '23.00', 'szt', 7);
+(8, 'Papryka żółta', '2.50', 'kg', 7);
 
 -- --------------------------------------------------------
 
@@ -178,9 +229,12 @@ CREATE TABLE `magazines_goods` (
 --
 
 INSERT INTO `magazines_goods` (`id`, `id_magazines`, `id_goods`, `amount`) VALUES
-(1, 2, 2, 8),
+(1, 2, 2, 11),
 (2, 4, 6, 10),
-(3, 2, 6, 10);
+(3, 2, 6, 10),
+(4, 2, 4, 10),
+(12, 4, 4, 67),
+(13, 4, 6, 10);
 
 -- --------------------------------------------------------
 
@@ -244,8 +298,7 @@ ALTER TABLE `contractors`
 --
 ALTER TABLE `documents`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `id_author` (`id_author`),
-  ADD KEY `id_contractors` (`id_client`);
+  ADD KEY `id_author` (`id_author`);
 
 --
 -- Indeksy dla tabeli `documents_goods`
@@ -303,13 +356,13 @@ ALTER TABLE `contractors`
 -- AUTO_INCREMENT dla tabeli `documents`
 --
 ALTER TABLE `documents`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=80;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=109;
 
 --
 -- AUTO_INCREMENT dla tabeli `documents_goods`
 --
 ALTER TABLE `documents_goods`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=76;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=107;
 
 --
 -- AUTO_INCREMENT dla tabeli `goods`
@@ -327,7 +380,7 @@ ALTER TABLE `magazines`
 -- AUTO_INCREMENT dla tabeli `magazines_goods`
 --
 ALTER TABLE `magazines_goods`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT dla tabeli `producers`
@@ -349,8 +402,7 @@ ALTER TABLE `users`
 -- Ograniczenia dla tabeli `documents`
 --
 ALTER TABLE `documents`
-  ADD CONSTRAINT `documents_ibfk_1` FOREIGN KEY (`id_author`) REFERENCES `users` (`id`),
-  ADD CONSTRAINT `documents_ibfk_2` FOREIGN KEY (`id_client`) REFERENCES `contractors` (`id`);
+  ADD CONSTRAINT `documents_ibfk_1` FOREIGN KEY (`id_author`) REFERENCES `users` (`id`);
 
 --
 -- Ograniczenia dla tabeli `documents_goods`

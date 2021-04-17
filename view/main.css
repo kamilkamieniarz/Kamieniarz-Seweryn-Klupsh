@@ -39,6 +39,7 @@ main {
 
 /*animowany przycisk */
 .effect {
+  color: #f2f2f2 !important;
   text-align: center;
   display: inline-block;
   position: relative;
@@ -55,7 +56,6 @@ main {
 
 /* add button */
 .effect-add {
-  color: #f2f2f2;
   background-color: #333;
   border-bottom-right-radius:6px;
 }
@@ -220,5 +220,17 @@ main {
 /*animowany przycisk */
 
 a:link {
-  color: #f0f0f0
+  color: #000;
+}
+
+a:visited {
+  color: #000;
+}
+
+a:hover {
+  color: #00F !important;
+}
+
+a {
+  text-decoration: none !important;
 }

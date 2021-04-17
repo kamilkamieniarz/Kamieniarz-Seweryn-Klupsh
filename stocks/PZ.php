@@ -24,26 +24,36 @@
  <body> 
 	<?php
 		require_once('../header.php');
-		echo "<form name='form1' method='post' action=''>
-			</select>
-			Wybierz producenta:</br>
-			<select name='producer'>";
+		//wybór producenta
+		echo"<form name='form1' method='post' action=''>
+				</select>
+				Wybierz producenta:</br>
+				<select name='producer'>";
 		if(!$conn){die("Connection failed: " . mysqli_connect_error());}
 		$sql = mysqli_query($conn,"SELECT * FROM `producers` ");
 		while ($row = mysqli_fetch_array($sql)){echo "<option value='".$row['id']."'>".$row['name']."</option>";}
-		echo"</select></br>
-			<input type='submit' name='create' value='dalej'>	
+		echo"	</select></br>
+				<input type='submit' name='create' value='Wybierz'>	
 			</form>";
 		if(isset($_POST['create'])){
 			$sql = mysqli_query($conn,"SELECT * FROM `producers` WHERE id='".$_POST['producer']."'");
 			$resultat = mysqli_fetch_array($sql);
-			$addres=$resultat['street'].' '.$resultat['house_number'].'/'.$resultat['apartment_number'].' '.$resultat['zip_code'].' '.$resultat['town'];
-			$query ="INSERT INTO `documents`(`id`, `type`,`id_producers`, `producer_name_used_in_creation`) VALUES ('','PZ','".$resultat['id']."','".$resultat['name']."')";		
-			if($conn->query($query) === TRUE){
-				mysqli_query($db, $query);
-				header('Location: PZ-add-goods.php?id='.mysqli_insert_id($conn));
+			if(isset($resultat['apartment_number'])){
+				$adres_used_in_creation = "ul. ".$resultat['street']." ".$resultat['house_number']."/".$resultat['apartment_number']." ,".$resultat['zip_code']." ".$resultat['town'];
 			}
-			else{echo "Error: " . $query . "<br>" . $conn->error;}		
+			else{
+				$adres_used_in_creation = "ul. ".$resultat['street']." ".$resultat['house_number']." ,".$resultat['zip_code']." ".$resultat['town'];
+			}
+			$date = date("Y-m-d H:i:s");
+			$query ="INSERT INTO `documents`( `type`, `date`, `date_foreign_documents`, `id_author`, `id_client`, `client_name_used_in_creation`, `client_adress_used_in_creation`) VALUES ('PZ', '".$date."', NULL, '".$_SESSION['logged_id']."','".$resultat['id']."','".$resultat['name']."','".$adres_used_in_creation."')";
+			if($conn->query($query) === TRUE){
+				$id=mysqli_insert_id($conn);
+				$sql3 = "UPDATE documents SET `number` = (SELECT max(`number`) FROM documents) +1 WHERE `id`='$id'";
+				if($conn->query($sql3)){
+					header('Location: PZ-add-goods.php?id='.$id);
+				}
+			}
+			else{echo "Error: " . $query . "<br>" . $conn->error;}	
 		}
 	?>
 </body>

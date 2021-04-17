@@ -84,14 +84,13 @@
 				else{
 					echo"<script>alert('Na magazynie jest tylko ".$amount."')</script>";
 				}
-				
-
-
-				
 			}
 			$sql4 = mysqli_query($conn,"SELECT documents_goods.id, documents_goods.amount,documents_goods.total_value, documents_goods.id_goods, documents_goods.good_name_used_in_creation, goods.unit_of_measure FROM documents_goods LEFT OUTER JOIN goods ON documents_goods.id_goods = goods.id WHERE documents_goods.id_documents=$id");
-			echo "Dodane towary:
-				<table class='table table-striped table-hover'>
+			echo"<form name='form2' method='post' action=''>
+					<input type='submit' name='accept' value='Zatwierdź listę towarów'>
+				</form></br>
+				Dodane towary:
+				<table class='table table-striped table-hover text-center'>
 					<tr>	
 						<th>Nazwa towaru</th>	
 						<th>ilośc</th>				
@@ -99,17 +98,13 @@
 						<th>Opcje</th>
 					</tr>";
 			while ($resultat=mysqli_fetch_array($sql4)){
-
 				echo"<tr>
 						<td>".$resultat['good_name_used_in_creation']."</td>
 						<td>".$resultat['amount']." ".$resultat['unit_of_measure']."</td>   
 						<td>".$resultat['total_value']." zł</td>   													
-						<td><a href='goods-delete.php?id=".$resultat['id']."&amount=".$resultat['amount']."&magazine=".$_GET['magazine']."&good_id=".$resultat['id_goods']."' class='effect effect-delete'>Usuń</a><br></td> 
+						<td><a href='goods-delete.php?id=".$resultat['id']."&amount=".$resultat['amount']."&magazine=".$_GET['magazine']."&good_id=".$resultat['id_goods']."&type=wz' class='effect effect-delete'>Usuń</a><br></td> 
 					</tr>";
 			}
-			echo"</br><form name='form2' method='post' action=''>
-				<input type='submit' name='accept' value='Zatwierdź listę towarów'>		
-				</form>";
 			if(isset($_POST['accept'])){
 				$id = $_GET['id'];
 				$sql7 = mysqli_query($conn,"SELECT SUM(`total_value`) as suma FROM documents_goods WHERE `id_documents`='$id'");
@@ -120,9 +115,9 @@
 					if($conn->query($sql8)){
 						header("Location: ../documents/documents.php");
 					}
-					else{ echo "Error: " . $sql8	 . "</br>" . $conn->error . "</br>";}
+					else{ echo "Error: " .$sql8. "</br>" .$conn->error. "</br>";}
 				}
-				else{ echo "Error: " . $sql7	 . "</br>" . $conn->error . "</br>";}
+				else{ echo "Error: " .$sql7. "</br>" .$conn->error. "</br>";}
 			}
 		}
 	?>
