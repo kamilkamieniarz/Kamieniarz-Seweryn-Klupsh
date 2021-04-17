@@ -26,7 +26,7 @@
 		require_once('../header.php');
 		echo "<a href='magazine-add-form.php' class='effect effect-add magazine'>Dodaj magazyn</a><br>";
 		$records = mysqli_query($conn,"select * from magazines"); // fetch data from database
-		echo '<table class="table table-striped table-hover">
+		echo '<table class="table table-striped table-hover text-center">
 				<tr>	
 					<th>Nazwa</th>
 					<th>opis</th>

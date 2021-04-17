@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Czas generowania: 16 Kwi 2021, 22:52
+-- Czas generowania: 17 Kwi 2021, 11:03
 -- Wersja serwera: 10.4.11-MariaDB
 -- Wersja PHP: 7.4.1
 
@@ -71,7 +71,13 @@ CREATE TABLE `documents` (
 --
 
 INSERT INTO `documents` (`id`, `type`, `number`, `value`, `date`, `date_foreign_documents`, `id_author`, `id_client`, `client_name_used_in_creation`, `client_adress_used_in_creation`) VALUES
-(72, 'WZ', 1, '0', '2021-04-16 22:51:14', NULL, 1, 5, 'Kowalski sp.zoo', 'ul. Jana Pawła 12/A 64-100 Leszno');
+(73, 'WZ', 1, '15', '2021-04-17 09:57:13', NULL, 1, 5, 'Kowalski sp.zoo', 'ul. Jana Pawła 12/A 64-100 Leszno'),
+(74, 'WZ', 2, '25', '2021-04-17 09:58:52', NULL, 1, 5, 'Kowalski sp.zoo', 'ul. Jana Pawła 12/A 64-100 Leszno'),
+(75, 'WZ', 3, '30', '2021-04-17 09:59:05', NULL, 1, 5, 'Kowalski sp.zoo', 'ul. Jana Pawła 12/A 64-100 Leszno'),
+(76, 'WZ', 4, '64', '2021-04-17 10:01:17', NULL, 1, 5, 'Kowalski sp.zoo', 'ul. Jana Pawła 12/A 64-100 Leszno'),
+(77, 'WZ', 5, '0', '2021-04-17 10:21:18', NULL, 1, 5, 'Kowalski sp.zoo', 'ul. Jana Pawła 12/A 64-100 Leszno'),
+(78, 'WZ', 6, '0', '2021-04-17 10:33:50', NULL, 1, 5, 'Kowalski sp.zoo', 'ul. Jana Pawła 12/A 64-100 Leszno'),
+(79, 'WZ', 7, '0', '2021-04-17 10:44:14', NULL, 1, 5, 'Kowalski sp.zoo', 'ul. Jana Pawła 12/A 64-100 Leszno');
 
 -- --------------------------------------------------------
 
@@ -81,7 +87,7 @@ INSERT INTO `documents` (`id`, `type`, `number`, `value`, `date`, `date_foreign_
 
 CREATE TABLE `documents_goods` (
   `id` int(11) NOT NULL,
-  `quantity` varchar(20) COLLATE utf8_polish_ci NOT NULL,
+  `amount` varchar(20) COLLATE utf8_polish_ci NOT NULL,
   `total_value` decimal(50,2) NOT NULL,
   `id_author` int(11) NOT NULL,
   `id_documents` int(11) NOT NULL,
@@ -93,9 +99,12 @@ CREATE TABLE `documents_goods` (
 -- Zrzut danych tabeli `documents_goods`
 --
 
-INSERT INTO `documents_goods` (`id`, `quantity`, `total_value`, `id_author`, `id_documents`, `id_goods`, `good_name_used_in_creation`) VALUES
-(46, '5', '25.00', 1, 72, 6, 'Arbuz'),
-(47, '4', '16.00', 1, 72, 6, 'Arbuz');
+INSERT INTO `documents_goods` (`id`, `amount`, `total_value`, `id_author`, `id_documents`, `id_goods`, `good_name_used_in_creation`) VALUES
+(50, '1', '10.00', 1, 73, 2, 'Kapusta czerwona'),
+(51, '1', '5.00', 1, 73, 6, 'Arbuz'),
+(52, '5', '25.00', 1, 74, 2, 'Kapusta czerwona'),
+(53, '6', '30.00', 1, 75, 2, 'Kapusta czerwona'),
+(54, '8', '64.00', 1, 76, 2, 'Kapusta czerwona');
 
 -- --------------------------------------------------------
 
@@ -108,7 +117,6 @@ CREATE TABLE `goods` (
   `name` varchar(100) COLLATE utf8mb4_polish_ci NOT NULL,
   `unit_price` decimal(11,2) NOT NULL,
   `unit_of_measure` varchar(20) COLLATE utf8mb4_polish_ci NOT NULL,
-  `amount` decimal(11,2) NOT NULL,
   `id_producer` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_polish_ci;
 
@@ -116,15 +124,15 @@ CREATE TABLE `goods` (
 -- Zrzut danych tabeli `goods`
 --
 
-INSERT INTO `goods` (`id`, `name`, `unit_price`, `unit_of_measure`, `amount`, `id_producer`) VALUES
-(2, 'Kapusta czerwona', '2.50', 'kg', '15.00', 7),
-(3, 'Jabłka Ligol', '2.65', 'kg', '23.00', 7),
-(4, 'Mandarynka', '2.70', 'kg', '0.00', 7),
-(5, 'Jabłka Jonagold', '2.21', 'kg', '5.00', 7),
-(6, 'Arbuz', '6.50', 'szt', '0.00', 7),
-(7, 'Papryka czerwona', '2.80', 'kg', '0.00', 7),
-(8, 'Papryka żółta', '2.50', 'kg', '23.00', 7),
-(18, 'tsda', '23.00', 'szt', '0.00', 7);
+INSERT INTO `goods` (`id`, `name`, `unit_price`, `unit_of_measure`, `id_producer`) VALUES
+(2, 'Kapusta czerwona', '2.50', 'kg', 7),
+(3, 'Jabłka Ligol', '2.65', 'kg', 7),
+(4, 'Mandarynka', '2.70', 'kg', 7),
+(5, 'Jabłka Jonagold', '2.21', 'kg', 7),
+(6, 'Arbuz', '6.50', 'szt', 7),
+(7, 'Papryka czerwona', '2.80', 'kg', 7),
+(8, 'Papryka żółta', '2.50', 'kg', 7),
+(18, 'tsda', '23.00', 'szt', 7);
 
 -- --------------------------------------------------------
 
@@ -170,7 +178,7 @@ CREATE TABLE `magazines_goods` (
 --
 
 INSERT INTO `magazines_goods` (`id`, `id_magazines`, `id_goods`, `amount`) VALUES
-(1, 2, 2, 5),
+(1, 2, 2, 8),
 (2, 4, 6, 10),
 (3, 2, 6, 10);
 
@@ -295,13 +303,13 @@ ALTER TABLE `contractors`
 -- AUTO_INCREMENT dla tabeli `documents`
 --
 ALTER TABLE `documents`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=73;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=80;
 
 --
 -- AUTO_INCREMENT dla tabeli `documents_goods`
 --
 ALTER TABLE `documents_goods`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=48;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=76;
 
 --
 -- AUTO_INCREMENT dla tabeli `goods`

@@ -46,7 +46,7 @@
 			echo "Strona: <a href='?strona=1' style='color:#00F !important;'> 1</a> ";
 			for ($i = 1; $i < $stron; $i++) {echo '<a href="?strona='.($i+1).'"> '.($i+1).'</a>';}  //tak wyswietlasz numery;
 		}				
-		echo "<table class='table table-striped table-hover'>
+		echo "<table class='table table-striped table-hover text-center'>
 				<tr>	
 					<th>Nazwa</th>						
 					<th>Ilość</th>

@@ -34,7 +34,7 @@
 		echo ' <a href="?strona=1"> 1</a> ';
 		for ($i = 1; $i < $stron; $i++) echo ' <a href="?strona='.($i+1).'"> '.($i+1).'</a> ';  //tak wyswietlasz numery;
 		$sql = mysqli_query($conn,"SELECT * FROM contractors LIMIT ".(($strona-1)*$na_strone).','.$na_strone);	// tak odczytujesz
-		echo '<table class="table table-striped table-hover">
+		echo '<table class="table table-striped table-hover text-center">
 				<tr>	
 					<th>Nazwa</th>
 					<th>skrót</th>

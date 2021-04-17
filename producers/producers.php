@@ -24,7 +24,7 @@
  <body> 
   	<?php
 		require_once('../header.php');
-		echo "<a href='producers-add-form.php' class='effect effect-add person'>Dodaj producenta</a><br>";
+		echo "<a href='producers-add-form.php' class='effect effect-add person'>Dodaj producenta</a>";
 		$records = mysqli_query($conn,"select * from contractors"); // fetch data from database
 		$ile = mysqli_num_rows($records);  //ilosc wszystkich rekordow (nie stron !!)
 		$na_strone = 10; //tu podajesz ile rekordow na stronie max.
@@ -34,7 +34,7 @@
 		echo ' <a href="?strona=1"> 1</a>';
 		for ($i = 1; $i < $stron; $i++) echo ' <a href="?strona='.($i+1).'"> '.($i+1).'</a> ';  //tak wyswietlasz numery;
 		$sql = mysqli_query($conn,"SELECT * FROM producers LIMIT ".(($strona-1)*$na_strone).','.$na_strone);	// tak odczytujesz
-		echo '<table class="table table-striped table-hover">
+		echo '<table class="table table-striped table-hover text-center">
 				<tr>	
 					<th>Nazwa</th>
 					<th>skrót</th>

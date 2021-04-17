@@ -188,6 +188,11 @@ main {
   content: "\f574" !important;
 }
 
+.download:before{
+  content: "\f019" !important;
+  color: #00F !important;
+}
+
 .shift:before {
   content: "\f0d1" !important;
 }
