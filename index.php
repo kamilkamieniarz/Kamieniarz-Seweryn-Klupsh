@@ -30,8 +30,8 @@ if (isset($_SESSION['logged_id'])) {
 				
 				<div class=" col-12 d-inline-flex justify-content-center">
 					<form method="post" action="main.php">
-						<input type="text" name="login" placeholder="Login"><br>
-						<input type="password" name="pass" placeholder="Hasło"></br>
+						<input type="text" name="login" placeholder="Login" class="mb-3"><br>
+						<input type="password" name="pass" placeholder="Hasło" class="mb-3"></br>
 						<input type="submit" value="Zaloguj się">
 						<?php
 							if(isset($_SESSION['bad_attempt'])){
