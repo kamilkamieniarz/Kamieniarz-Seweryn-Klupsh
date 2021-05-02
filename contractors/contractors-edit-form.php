@@ -4,7 +4,7 @@
 	$qry = mysqli_query($conn,"select * from contractors where id='$id'");
 	$data = mysqli_fetch_array($qry); 
 	if(isset($_POST['update'])){   	
-		$edit = mysqli_query($conn,"UPDATE contractors SET name='".$_POST['contractorname']."',shortcut='".$_POST['contractorshortcut']."',description='".$_POST['contractordescription']."',street='".$_POST['contractorstreet']."',house_number='".$_POST['contractorhouse_number']."',apartment_number='".$_POST['contractorapartment_number']."',zip_code='".$_POST['contractorzip_code']."',town='".$_POST['contractortown']."' WHERE id='$id'");
+		$edit = mysqli_query($conn,"UPDATE contractors SET name='".$_POST['contractorname']."',shortcut='".$_POST['contractorshortcut']."',description='".$_POST['contractordescription']."',NIP='".$_POST['contractorNIP']."',street='".$_POST['contractorstreet']."',house_number='".$_POST['contractorhouse_number']."',apartment_number='".$_POST['contractorapartment_number']."',zip_code='".$_POST['contractorzip_code']."',town='".$_POST['contractortown']."' WHERE id='$id'");
 		if($edit){
 			mysqli_close($conn);
 			header("location:contractors.php");
@@ -12,6 +12,7 @@
 		}
 		else{ echo "Błąd edycji danych kontrahenta";}    	
 	}
+	require_once('../header.php');
 ?>
 <!DOCTYPE html>
 <html lang="pl">
@@ -30,17 +31,19 @@
 </head>
 <body>
 	<header class="page-header">
-		<h1 class="page-title">Edycja danych kontrahtenta</h1>
 		<a href='contractors.php' class='effect effect-add back'>Wróć</a><br>
+		<h1 class="page-title">Edycja danych kontrahtenta</h1>
 	</header>	
 	
 	<form name="form1" method="post" action=''>
 		<p>Nazwa: </p> 
 		<input type="text" name="contractorname" size="30" value="<?php echo $data['name'] ?>" require>
 		<p>Skrót: </p> 
-		<input type="text" name="contractorshortcut" size="5" value="<?php echo $data['shortcut'] ?>"</br>
+		<input type="text" name="contractorshortcut" size="5" value="<?php echo $data['shortcut'] ?>"></br>
 		<p>Opis: </p> 
-		<input type="text" name="contractordescription" size="50" value="<?php echo $data['description'] ?>"</br>
+		<input type="text" name="contractordescription" size="50" value="<?php echo $data['description'] ?>"></br>
+		<p>NIP: </p> 	
+		<input type="text" name="contractorNIP" size="50" value="<?php echo $data['NIP'] ?>" require ></br>
 		<p>Ulica: </p> 
 		<input type="text" name="contractorstreet" size="50" value="<?php echo $data['street'] ?>" require></br>
 		<p>Nr domu: </p> 

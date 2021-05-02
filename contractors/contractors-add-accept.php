@@ -3,6 +3,7 @@ require_once('../connect.php');
 $contractorn= $_POST['contractorname'];
 $contractors= $_POST['contractorshortcut'];
 $contractord= $_POST['contractordescription'];
+$contractorsnip= $_POST['contractornip'];
 $contractorst= $_POST['contractorstreet'];
 $contractorhn= $_POST['contractorhouse_number'];
 $contractoran= $_POST['contractorapartment_number'];
@@ -17,7 +18,7 @@ $contractort= $_POST['contractortown'];
 </head>
 <body>
 	<?php
-		$sql = "INSERT INTO `contractors`(`id`,`name`, `shortcut`, `description`, `street`, `house_number`, `apartment_number`, `zip_code`, `town`) VALUES ('','$contractorn','$contractors','$contractord','$contractorst','$contractorhn','$contractoran','$contractorzc','$contractort')";
+		$sql = "INSERT INTO `contractors`(`id`,`name`, `shortcut`, `description`, `street`,`NIP`, `house_number`, `apartment_number`, `zip_code`, `town`) VALUES ('','$contractorn','$contractors','$contractord','$contractorsnip','$contractorst','$contractorhn','$contractoran','$contractorzc','$contractort')";
 		echo ("Kontrahent dodany pomyślnie");
 	?>
 		<input type="button"  value="ok" onclick="window.location.href='contractors.php'">

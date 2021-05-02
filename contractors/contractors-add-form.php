@@ -5,6 +5,7 @@
 		header('Location: index.php');
 		exit();
 	}
+	require_once('../header.php');
 ?>
 <!DOCTYPE html>
 <html lang="pl">
@@ -23,8 +24,8 @@
 </head>
 <body>
 	<header class="page-header">
-		<h1 class="page-title">Dodaj kontrahtenta</h1>
 		<a href='contractors.php' class='effect effect-add back'>Wróć</a><br>
+		<h1 class="page-title">Dodaj kontrahtenta</h1>
 	</header>	
 	
 	<form name="form1" method="post" action='contractors-add-accept.php'>
@@ -32,8 +33,10 @@
 		<input type="text" name="contractorname" size="150" placeholder="KowCem betorniarnia Sp. z o.o." require>
 		<p>Skrót: </p> 
 		<input type="text" name="contractorshortcut" size="10" placeholder="KowBud" require></br>
-		<p>Opis: </p> 
-		<input type="text" name="contractordescription" size="50" placeholder="Materiały budowlane"></br>
+		<p>Opis: </p>
+		<input type="text" name="contractorshortcut" size="10" placeholder="KowBud" require></br>
+		<p>NIP: </p> 	
+		<input type="text" name="contractorNIP" size="50" placeholder="1111111111"></br>
 		<p>Ulica: </p> 
 		<input type="text" name="contractorstreet" size="50" placeholder="Główna" require></br>
 		<p>Nr domu: </p> 
