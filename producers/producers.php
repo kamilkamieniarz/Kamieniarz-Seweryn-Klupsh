@@ -38,7 +38,8 @@
 				<tr>	
 					<th>Nazwa</th>
 					<th>skrót</th>
-					<th>opis</th>							
+					<th>opis</th>	
+					<th>NIP</th>					
 					<th>adres</th>
 					<th>miasto</th>
 					<th>opcje</th>
@@ -48,6 +49,7 @@
 				<td>".$resultat['name']."</td>  
 				<td>".$resultat['shortcut']."</td>  
 				<td>".$resultat['description']."</td>
+				<td>".$resultat['NIP']."</td>
 				<td>ul. ".$resultat['street']." ".$resultat['house_number']."/".$resultat['apartment_number']."</td>
 				<td>".$resultat['town']." ".$resultat['zip_code']."</td>
 				<td><a href='producers-edit-form.php?id=".$resultat['id']."' class='effect effect-edit'>Edytuj</a>

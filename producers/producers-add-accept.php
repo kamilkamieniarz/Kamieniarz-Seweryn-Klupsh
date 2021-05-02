@@ -4,6 +4,7 @@
 	$producers= $_POST['producershortcut'];
 	$producerd= $_POST['producerdescription'];
 	$producert= $_POST['producerstreet'];
+	$producernip= $_POST['producerNIP'];
 	$producern= $_POST['producerhouse_number'];
 	$produceran= $_POST['producerapartment_number'];
 	$producerc= $_POST['producerzip_code'];
@@ -17,7 +18,7 @@
 </head>
 <body>
 	<?php
-		$sql = "INSERT INTO `producers`(`id`,`name`, `shortcut`, `description`, `street`, `house_number`, `apartment_number`, `zip_code`, `town`) VALUES ('','$producern','$producers','$producerd','$producert','$producern','$producern','$producerc','$producert')";
+		$sql = "INSERT INTO `producers`(`id`,`name`, `shortcut`, `description`, `NIP`, `street`, `house_number`, `apartment_number`, `zip_code`, `town`) VALUES ('','$producern','$producers','$producerd','$producernip','$producert','$producern','$producern','$producerc','$producert')";
 		echo ("Producent dodany pomyślnie");
 	?>
 	<input type="button"  value="ok" onclick="window.location.href='producers.php'">

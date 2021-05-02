@@ -5,6 +5,7 @@
 		header('Location: index.php');
 		exit();
 	}
+	require_once('../header.php');
 ?>
 <!DOCTYPE html>
 <html lang="pl">
@@ -23,8 +24,9 @@
 </head>
 <body>
 	<header class="page-header">
-		<h1 class="page-title">Dodaj Producenta</h1>
+		
 		<a href='producers.php' class='effect effect-add back'>Wróć</a><br>
+			<h1 class="page-title">Dodaj Producenta</h1>
 	</header>	
 		
 	<form name="form1" method="post" action='producers-add-accept.php'>
@@ -34,6 +36,8 @@
 		<input type="text" name="producershortcut" size="10" placeholder="KowBud" require></br>
 		<p>Opis: </p> 
 		<input type="text" name="producerdescription" size="50" placeholder="Materiały budowlane"></br>
+		<p>NIP: </p> 
+		<input type="text" name="producerNIP" size="50" placeholder="1111111111"></br>
 		<p>Ulica: </p> 
 		<input type="text" name="producerstreet" size="50" placeholder="Główna" require></br>
 		<p>Nr domu: </p> 

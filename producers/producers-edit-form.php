@@ -4,7 +4,7 @@
 	$qry = mysqli_query($conn,"select * from producers where id='$id'");
 	$data = mysqli_fetch_array($qry);
 	if(isset($_POST['update'])){   	
-		$edit = mysqli_query($conn,"UPDATE producers SET name='".$_POST['producername']."',shortcut='".$_POST['producershortcut']."',description='".$_POST['producerdescription']."',street='".$_POST['producerstreet']."',house_number='".$_POST['producerhouse_number']."',apartment_number='".$_POST['producerapartment_number']."',zip_code='".$_POST['producerzip_code']."',town='".$_POST['producertown']."' WHERE id='$id'");
+		$edit = mysqli_query($conn,"UPDATE producers SET name='".$_POST['producername']."',shortcut='".$_POST['producershortcut']."',description='".$_POST['producerdescription']."',NIP='".$_POST['producerNIP']."',street='".$_POST['producerstreet']."',house_number='".$_POST['producerhouse_number']."',apartment_number='".$_POST['producerapartment_number']."',zip_code='".$_POST['producerzip_code']."',town='".$_POST['producertown']."' WHERE id='$id'");
 		if($edit){
 			mysqli_close($conn); // Close connection
 			header("location:producers.php"); // redirects to all records page
@@ -12,6 +12,7 @@
 		}
 		else{echo "Błąd edycji danych producenta";}    	
 	}
+		require_once('../header.php');
 ?>
 <!DOCTYPE html>
 <html lang="pl">
@@ -29,28 +30,30 @@
 	<script src="https://kit.fontawesome.com/168b28f506.js" crossorigin="anonymous"></script>
 </head>
 <body>
-	<header class="page-header">
-		<h1 class="page-title">Edytuj Producenta</h1>
+	<header class="page-header">	
 		<a href='producers.php' class='effect effect-add back'>Wróć</a><br>
+		<h1 class="page-title">Edytuj Producenta</h1>
 	</header>	
 		
 	<form name="form1" method="post" action=''>
 		<p>Nazwa: </p> 
-		<input type="text" name="producername" size="150" placeholder="KowCem betorniarnia Sp. z o.o." require>
+		<input type="text" name="producername" size="150"  value="<?php echo $data['name'] ?>" require>
 		<p>Skrót: </p> 
-		<input type="text" name="producershortcut" size="10" placeholder="KowBud" require></br>
+		<input type="text" name="producershortcut" size="10"  value="<?php echo $data['shortcut'] ?>" require></br>
 		<p>Opis: </p> 
-		<input type="text" name="producerdescription" size="50" placeholder="Materiały budowlane"></br>
+		<input type="text" name="producerdescription" size="50"  value="<?php echo $data['description'] ?>"></br>
+		<p>NIP: </p> 	
+		<input type="text" name="producerNIP" size="50" value="<?php echo $data['NIP'] ?>" require ></br>
 		<p>Ulica: </p> 
-		<input type="text" name="producerstreet" size="50" placeholder="Główna" require></br>
+		<input type="text" name="producerstreet" size="50"  value="<?php echo $data['street'] ?>" require></br>
 		<p>Nr domu: </p> 
-		<input type="text" name="producerhouse_number" size="5" placeholder="12/A" require></br>
+		<input type="text" name="producerhouse_number" size="5"  value="<?php echo $data['house_number'] ?>" require></br>
 		<p>Nr mieszkania: </p> 
-		<input type="text" name="producerapartment_number" size="5" placeholder="" ></br>
+		<input type="text" name="producerapartment_number" size="5"  value="<?php echo $data['apartment_number'] ?>" ></br>
 		<p>Kod pocztowy: </p> 
-		<input type="text" name="producerzip_code" size="15" placeholder="64-100" require></br>
+		<input type="text" name="producerzip_code" size="15"  value="<?php echo $data['zip_code'] ?>"  require></br>
 		<p>Miejscowość: </p> 
-		<input type="text" name="producertown" size="50" placeholder="Leszno" require></br></br>
+		<input type="text" name="producertown" size="50"  value="<?php echo $data['town'] ?>" require></br></br>
 		<input type="submit" name="update" value="Edytuj">		
 	</form>
 </body>
