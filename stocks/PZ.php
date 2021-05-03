@@ -45,7 +45,7 @@
 				$adres_used_in_creation = "ul. ".$resultat['street']." ".$resultat['house_number']." ,".$resultat['zip_code']." ".$resultat['town'];
 			}
 			$date = date("Y-m-d H:i:s");
-			$query ="INSERT INTO `documents`( `type`, `date`, `date_foreign_documents`, `id_author`, `id_client`, `client_name_used_in_creation`, `client_adress_used_in_creation`) VALUES ('PZ', '".$date."', NULL, '".$_SESSION['logged_id']."','".$resultat['id']."','".$resultat['name']."','".$adres_used_in_creation."')";
+			$query ="INSERT INTO `documents`( `type`, `date`, `date_foreign_documents`, `id_author`, `id_client`, `client_name_used_in_creation`, `client_adress_used_in_creation`, `client_NIP_used_in_creation`) VALUES ('PZ', '".$date."', NULL, '".$_SESSION['logged_id']."','".$resultat['id']."','".$resultat['name']."','".$adres_used_in_creation."','".$resultat['NIP']."')";
 			if($conn->query($query) === TRUE){
 				$id=mysqli_insert_id($conn);
 				$sql3 = "UPDATE documents SET `number` = (SELECT max(`number`) FROM documents) +1 WHERE `id`='$id'";
