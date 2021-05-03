@@ -13,7 +13,7 @@ $pdf = new TCPDF('P','mm','A4');
 $pdf -> setPrintHeader(false);
 $pdf -> AddPage();
 //add content
-$pdf -> SetFont('freesans','',14);
+$pdf -> SetFont('freesans','',14); 
 $pdf -> Cell(190,10,"Dokument ".$resultat['type']."  nr.".$resultat['number'],1,1,'C');
 
 $pdf -> SetFont('freesans','',8);
@@ -25,7 +25,7 @@ $tab1 = "
 <table>
  <tr><th>".$resultat['client_name_used_in_creation']." </th></tr>
  <tr> <th>".$resultat['client_adress_used_in_creation']." </th> </tr>
- <tr><th> NIP: 111-111-11-11 </th></tr>
+ <tr><th> NIP:".$resultat['client_NIP_used_in_creation']."</th></tr>
 
 </table> 
 ";
@@ -33,7 +33,7 @@ $tab2 = "
 <table>
  <tr><th>firma </th></tr>
  <tr> <th>ulicowa 5/15 64-100 Leszno  </th> </tr>
- <tr><th> NIP: 111-111-11-11 </th></tr>
+ <tr><th> NIP: 1111111111 </th></tr>
 
 </table> 
 ";
@@ -58,14 +58,27 @@ while ($resultat2=mysqli_fetch_array($sql2)){
 	<th>".$resultat2['amount']."</th> 
 	<th>".$resultat2['unit_of_measure']."</th> 
 	<th>".$resultat2['unit_price']."</th>
-	<th>".$resultat2['unit_price']."</th>
+	<th>".$resultat2['VAT']."</th>
 	<th>".$resultat2['unit_price']."</th>
 	<th>".$resultat2['total_value']."</th>
  </tr>
  ";
 }
+if ( $resultat['type'] == 'PZ') // dokiment PZ
+{
 $pdf -> WriteHTMLCell(95,5,'','',"$tab1",1);
 $pdf -> WriteHTMLCell(95,5,'','',"$tab2",1);
+}
+if ( $resultat['type'] == 'WZ') // dokiment WZ
+{
+$pdf -> WriteHTMLCell(95,5,'','',"$tab2",1);
+$pdf -> WriteHTMLCell(95,5,'','',"$tab1",1);
+}
+if ( $resultat['type'] == 'PM') // dokiment PM
+{
+$pdf -> WriteHTMLCell(95,5,'','',"w takcie pisania",1);  
+$pdf -> WriteHTMLCell(95,5,'','',"$w trakcie pisania",1);
+}
 $pdf->Ln(20);
 
 $pdf -> WriteHTMLCell(190,5,'','',"$tab3",1);
