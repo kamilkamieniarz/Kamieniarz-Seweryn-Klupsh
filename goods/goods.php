@@ -28,14 +28,15 @@
 		$na_strone = 6; //tu podajesz ile rekordow na stronie max.
 		$stron = ceil ($ile / $na_strone);   //tutaj masz ilosc stron zaokraglanych w gore
 		if (!isset($_GET['strona'])) $strona = 1; else $strona = (int)$_GET['strona'];
-		$sql = mysqli_query($conn,"SELECT goods.id, goods.name, goods.unit_price, goods.unit_of_measure, producers.Name FROM goods LEFT OUTER JOIN producers ON producers.ID = goods.id_producer LIMIT ".(($strona-1)*$na_strone).','.$na_strone);	// tak odczytujesz
+		$sql = mysqli_query($conn,"SELECT goods.id, goods.name, goods.unit_price,goods.VAT, goods.unit_of_measure, producers.Name FROM goods LEFT OUTER JOIN producers ON producers.ID = goods.id_producer LIMIT ".(($strona-1)*$na_strone).','.$na_strone);	// tak odczytujesz
 		echo 'Strona: <a href="?strona=1"> 1</a> ';
 		for ($i = 1; $i < $stron; $i++) echo '<a href="?strona='.($i+1).'"> '.($i+1).'</a> ';  //tak wyswietlasz numery;
 		echo '<table class="table table-striped table-hover text-center">
 				<tr>	
 					<th>Nazwa</th>	
 					<th>Producent</th>
-					<th>Cena jednostkowa</th>					
+					<th>Cena jednostkowa netto </th>			
+					<th>Stawka Vat </th>						
 					<th>Jednostka miary</th>
 					<th>Opcje</th>
 				</tr>';
@@ -44,7 +45,8 @@
 				<tr>
 					<td>".$resultat['name']."</td>
 					<td>".$resultat['Name']."</td>
-					<td>".$resultat['unit_price']."</td>   
+					<td>".$resultat['unit_price']."</td> 
+					<td>".$resultat['VAT']."%</td> 	
 					<td>".$resultat['unit_of_measure']."</td>   													
 					<td><a href='goods-edit-form.php?id=".$resultat['id']."' class='effect effect-edit'>Edytuj</a>
 					<a href='goods-delete.php?id=".$resultat['id']."' class='effect effect-delete'>Usuń</a><br></td>

@@ -5,6 +5,7 @@
 		header('Location: index.php');
 		exit();
 	}
+	require_once('../header.php');
 ?>
 <!DOCTYPE html>
 <html lang="pl">
@@ -23,8 +24,8 @@
 </head>
 <body>
 	<header class="page-header">
-		<h1 class="page-title">Dodaj Towar</h1>
 		<a href='goods.php' class='effect effect-add back'>Wróć</a><br>
+		<h1 class="page-title">Dodaj Towar</h1>
 	</header>	
 		
 	<form name="form1" method="post" action='goods-add-accept.php'>
@@ -39,6 +40,13 @@
 		</select>
 		<p>Cena jednostkowa:</p> 
 		<input type="number" step=".01" name="good_unit_price" size="14"  require>
+		<p>Stawka VAT:</p> 
+		<select name="good_VAT" require>
+			<option>23%</option>
+			<option>8%</option>
+			<option>5%</option>
+			<option>0%</option>
+		</select>
 		<p>Jednostka miary:</p> 
 		<select name="good_unit_of_measure" require>
 			<option>kg</option>

@@ -4,6 +4,7 @@
 	$goodp= $_POST['goodproducer'];
 	$goodu= $_POST['good_unit_price'];
 	$goodm= $_POST['good_unit_of_measure'];
+	$goodv= $_POST['	good_VAT'];
 ?>
 <!DOCTYPE html>
 <html lang="pl">
@@ -21,7 +22,7 @@
 </head>
 <body>
 	<?php
-		$sql = "INSERT INTO `goods`(`id`, `name`, `id_producer`, `unit_price`, `unit_of_measure`, `amount`) VALUES ('','$goodn','$goodp','$goodu','$goodm','0')";
+		$sql = "INSERT INTO `goods`(`id`, `name`, `id_producer`, `unit_price`,`VIP`, `unit_of_measure`, `amount`) VALUES ('','$goodn','$goodp','$goodu','$goodv','$goodm','0')";
 		echo ("Towar dodany pomyślnie");
 	?>
 	<input type="button"  value="ok" onclick="window.location.href='goods.php?strona=1.php'">
