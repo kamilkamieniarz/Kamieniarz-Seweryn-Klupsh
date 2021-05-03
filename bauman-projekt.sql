@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Czas generowania: 02 Maj 2021, 17:53
+-- Czas generowania: 03 Maj 2021, 15:30
 -- Wersja serwera: 10.4.14-MariaDB
 -- Wersja PHP: 7.2.34
 
@@ -45,7 +45,7 @@ CREATE TABLE `contractors` (
 --
 
 INSERT INTO `contractors` (`id`, `name`, `shortcut`, `description`, `NIP`, `street`, `house_number`, `apartment_number`, `zip_code`, `town`) VALUES
-(5, 'Kowalski sp.zoo', 'KOW', '', 987654321, 'Jana Pawła', '12', 'A', '64-100', 'Leszno');
+(5, 'Kowalski sp.zoo', 'KOW', '', 1234567891, 'Jana Pawła', '12', 'A', '64-100', 'Leszno');
 
 -- --------------------------------------------------------
 
@@ -63,35 +63,40 @@ CREATE TABLE `documents` (
   `id_author` int(11) NOT NULL,
   `id_client` int(11) NOT NULL,
   `client_name_used_in_creation` varchar(150) COLLATE utf8_polish_ci NOT NULL,
-  `client_adress_used_in_creation` varchar(150) COLLATE utf8_polish_ci NOT NULL
+  `client_adress_used_in_creation` varchar(150) COLLATE utf8_polish_ci NOT NULL,
+  `client_NIP_used_in_creation` int(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci;
 
 --
 -- Zrzut danych tabeli `documents`
 --
 
-INSERT INTO `documents` (`id`, `type`, `number`, `value`, `date`, `date_foreign_documents`, `id_author`, `id_client`, `client_name_used_in_creation`, `client_adress_used_in_creation`) VALUES
-(92, 'PZ', 20, '13.00', '2021-04-17 17:34:42', NULL, 1, 7, 'Maspex', 'ul. Główna 6/ ,01-385 Warszawa'),
-(93, 'WZ', 21, '0.00', '2021-04-17 17:38:25', NULL, 1, 5, 'Kowalski sp.zoo', 'ul. Jana Pawła 12/A ,64-100 Leszno'),
-(94, 'PZ', 22, '27.00', '2021-04-17 17:53:39', NULL, 1, 7, 'Maspex', 'ul. Główna 6/ ,01-385 Warszawa'),
-(95, 'PZ', 23, '25.00', '2021-04-17 17:55:41', NULL, 1, 7, 'Maspex', 'ul. Główna 6/ ,01-385 Warszawa'),
-(96, 'PZ', 24, '86.00', '2021-04-17 17:57:26', NULL, 1, 7, 'Maspex', 'ul. Główna 6/ ,01-385 Warszawa'),
-(97, 'PZ', 25, '19.00', '2021-04-17 18:04:06', NULL, 1, 7, 'Maspex', 'ul. Główna 6/ ,01-385 Warszawa'),
-(98, 'WZ', 26, '61.00', '2021-04-17 18:05:58', NULL, 1, 5, 'Kowalski sp.zoo', 'ul. Jana Pawła 12/A ,64-100 Leszno'),
-(99, 'WZ', 27, '0.00', '2021-04-17 18:07:29', NULL, 1, 5, 'Kowalski sp.zoo', 'ul. Jana Pawła 12/A ,64-100 Leszno'),
-(100, 'PZ', 28, '0.00', '2021-04-17 18:10:53', NULL, 1, 7, 'Maspex', 'ul. Główna 6/ ,01-385 Warszawa'),
-(101, 'WZ', 29, '90.00', '2021-04-17 18:11:15', NULL, 1, 5, 'Kowalski sp.zoo', 'ul. Jana Pawła 12/A ,64-100 Leszno'),
-(102, 'PZ', 30, '14.00', '2021-04-17 18:11:45', NULL, 1, 7, 'Maspex', 'ul. Główna 6/ ,01-385 Warszawa'),
-(103, 'PZ', 31, '23.00', '2021-04-17 18:14:14', NULL, 1, 7, 'Maspex', 'ul. Główna 6/ ,01-385 Warszawa'),
-(104, 'PZ', 32, '250.00', '2021-04-17 18:16:57', NULL, 1, 7, 'Maspex', 'ul. Główna 6/ ,01-385 Warszawa'),
-(105, 'PZ', 33, '15.00', '2021-04-17 18:20:01', NULL, 1, 7, 'Maspex', 'ul. Główna 6/ ,01-385 Warszawa'),
-(106, 'PZ', 34, '15.00', '2021-04-17 18:20:18', NULL, 1, 7, 'Maspex', 'ul. Główna 6/ ,01-385 Warszawa'),
-(107, 'PZ', 35, '18.00', '2021-04-17 18:21:01', NULL, 1, 7, 'Maspex', 'ul. Główna 6/ ,01-385 Warszawa'),
-(108, 'PZ', 36, '246.00', '2021-04-17 18:21:27', NULL, 1, 7, 'Maspex', 'ul. Główna 6/ ,01-385 Warszawa'),
-(109, 'PZ', 37, '0.00', '2021-04-20 12:07:52', NULL, 2, 7, 'Maspex', 'ul. Główna 6/ ,01-385 Warszawa'),
-(110, 'PZ', 38, '0.00', '2021-05-01 12:02:33', NULL, 1, 7, 'Maspex', 'ul. Główna 6/ ,01-385 Warszawa'),
-(112, 'PZ', 39, '0.00', '2021-05-01 14:42:24', NULL, 1, 7, 'Maspex', 'ul. Główna 6/ ,01-385 Warszawa'),
-(113, 'WZ', 40, '0.00', '2021-05-01 17:56:30', NULL, 1, 5, 'Kowalski sp.zoo', 'ul. Jana Pawła 12/A ,64-100 Leszno');
+INSERT INTO `documents` (`id`, `type`, `number`, `value`, `date`, `date_foreign_documents`, `id_author`, `id_client`, `client_name_used_in_creation`, `client_adress_used_in_creation`, `client_NIP_used_in_creation`) VALUES
+(92, 'PZ', 20, '13.00', '2021-04-17 17:34:42', NULL, 1, 7, 'Maspex', 'ul. Główna 6/ ,01-385 Warszawa', 0),
+(93, 'WZ', 21, '0.00', '2021-04-17 17:38:25', NULL, 1, 5, 'Kowalski sp.zoo', 'ul. Jana Pawła 12/A ,64-100 Leszno', 0),
+(94, 'PZ', 22, '27.00', '2021-04-17 17:53:39', NULL, 1, 7, 'Maspex', 'ul. Główna 6/ ,01-385 Warszawa', 0),
+(95, 'PZ', 23, '25.00', '2021-04-17 17:55:41', NULL, 1, 7, 'Maspex', 'ul. Główna 6/ ,01-385 Warszawa', 0),
+(96, 'PZ', 24, '86.00', '2021-04-17 17:57:26', NULL, 1, 7, 'Maspex', 'ul. Główna 6/ ,01-385 Warszawa', 0),
+(97, 'PZ', 25, '19.00', '2021-04-17 18:04:06', NULL, 1, 7, 'Maspex', 'ul. Główna 6/ ,01-385 Warszawa', 0),
+(98, 'WZ', 26, '61.00', '2021-04-17 18:05:58', NULL, 1, 5, 'Kowalski sp.zoo', 'ul. Jana Pawła 12/A ,64-100 Leszno', 0),
+(99, 'WZ', 27, '0.00', '2021-04-17 18:07:29', NULL, 1, 5, 'Kowalski sp.zoo', 'ul. Jana Pawła 12/A ,64-100 Leszno', 0),
+(100, 'PZ', 28, '0.00', '2021-04-17 18:10:53', NULL, 1, 7, 'Maspex', 'ul. Główna 6/ ,01-385 Warszawa', 0),
+(101, 'WZ', 29, '90.00', '2021-04-17 18:11:15', NULL, 1, 5, 'Kowalski sp.zoo', 'ul. Jana Pawła 12/A ,64-100 Leszno', 0),
+(102, 'PZ', 30, '14.00', '2021-04-17 18:11:45', NULL, 1, 7, 'Maspex', 'ul. Główna 6/ ,01-385 Warszawa', 0),
+(103, 'PZ', 31, '23.00', '2021-04-17 18:14:14', NULL, 1, 7, 'Maspex', 'ul. Główna 6/ ,01-385 Warszawa', 0),
+(104, 'PZ', 32, '250.00', '2021-04-17 18:16:57', NULL, 1, 7, 'Maspex', 'ul. Główna 6/ ,01-385 Warszawa', 0),
+(105, 'PZ', 33, '15.00', '2021-04-17 18:20:01', NULL, 1, 7, 'Maspex', 'ul. Główna 6/ ,01-385 Warszawa', 0),
+(106, 'PZ', 34, '15.00', '2021-04-17 18:20:18', NULL, 1, 7, 'Maspex', 'ul. Główna 6/ ,01-385 Warszawa', 0),
+(107, 'PZ', 35, '18.00', '2021-04-17 18:21:01', NULL, 1, 7, 'Maspex', 'ul. Główna 6/ ,01-385 Warszawa', 0),
+(108, 'PZ', 36, '246.00', '2021-04-17 18:21:27', NULL, 1, 7, 'Maspex', 'ul. Główna 6/ ,01-385 Warszawa', 0),
+(109, 'PZ', 37, '0.00', '2021-04-20 12:07:52', NULL, 2, 7, 'Maspex', 'ul. Główna 6/ ,01-385 Warszawa', 0),
+(110, 'PZ', 38, '0.00', '2021-05-01 12:02:33', NULL, 1, 7, 'Maspex', 'ul. Główna 6/ ,01-385 Warszawa', 0),
+(112, 'PZ', 39, '0.00', '2021-05-01 14:42:24', NULL, 1, 7, 'Maspex', 'ul. Główna 6/ ,01-385 Warszawa', 0),
+(113, 'WZ', 40, '0.00', '2021-05-01 17:56:30', NULL, 1, 5, 'Kowalski sp.zoo', 'ul. Jana Pawła 12/A ,64-100 Leszno', 0),
+(114, 'PZ', 41, '0.00', '2021-05-03 14:45:20', NULL, 1, 7, 'Maspex', 'ul. Główna 6/ ,01-385 Warszawa', 1234567890),
+(115, 'PZ', 42, '10.00', '2021-05-03 15:00:26', NULL, 1, 7, 'Maspex', 'ul. Główna 6/ ,01-385 Warszawa', 1234567890),
+(116, 'WZ', 43, '88.00', '2021-05-03 15:01:09', NULL, 1, 5, 'Kowalski sp.zoo', 'ul. Jana Pawła 12/A ,64-100 Leszno', 987654321),
+(117, 'PZ', 44, '0.00', '2021-05-03 15:19:36', NULL, 1, 7, 'Maspex', 'ul. Główna 6/ ,01-385 Warszawa', 1234567890);
 
 -- --------------------------------------------------------
 
@@ -133,7 +138,10 @@ INSERT INTO `documents_goods` (`id`, `amount`, `total_value`, `id_author`, `id_d
 (103, '6', '15.00', 1, 106, 2, 'Kapusta czerwona'),
 (104, '7', '17.50', 1, 107, 2, 'Kapusta czerwona'),
 (105, '67', '180.90', 1, 108, 4, 'Mandarynka'),
-(106, '10', '65.00', 1, 108, 6, 'Arbuz');
+(106, '10', '65.00', 1, 108, 6, 'Arbuz'),
+(107, '5', '0.00', 1, 114, 2, 'Kapusta czerwona'),
+(108, '5', '10.00', 1, 115, 2, 'Kapusta czerwona'),
+(109, '4', '88.00', 1, 116, 6, 'Arbuz');
 
 -- --------------------------------------------------------
 
@@ -145,6 +153,7 @@ CREATE TABLE `goods` (
   `id` int(11) NOT NULL,
   `name` varchar(100) COLLATE utf8mb4_polish_ci NOT NULL,
   `unit_price` decimal(11,2) NOT NULL,
+  `VAT` int(2) NOT NULL,
   `unit_of_measure` varchar(20) COLLATE utf8mb4_polish_ci NOT NULL,
   `id_producer` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_polish_ci;
@@ -153,14 +162,14 @@ CREATE TABLE `goods` (
 -- Zrzut danych tabeli `goods`
 --
 
-INSERT INTO `goods` (`id`, `name`, `unit_price`, `unit_of_measure`, `id_producer`) VALUES
-(2, 'Kapusta czerwona', '2.50', 'kg', 7),
-(3, 'Jabłka Ligol', '2.65', 'kg', 7),
-(4, 'Mandarynka', '2.70', 'kg', 7),
-(5, 'Jabłka Jonagold', '2.21', 'kg', 7),
-(6, 'Arbuz', '6.50', 'szt', 7),
-(7, 'Papryka czerwona', '2.80', 'kg', 7),
-(8, 'Papryka żółta', '2.50', 'kg', 7);
+INSERT INTO `goods` (`id`, `name`, `unit_price`, `VAT`, `unit_of_measure`, `id_producer`) VALUES
+(2, 'Kapusta czerwona', '2.00', 23, 'kg', 7),
+(3, 'Jabłka Ligol', '2.65', 23, 'kg', 7),
+(4, 'Mandarynka', '1.50', 23, 'kg', 7),
+(5, 'Jabłka Jonagold', '2.21', 23, 'kg', 7),
+(6, 'Arbuz', '6.50', 23, 'szt', 7),
+(7, 'Papryka czerwona', '2.80', 23, 'kg', 7),
+(8, 'Papryka żółta', '2.50', 23, 'kg', 7);
 
 -- --------------------------------------------------------
 
@@ -208,10 +217,11 @@ CREATE TABLE `magazines_goods` (
 INSERT INTO `magazines_goods` (`id`, `id_magazines`, `id_goods`, `amount`) VALUES
 (1, 2, 2, 11),
 (2, 4, 6, 10),
-(3, 2, 6, 10),
+(3, 2, 6, 6),
 (4, 2, 4, 10),
 (12, 4, 4, 67),
-(13, 4, 6, 10);
+(13, 4, 6, 10),
+(14, 2, 2, 5);
 
 -- --------------------------------------------------------
 
@@ -334,13 +344,13 @@ ALTER TABLE `contractors`
 -- AUTO_INCREMENT dla tabeli `documents`
 --
 ALTER TABLE `documents`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=114;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=118;
 
 --
 -- AUTO_INCREMENT dla tabeli `documents_goods`
 --
 ALTER TABLE `documents_goods`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=107;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=110;
 
 --
 -- AUTO_INCREMENT dla tabeli `goods`
@@ -358,7 +368,7 @@ ALTER TABLE `magazines`
 -- AUTO_INCREMENT dla tabeli `magazines_goods`
 --
 ALTER TABLE `magazines_goods`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT dla tabeli `producers`
