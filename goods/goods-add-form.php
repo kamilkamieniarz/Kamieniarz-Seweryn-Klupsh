@@ -40,13 +40,6 @@
 		</select>
 		<p>Cena jednostkowa:</p> 
 		<input type="number" step=".01" name="good_unit_price" size="14"  require>
-		<p>Stawka VAT:</p> 
-		<select name="good_VAT" require>
-			<option>23%</option>
-			<option>8%</option>
-			<option>5%</option>
-			<option>0%</option>
-		</select>
 		<p>Jednostka miary:</p> 
 		<select name="good_unit_of_measure" require>
 			<option>kg</option>

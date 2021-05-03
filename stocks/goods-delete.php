@@ -12,8 +12,7 @@ if($del){
         if($back){}
     }
     mysqli_close($conn);
-    header('Location: ' . $_SERVER['HTTP_REFERER']);
-    exit;
+    header('Location:'.$_SERVER['HTTP_REFERER']);
 }
 else{echo "Błąd podczas usuwania towaru";}
 ?>

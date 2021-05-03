@@ -1,10 +1,10 @@
 <?php
 	require_once('../connect.php');
 	$id = $_GET['id']; // get id through query string
-	$qry = mysqli_query($conn,"SELECT goods.id, goods.name, goods.unit_price, goods.VAT, goods.unit_of_measure ,producers.Name FROM goods LEFT OUTER JOIN producers ON producers.ID = goods.id_producer where goods.id='$id'"); // select query
+	$qry = mysqli_query($conn,"SELECT goods.id, goods.name, goods.unit_price, goods.unit_of_measure ,producers.Name FROM goods LEFT OUTER JOIN producers ON producers.ID = goods.id_producer where goods.id='$id'"); // select query
 	$data = mysqli_fetch_array($qry); // fetch data
 	if(isset($_POST['update'])){ // when click on Update button
-		$edit = mysqli_query($conn,"UPDATE goods SET name='".$_POST['goodname']."',id_producer='".$_POST['goodproducer']."',unit_price='".$_POST['good_unit_price']."',VAT='".$_POST['good_VAT']."',unit_of_measure='".$_POST['good_unit_of_measure']."' WHERE id='$id'");
+		$edit = mysqli_query($conn,"UPDATE goods SET name='".$_POST['goodname']."',id_producer='".$_POST['goodproducer']."',unit_price='".$_POST['good_unit_price']."',unit_of_measure='".$_POST['good_unit_of_measure']."' WHERE id='$id'");
 		if($edit){
 			mysqli_close($conn); // Close connection
 			header("location:goods.php"); // redirects to all records page
@@ -49,16 +49,8 @@
 			}
 		?> 
 		</select>
-		<p>cena jednostkowa: </p> <input type="number" step="0.01" name="good_unit_price" size="14" value="<?php echo $num ?>" require>
-		<p>Stawka VAT:</p> 
-		<select name="good_VAT" require>
-			<option><?php echo $data['VAT'] ?></option>
-			<option>23%</option>
-			<option>8%</option>
-			<option>5%</option>
-			<option>0%</option>
-		</select>
-		<p>jednostka miary: </p> <select name="good_unit_of_measure"   require>
+		<p>Cena jednostkowa: </p> <input type="number" step="0.01" name="good_unit_price" size="14" value="<?php echo $num ?>" require>
+		<p>Jednostka miary: </p> <select name="good_unit_of_measure"   require>
 			<option><?php echo $data['unit_of_measure'] ?></option>
 			<option>kg</option>
 			<option>g</option>

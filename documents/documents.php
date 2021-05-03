@@ -38,7 +38,7 @@
 				<tr>	
 					<th>Typ</th>
 					<th>Nr</th>
-					<th>Wartość</th>
+					<th>Wartość NETTO</th>
 					<th>Data utworzenia</th>					
 					<th>Opcje</th>
 				</tr>';

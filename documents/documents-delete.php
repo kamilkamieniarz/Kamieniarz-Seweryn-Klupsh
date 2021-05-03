@@ -28,7 +28,7 @@ if($del)
 		//obliczanie stanu
 	}
     mysqli_close($db); // Close connection
-    header("location:documents.php"); // redirects to all records page
+	echo"<script>window.location.href='documents.php';</script>";
     exit;	
 }
 else

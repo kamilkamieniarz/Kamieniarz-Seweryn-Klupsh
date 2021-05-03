@@ -1,13 +1,14 @@
 -- phpMyAdmin SQL Dump
--- version 5.0.3
+-- version 5.0.1
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Czas generowania: 03 Maj 2021, 15:30
--- Wersja serwera: 10.4.14-MariaDB
--- Wersja PHP: 7.2.34
+-- Czas generowania: 03 Maj 2021, 23:07
+-- Wersja serwera: 10.4.11-MariaDB
+-- Wersja PHP: 7.4.1
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -84,19 +85,42 @@ INSERT INTO `documents` (`id`, `type`, `number`, `value`, `date`, `date_foreign_
 (101, 'WZ', 29, '90.00', '2021-04-17 18:11:15', NULL, 1, 5, 'Kowalski sp.zoo', 'ul. Jana Pawła 12/A ,64-100 Leszno', 0),
 (102, 'PZ', 30, '14.00', '2021-04-17 18:11:45', NULL, 1, 7, 'Maspex', 'ul. Główna 6/ ,01-385 Warszawa', 0),
 (103, 'PZ', 31, '23.00', '2021-04-17 18:14:14', NULL, 1, 7, 'Maspex', 'ul. Główna 6/ ,01-385 Warszawa', 0),
-(104, 'PZ', 32, '250.00', '2021-04-17 18:16:57', NULL, 1, 7, 'Maspex', 'ul. Główna 6/ ,01-385 Warszawa', 0),
-(105, 'PZ', 33, '15.00', '2021-04-17 18:20:01', NULL, 1, 7, 'Maspex', 'ul. Główna 6/ ,01-385 Warszawa', 0),
-(106, 'PZ', 34, '15.00', '2021-04-17 18:20:18', NULL, 1, 7, 'Maspex', 'ul. Główna 6/ ,01-385 Warszawa', 0),
-(107, 'PZ', 35, '18.00', '2021-04-17 18:21:01', NULL, 1, 7, 'Maspex', 'ul. Główna 6/ ,01-385 Warszawa', 0),
-(108, 'PZ', 36, '246.00', '2021-04-17 18:21:27', NULL, 1, 7, 'Maspex', 'ul. Główna 6/ ,01-385 Warszawa', 0),
 (109, 'PZ', 37, '0.00', '2021-04-20 12:07:52', NULL, 2, 7, 'Maspex', 'ul. Główna 6/ ,01-385 Warszawa', 0),
 (110, 'PZ', 38, '0.00', '2021-05-01 12:02:33', NULL, 1, 7, 'Maspex', 'ul. Główna 6/ ,01-385 Warszawa', 0),
 (112, 'PZ', 39, '0.00', '2021-05-01 14:42:24', NULL, 1, 7, 'Maspex', 'ul. Główna 6/ ,01-385 Warszawa', 0),
 (113, 'WZ', 40, '0.00', '2021-05-01 17:56:30', NULL, 1, 5, 'Kowalski sp.zoo', 'ul. Jana Pawła 12/A ,64-100 Leszno', 0),
 (114, 'PZ', 41, '0.00', '2021-05-03 14:45:20', NULL, 1, 7, 'Maspex', 'ul. Główna 6/ ,01-385 Warszawa', 1234567890),
-(115, 'PZ', 42, '10.00', '2021-05-03 15:00:26', NULL, 1, 7, 'Maspex', 'ul. Główna 6/ ,01-385 Warszawa', 1234567890),
-(116, 'WZ', 43, '88.00', '2021-05-03 15:01:09', NULL, 1, 5, 'Kowalski sp.zoo', 'ul. Jana Pawła 12/A ,64-100 Leszno', 987654321),
-(117, 'PZ', 44, '0.00', '2021-05-03 15:19:36', NULL, 1, 7, 'Maspex', 'ul. Główna 6/ ,01-385 Warszawa', 1234567890);
+(117, 'PZ', 44, '0.00', '2021-05-03 15:19:36', NULL, 1, 7, 'Maspex', 'ul. Główna 6/ ,01-385 Warszawa', 1234567890),
+(118, 'PZ', 45, '0.00', '2021-05-03 20:38:00', NULL, 1, 7, 'Maspex', 'ul. Główna 6/ ,01-385 Warszawa', 1234567890),
+(119, 'WZ', 46, '0.00', '2021-05-03 20:38:09', NULL, 1, 5, 'Kowalski sp.zoo', 'ul. Jana Pawła 12/A ,64-100 Leszno', 1234567891),
+(120, 'WZ', 47, '0.00', '2021-05-03 20:38:18', NULL, 1, 5, 'Kowalski sp.zoo', 'ul. Jana Pawła 12/A ,64-100 Leszno', 1234567891),
+(121, 'WZ', 48, '0.00', '2021-05-03 20:39:29', NULL, 1, 5, 'Kowalski sp.zoo', 'ul. Jana Pawła 12/A ,64-100 Leszno', 1234567891),
+(122, 'WZ', 49, '0.00', '2021-05-03 20:45:02', NULL, 1, 5, 'Kowalski sp.zoo', 'ul. Jana Pawła 12/A ,64-100 Leszno', 1234567891),
+(123, 'PZ', 50, '0.00', '2021-05-03 20:46:38', NULL, 1, 7, 'Maspex', 'ul. Główna 6/ ,01-385 Warszawa', 1234567890),
+(124, 'PZ', 51, '0.00', '2021-05-03 21:01:03', NULL, 1, 7, 'Maspex', 'ul. Główna 6/ ,01-385 Warszawa', 1234567890),
+(125, 'PZ', 52, '0.00', '2021-05-03 21:04:49', NULL, 1, 7, 'Maspex', 'ul. Główna 6/ ,01-385 Warszawa', 1234567890),
+(126, 'PZ', 53, '0.00', '2021-05-03 21:19:13', NULL, 1, 7, 'Maspex', 'ul. Główna 6/ ,01-385 Warszawa', 1234567890),
+(127, 'PZ', 54, '0.00', '2021-05-03 21:20:28', NULL, 1, 7, 'Maspex', 'ul. Główna 6/ ,01-385 Warszawa', 1234567890),
+(128, 'PZ', 55, '0.00', '2021-05-03 21:26:33', NULL, 1, 7, 'Maspex', 'ul. Główna 6/ ,01-385 Warszawa', 1234567890),
+(129, 'PZ', 56, '0.00', '2021-05-03 21:28:23', NULL, 1, 7, 'Maspex', 'ul. Główna 6/ ,01-385 Warszawa', 1234567890),
+(132, 'PZ', 59, '0.00', '2021-05-03 21:55:43', NULL, 1, 7, 'Maspex', 'ul. Główna 6/ ,01-385 Warszawa', 1234567890),
+(138, 'WZ', 60, '1.00', '2021-05-03 22:12:29', NULL, 1, 5, 'Kowalski sp.zoo', 'ul. Jana Pawła 12/A ,64-100 Leszno', 1234567891),
+(139, 'WZ', 61, '1.00', '2021-05-03 22:13:23', '0000-00-00 00:00:00', 1, 5, 'Kowalski sp.zoo', 'ul. Jana Pawła 12/A ,64-100 Leszno', 1234567891),
+(140, 'WZ', 62, '10.00', '2021-05-03 22:26:17', '0000-00-00 00:00:00', 1, 5, 'Kowalski sp.zoo', 'ul. Jana Pawła 12/A ,64-100 Leszno', 1234567891),
+(142, 'WZ', 64, '100.00', '2021-05-03 22:30:44', '0000-00-00 00:00:00', 1, 5, 'Kowalski sp.zoo', 'ul. Jana Pawła 12/A ,64-100 Leszno', 1234567891),
+(144, 'WZ', 65, '56.00', '2021-05-03 22:34:45', '2021-05-27 02:36:00', 1, 5, 'Kowalski sp.zoo', 'ul. Jana Pawła 12/A ,64-100 Leszno', 1234567891),
+(145, 'WZ', 66, '0.00', '2021-05-03 22:35:52', NULL, 1, 5, 'Kowalski sp.zoo', 'ul. Jana Pawła 12/A ,64-100 Leszno', 1234567891),
+(146, 'WZ', 67, '0.00', '2021-05-03 22:37:07', NULL, 1, 5, 'Kowalski sp.zoo', 'ul. Jana Pawła 12/A ,64-100 Leszno', 1234567891),
+(147, 'WZ', 68, '0.00', '2021-05-03 22:37:11', NULL, 1, 5, 'Kowalski sp.zoo', 'ul. Jana Pawła 12/A ,64-100 Leszno', 1234567891),
+(148, 'PZ', 69, '0.00', '2021-05-03 22:37:55', NULL, 1, 7, 'Maspex', 'ul. Główna 6/ ,01-385 Warszawa', 1234567890),
+(149, 'WZ', 70, '0.00', '2021-05-03 22:59:45', NULL, 1, 5, 'Kowalski sp.zoo', 'ul. Jana Pawła 12/A ,64-100 Leszno', 1234567891),
+(150, 'WZ', 71, '0.00', '2021-05-03 23:01:32', NULL, 1, 5, 'Kowalski sp.zoo', 'ul. Jana Pawła 12/A ,64-100 Leszno', 1234567891),
+(151, 'WZ', 72, '0.00', '2021-05-03 23:01:39', NULL, 1, 5, 'Kowalski sp.zoo', 'ul. Jana Pawła 12/A ,64-100 Leszno', 1234567891),
+(152, 'WZ', 73, '0.00', '2021-05-03 23:02:50', NULL, 1, 5, 'Kowalski sp.zoo', 'ul. Jana Pawła 12/A ,64-100 Leszno', 1234567891),
+(153, 'PZ', 74, '0.00', '2021-05-03 23:05:26', NULL, 1, 7, 'Maspex', 'ul. Główna 6/ ,01-385 Warszawa', 1234567890),
+(154, 'PZ', 75, '0.00', '2021-05-03 23:05:54', NULL, 1, 7, 'Maspex', 'ul. Główna 6/ ,01-385 Warszawa', 1234567890),
+(155, 'WZ', 76, '0.00', '2021-05-03 23:06:02', NULL, 1, 5, 'Kowalski sp.zoo', 'ul. Jana Pawła 12/A ,64-100 Leszno', 1234567891),
+(156, 'WZ', 77, '0.00', '2021-05-03 23:06:06', NULL, 1, 5, 'Kowalski sp.zoo', 'ul. Jana Pawła 12/A ,64-100 Leszno', 1234567891);
 
 -- --------------------------------------------------------
 
@@ -108,6 +132,9 @@ CREATE TABLE `documents_goods` (
   `id` int(11) NOT NULL,
   `amount` varchar(20) COLLATE utf8_polish_ci NOT NULL,
   `total_value` decimal(50,2) NOT NULL,
+  `vat` decimal(3,0) NOT NULL,
+  `markup` decimal(3,2) NOT NULL,
+  `discount` decimal(3,2) NOT NULL,
   `id_author` int(11) NOT NULL,
   `id_documents` int(11) NOT NULL,
   `id_goods` int(11) NOT NULL,
@@ -118,30 +145,36 @@ CREATE TABLE `documents_goods` (
 -- Zrzut danych tabeli `documents_goods`
 --
 
-INSERT INTO `documents_goods` (`id`, `amount`, `total_value`, `id_author`, `id_documents`, `id_goods`, `good_name_used_in_creation`) VALUES
-(82, '6', '36.00', 1, 93, 2, 'Kapusta czerwona'),
-(83, '10', '27.00', 1, 94, 4, 'Mandarynka'),
-(84, '5', '12.50', 1, 95, 2, 'Kapusta czerwona'),
-(85, '5', '12.50', 1, 95, 2, 'Kapusta czerwona'),
-(86, '8', '21.60', 1, 96, 4, 'Mandarynka'),
-(87, '8', '21.60', 1, 96, 4, 'Mandarynka'),
-(88, '8', '21.60', 1, 96, 4, 'Mandarynka'),
-(89, '8', '21.60', 1, 96, 4, 'Mandarynka'),
-(90, '7', '18.55', 1, 97, 3, 'Jabłka Ligol'),
-(91, '6', '36.00', 1, 98, 2, 'Kapusta czerwona'),
-(92, '5', '25.00', 1, 98, 4, 'Mandarynka'),
-(98, '10', '90.00', 1, 101, 2, 'Kapusta czerwona'),
-(99, '5', '14.00', 1, 102, 7, 'Papryka czerwona'),
-(100, '9', '22.50', 1, 103, 8, 'Papryka żółta'),
-(101, '100', '250.00', 1, 104, 2, 'Kapusta czerwona'),
-(102, '6', '15.00', 1, 105, 2, 'Kapusta czerwona'),
-(103, '6', '15.00', 1, 106, 2, 'Kapusta czerwona'),
-(104, '7', '17.50', 1, 107, 2, 'Kapusta czerwona'),
-(105, '67', '180.90', 1, 108, 4, 'Mandarynka'),
-(106, '10', '65.00', 1, 108, 6, 'Arbuz'),
-(107, '5', '0.00', 1, 114, 2, 'Kapusta czerwona'),
-(108, '5', '10.00', 1, 115, 2, 'Kapusta czerwona'),
-(109, '4', '88.00', 1, 116, 6, 'Arbuz');
+INSERT INTO `documents_goods` (`id`, `amount`, `total_value`, `vat`, `markup`, `discount`, `id_author`, `id_documents`, `id_goods`, `good_name_used_in_creation`) VALUES
+(82, '6', '36.00', '0', '0.00', '0.00', 1, 93, 2, 'Kapusta czerwona'),
+(83, '10', '27.00', '0', '0.00', '0.00', 1, 94, 4, 'Mandarynka'),
+(84, '5', '12.50', '0', '0.00', '0.00', 1, 95, 2, 'Kapusta czerwona'),
+(85, '5', '12.50', '0', '0.00', '0.00', 1, 95, 2, 'Kapusta czerwona'),
+(86, '8', '21.60', '0', '0.00', '0.00', 1, 96, 4, 'Mandarynka'),
+(87, '8', '21.60', '0', '0.00', '0.00', 1, 96, 4, 'Mandarynka'),
+(88, '8', '21.60', '0', '0.00', '0.00', 1, 96, 4, 'Mandarynka'),
+(89, '8', '21.60', '0', '0.00', '0.00', 1, 96, 4, 'Mandarynka'),
+(90, '7', '18.55', '0', '0.00', '0.00', 1, 97, 3, 'Jabłka Ligol'),
+(91, '6', '36.00', '0', '0.00', '0.00', 1, 98, 2, 'Kapusta czerwona'),
+(92, '5', '25.00', '0', '0.00', '0.00', 1, 98, 4, 'Mandarynka'),
+(98, '10', '90.00', '0', '0.00', '0.00', 1, 101, 2, 'Kapusta czerwona'),
+(99, '5', '14.00', '0', '0.00', '0.00', 1, 102, 7, 'Papryka czerwona'),
+(100, '9', '22.50', '0', '0.00', '0.00', 1, 103, 8, 'Papryka żółta'),
+(111, '10', '20.00', '0', '0.00', '0.00', 1, 124, 2, 'Kapusta czerwona'),
+(112, '10', '26.50', '0', '0.00', '0.00', 1, 124, 3, 'Jabłka Ligol'),
+(124, '10', '15.00', '0', '0.00', '0.00', 1, 125, 4, 'Mandarynka'),
+(125, '10', '28.00', '0', '0.00', '0.00', 1, 125, 7, 'Papryka czerwona'),
+(126, '20', '56.00', '0', '0.00', '0.00', 1, 125, 7, 'Papryka czerwona'),
+(140, '10', '20.00', '27', '0.00', '0.00', 1, 128, 2, 'Kapusta czerwona'),
+(141, '10', '20.00', '8', '0.00', '0.00', 1, 128, 2, 'Kapusta czerwona'),
+(142, '10', '20.00', '27', '0.00', '0.00', 1, 129, 2, 'Kapusta czerwona'),
+(157, '10', '20.00', '27', '0.00', '0.00', 1, 132, 2, 'Kapusta czerwona'),
+(158, '10', '20.00', '27', '0.00', '0.00', 1, 132, 2, 'Kapusta czerwona'),
+(171, '1', '1.00', '27', '0.00', '0.00', 1, 138, 5, 'Jabłka Jonagold'),
+(172, '1', '1.00', '27', '0.00', '0.00', 1, 139, 5, 'Jabłka Jonagold'),
+(173, '10', '10.00', '27', '0.00', '0.00', 1, 140, 2, 'Kapusta czerwona'),
+(174, '10', '100.00', '8', '0.00', '0.00', 1, 142, 4, 'Mandarynka'),
+(176, '1', '56.00', '27', '0.00', '0.00', 1, 144, 5, 'Jabłka Jonagold');
 
 -- --------------------------------------------------------
 
@@ -153,7 +186,6 @@ CREATE TABLE `goods` (
   `id` int(11) NOT NULL,
   `name` varchar(100) COLLATE utf8mb4_polish_ci NOT NULL,
   `unit_price` decimal(11,2) NOT NULL,
-  `VAT` int(2) NOT NULL,
   `unit_of_measure` varchar(20) COLLATE utf8mb4_polish_ci NOT NULL,
   `id_producer` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_polish_ci;
@@ -162,14 +194,14 @@ CREATE TABLE `goods` (
 -- Zrzut danych tabeli `goods`
 --
 
-INSERT INTO `goods` (`id`, `name`, `unit_price`, `VAT`, `unit_of_measure`, `id_producer`) VALUES
-(2, 'Kapusta czerwona', '2.00', 23, 'kg', 7),
-(3, 'Jabłka Ligol', '2.65', 23, 'kg', 7),
-(4, 'Mandarynka', '1.50', 23, 'kg', 7),
-(5, 'Jabłka Jonagold', '2.21', 23, 'kg', 7),
-(6, 'Arbuz', '6.50', 23, 'szt', 7),
-(7, 'Papryka czerwona', '2.80', 23, 'kg', 7),
-(8, 'Papryka żółta', '2.50', 23, 'kg', 7);
+INSERT INTO `goods` (`id`, `name`, `unit_price`, `unit_of_measure`, `id_producer`) VALUES
+(2, 'Kapusta czerwona', '2.00', 'kg', 7),
+(3, 'Jabłka Ligol', '2.65', 'kg', 7),
+(4, 'Mandarynka', '1.50', 'kg', 7),
+(5, 'Jabłka Jonagold', '2.21', 'kg', 7),
+(6, 'Arbuz', '6.50', 'szt', 7),
+(7, 'Papryka czerwona', '2.80', 'kg', 7),
+(8, 'Papryka żółta', '2.50', 'kg', 7);
 
 -- --------------------------------------------------------
 
@@ -215,13 +247,7 @@ CREATE TABLE `magazines_goods` (
 --
 
 INSERT INTO `magazines_goods` (`id`, `id_magazines`, `id_goods`, `amount`) VALUES
-(1, 2, 2, 11),
-(2, 4, 6, 10),
-(3, 2, 6, 6),
-(4, 2, 4, 10),
-(12, 4, 4, 67),
-(13, 4, 6, 10),
-(14, 2, 2, 5);
+(12, 4, 4, 61);
 
 -- --------------------------------------------------------
 
@@ -331,7 +357,7 @@ ALTER TABLE `users`
   ADD PRIMARY KEY (`id`);
 
 --
--- AUTO_INCREMENT dla zrzuconych tabel
+-- AUTO_INCREMENT for dumped tables
 --
 
 --
@@ -344,13 +370,13 @@ ALTER TABLE `contractors`
 -- AUTO_INCREMENT dla tabeli `documents`
 --
 ALTER TABLE `documents`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=118;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=157;
 
 --
 -- AUTO_INCREMENT dla tabeli `documents_goods`
 --
 ALTER TABLE `documents_goods`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=110;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=177;
 
 --
 -- AUTO_INCREMENT dla tabeli `goods`
@@ -368,7 +394,7 @@ ALTER TABLE `magazines`
 -- AUTO_INCREMENT dla tabeli `magazines_goods`
 --
 ALTER TABLE `magazines_goods`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=58;
 
 --
 -- AUTO_INCREMENT dla tabeli `producers`
