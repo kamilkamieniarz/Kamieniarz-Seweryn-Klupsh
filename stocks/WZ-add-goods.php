@@ -61,19 +61,43 @@
 			while ($row = mysqli_fetch_array($sql1)){
 				echo "<input type='hidden' id='".$row['id']."' value='".$row['unit_price']."'>";
 			}
-			echo"	Ilość</br>
-					<input type='number' name='amount' id='amount' size='14' require></br>
-					Marża(np 6,5%)</br>
-					<input type='number' name='markup' id='markup' size='3' step='0.1'></br>
-					Rabat(np. 6,5%)(Doliczany do ceny z marżą)</br>
-					<input type='number' name='discount' id='discount' size='3' step='0.1'></br>
-					Cena wyjściowa NETTO(zł)</br>
-					<input type='number' name='end_price' id='end_price' value='' disabled></br>
-					VAT(%)</br>
-					<input type='number' name='vat' id='vat' size='3' value='23' step='1' require></br>
-					Cena wyjściowa Brutto(zł)</br>
-					<input type='number' name='end_price' id='end_price_brutto' value='' disabled></br>
-					<input type='submit' name='dodaj' value='Dodaj towar'>		
+			echo"<div class='row p-3'>
+					<div class='col-4'>
+					 
+					 </div>
+					 
+					<div class= 'col-4'>
+						Cena wyjściowa NETTO(zł)</br>
+						<input type='number' name='end_price' id='end_price' value='' disabled></br>
+					</div>
+					<div class= 'col-4'>
+						Cena wyjściowa Brutto(zł)</br>
+						<input type='number' name='end_price' id='end_price_brutto' value='' disabled></br>
+					</div>
+					<div class= 'col-4' >
+						Ilość</br>
+						<input type='number' name='amount' id='amount' size='14' require>
+					</div>
+					<div class= 'col-4' >
+						Rabat(np. 6,5%)(Doliczany do ceny z marżą)</br>
+						<input type='number' name='discount' id='discount' size='3' step='0.1'></br>
+					</div>
+					
+					<div class= 'col-4'>
+						VAT(%)</br>
+						<input type='number' name='vat' id='vat' size='3' value='23' step='1' require></br>
+					</div><div class='col-4'>
+					 
+					 </div>
+					<div class= 'col-4'>
+						Marża(np 6,5%)</br>
+						<input type='number' name='markup' id='markup' size='3' step='0.1'></br>
+					</div>
+
+					<div class='col-12 m-1'>
+						<input type='submit' class='btn btn-default m-1' name='dodaj' value='Dodaj towar'>	
+					</div>
+					</div>	
 				</form>";
 			if(isset($_POST['dodaj'])){
 				if(is_numeric($_POST['amount']) && is_numeric($_POST['markup']) && is_numeric($_POST['discount'])){
@@ -117,11 +141,14 @@
 				}
 			}
 			$sql4 = mysqli_query($conn,"SELECT documents_goods.id, documents_goods.amount,documents_goods.total_value, documents_goods.vat, documents_goods.id_goods, documents_goods.good_name_used_in_creation, goods.unit_of_measure FROM documents_goods LEFT OUTER JOIN goods ON documents_goods.id_goods = goods.id WHERE documents_goods.id_documents=$id");
-			echo"</br><form name='form2' method='post' action=''>
-					Data dokumentu obcego (opcjonalne)</br>
-					<input type='datetime-local' name='date'></br>
-					<input type='submit' name='accept' value='Zatwierdź listę towarów'>
-				</form></br>
+			echo"<div class='row p-2'>
+						<div class='col-5'>
+						</br><form name='form2' method='post' action=''>
+						Data dokumentu obcego (opcjonalne)</br>
+						<input type='datetime-local' name='date'></br>
+						<input type='submit' name='accept' value='Zatwierdź listę towarów'>
+						</form></br></div>
+					</div>
 				Dodane towary:
 				<table class='table table-striped table-hover text-center'>
 					<tr>	

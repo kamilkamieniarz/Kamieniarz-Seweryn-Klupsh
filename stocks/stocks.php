@@ -33,7 +33,7 @@
 			<p>Magazyn:  <select name='choosemagasin'>";
 		$sql = mysqli_query($conn,"SELECT * FROM `magazines`");
 		while ($row = mysqli_fetch_array($sql)){echo "<option value='".$row['id']."'>".$row['shortcut']."</option>";}
-		echo "</select></p><input type='submit' name='update' value='Flitruj'></form></br>";
+		echo "</select><input type='submit' name='update' class='btn btn-default m-2' value='Flitruj'></form></p></br>";
 		if(isset($_POST['choosemagasin']) == TRUE){
 			$magazyn=$_POST['choosemagasin'];
 			$records = mysqli_query($conn,"SELECT * FROM magazines_goods WHERE magazines_goods.amount != '0' AND magazines_goods.id_magazines = '$magazyn'"); // fetch data from database
