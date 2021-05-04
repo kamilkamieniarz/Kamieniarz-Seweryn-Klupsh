@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Czas generowania: 03 Maj 2021, 23:07
+-- Czas generowania: 04 Maj 2021, 04:28
 -- Wersja serwera: 10.4.11-MariaDB
 -- Wersja PHP: 7.4.1
 
@@ -120,7 +120,36 @@ INSERT INTO `documents` (`id`, `type`, `number`, `value`, `date`, `date_foreign_
 (153, 'PZ', 74, '0.00', '2021-05-03 23:05:26', NULL, 1, 7, 'Maspex', 'ul. Główna 6/ ,01-385 Warszawa', 1234567890),
 (154, 'PZ', 75, '0.00', '2021-05-03 23:05:54', NULL, 1, 7, 'Maspex', 'ul. Główna 6/ ,01-385 Warszawa', 1234567890),
 (155, 'WZ', 76, '0.00', '2021-05-03 23:06:02', NULL, 1, 5, 'Kowalski sp.zoo', 'ul. Jana Pawła 12/A ,64-100 Leszno', 1234567891),
-(156, 'WZ', 77, '0.00', '2021-05-03 23:06:06', NULL, 1, 5, 'Kowalski sp.zoo', 'ul. Jana Pawła 12/A ,64-100 Leszno', 1234567891);
+(156, 'WZ', 77, '0.00', '2021-05-03 23:06:06', NULL, 1, 5, 'Kowalski sp.zoo', 'ul. Jana Pawła 12/A ,64-100 Leszno', 1234567891),
+(157, 'PZ', 78, '265.00', '2021-05-04 00:18:50', '2021-03-10 02:22:00', 1, 7, 'Maspex', 'ul. Główna 6/ ,01-385 Warszawa', 1234567890),
+(158, 'WZ', 79, '0.00', '2021-05-04 00:19:16', NULL, 1, 5, 'Kowalski sp.zoo', 'ul. Jana Pawła 12/A ,64-100 Leszno', 1234567891),
+(159, 'PZ', 80, '1300.00', '2021-05-04 02:02:00', '0000-00-00 00:00:00', 1, 7, 'Maspex', 'ul. Główna 6/ ,01-385 Warszawa', 1234567890),
+(160, 'WZ', 81, '0.00', '2021-05-04 02:02:14', NULL, 1, 5, 'Kowalski sp.zoo', 'ul. Jana Pawła 12/A ,64-100 Leszno', 1234567891),
+(161, 'WZ', 82, '0.00', '2021-05-04 04:13:04', NULL, 1, 5, 'Kowalski sp.zoo', 'ul. Jana Pawła 12/A ,64-100 Leszno', 1234567891),
+(162, 'WZ', 83, '0.00', '2021-05-04 04:13:34', NULL, 1, 5, 'Kowalski sp.zoo', 'ul. Jana Pawła 12/A ,64-100 Leszno', 1234567891),
+(163, 'WZ', 84, '0.00', '2021-05-04 04:14:15', NULL, 1, 5, 'Kowalski sp.zoo', 'ul. Jana Pawła 12/A ,64-100 Leszno', 1234567891),
+(164, 'PZ', 85, '0.00', '2021-05-04 04:14:32', NULL, 1, 7, 'Maspex', 'ul. Główna 6/ ,01-385 Warszawa', 1234567890),
+(165, 'WZ', 86, '0.00', '2021-05-04 04:14:38', NULL, 1, 5, 'Kowalski sp.zoo', 'ul. Jana Pawła 12/A ,64-100 Leszno', 1234567891),
+(166, 'WZ', 87, '0.00', '2021-05-04 04:16:02', NULL, 1, 5, 'Kowalski sp.zoo', 'ul. Jana Pawła 12/A ,64-100 Leszno', 1234567891),
+(167, 'WZ', 88, '0.00', '2021-05-04 04:16:03', NULL, 1, 5, 'Kowalski sp.zoo', 'ul. Jana Pawła 12/A ,64-100 Leszno', 1234567891),
+(168, 'WZ', 89, '0.00', '2021-05-04 04:16:04', NULL, 1, 5, 'Kowalski sp.zoo', 'ul. Jana Pawła 12/A ,64-100 Leszno', 1234567891),
+(169, 'WZ', 90, '0.00', '2021-05-04 04:16:04', NULL, 1, 5, 'Kowalski sp.zoo', 'ul. Jana Pawła 12/A ,64-100 Leszno', 1234567891),
+(170, 'WZ', 91, '0.00', '2021-05-04 04:16:05', NULL, 1, 5, 'Kowalski sp.zoo', 'ul. Jana Pawła 12/A ,64-100 Leszno', 1234567891),
+(171, 'WZ', 92, '0.00', '2021-05-04 04:16:05', NULL, 1, 5, 'Kowalski sp.zoo', 'ul. Jana Pawła 12/A ,64-100 Leszno', 1234567891),
+(172, 'WZ', 93, '0.00', '2021-05-04 04:16:06', NULL, 1, 5, 'Kowalski sp.zoo', 'ul. Jana Pawła 12/A ,64-100 Leszno', 1234567891),
+(173, 'WZ', 94, '0.00', '2021-05-04 04:16:06', NULL, 1, 5, 'Kowalski sp.zoo', 'ul. Jana Pawła 12/A ,64-100 Leszno', 1234567891),
+(174, 'WZ', 95, '0.00', '2021-05-04 04:16:07', NULL, 1, 5, 'Kowalski sp.zoo', 'ul. Jana Pawła 12/A ,64-100 Leszno', 1234567891),
+(175, 'WZ', 96, '0.00', '2021-05-04 04:16:07', NULL, 1, 5, 'Kowalski sp.zoo', 'ul. Jana Pawła 12/A ,64-100 Leszno', 1234567891),
+(176, 'WZ', 97, '0.00', '2021-05-04 04:16:07', NULL, 1, 5, 'Kowalski sp.zoo', 'ul. Jana Pawła 12/A ,64-100 Leszno', 1234567891),
+(177, 'WZ', 98, '0.00', '2021-05-04 04:16:07', NULL, 1, 5, 'Kowalski sp.zoo', 'ul. Jana Pawła 12/A ,64-100 Leszno', 1234567891),
+(178, 'WZ', 99, '0.00', '2021-05-04 04:16:08', NULL, 1, 5, 'Kowalski sp.zoo', 'ul. Jana Pawła 12/A ,64-100 Leszno', 1234567891),
+(179, 'WZ', 100, '0.00', '2021-05-04 04:16:08', NULL, 1, 5, 'Kowalski sp.zoo', 'ul. Jana Pawła 12/A ,64-100 Leszno', 1234567891),
+(180, 'WZ', 101, '0.00', '2021-05-04 04:16:09', NULL, 1, 5, 'Kowalski sp.zoo', 'ul. Jana Pawła 12/A ,64-100 Leszno', 1234567891),
+(181, 'WZ', 102, '0.00', '2021-05-04 04:16:22', NULL, 1, 5, 'Kowalski sp.zoo', 'ul. Jana Pawła 12/A ,64-100 Leszno', 1234567891),
+(182, 'WZ', 103, '0.00', '2021-05-04 04:16:33', NULL, 1, 5, 'Kowalski sp.zoo', 'ul. Jana Pawła 12/A ,64-100 Leszno', 1234567891),
+(183, 'WZ', 104, '511.85', '2021-05-04 04:17:15', '2021-05-04 04:17:00', 1, 5, 'Kowalski sp.zoo', 'ul. Jana Pawła 12/A ,64-100 Leszno', 1234567891),
+(184, 'WZ', 105, '201.50', '2021-05-04 04:20:38', '0000-00-00 00:00:00', 1, 5, 'Kowalski sp.zoo', 'ul. Jana Pawła 12/A ,64-100 Leszno', 1234567891),
+(185, 'WZ', 106, '0.00', '2021-05-04 04:23:30', NULL, 1, 5, 'Kowalski sp.zoo', 'ul. Jana Pawła 12/A ,64-100 Leszno', 1234567891);
 
 -- --------------------------------------------------------
 
@@ -133,8 +162,8 @@ CREATE TABLE `documents_goods` (
   `amount` varchar(20) COLLATE utf8_polish_ci NOT NULL,
   `total_value` decimal(50,2) NOT NULL,
   `vat` decimal(3,0) NOT NULL,
-  `markup` decimal(3,2) NOT NULL,
-  `discount` decimal(3,2) NOT NULL,
+  `markup` decimal(6,2) NOT NULL,
+  `discount` decimal(6,2) NOT NULL,
   `id_author` int(11) NOT NULL,
   `id_documents` int(11) NOT NULL,
   `id_goods` int(11) NOT NULL,
@@ -174,7 +203,11 @@ INSERT INTO `documents_goods` (`id`, `amount`, `total_value`, `vat`, `markup`, `
 (172, '1', '1.00', '27', '0.00', '0.00', 1, 139, 5, 'Jabłka Jonagold'),
 (173, '10', '10.00', '27', '0.00', '0.00', 1, 140, 2, 'Kapusta czerwona'),
 (174, '10', '100.00', '8', '0.00', '0.00', 1, 142, 4, 'Mandarynka'),
-(176, '1', '56.00', '27', '0.00', '0.00', 1, 144, 5, 'Jabłka Jonagold');
+(176, '1', '56.00', '27', '0.00', '0.00', 1, 144, 5, 'Jabłka Jonagold'),
+(177, '100', '265.00', '8', '0.00', '0.00', 1, 157, 3, 'Jabłka Ligol'),
+(178, '200', '1300.00', '12', '0.00', '0.00', 1, 159, 6, 'Arbuz'),
+(187, '31', '201.50', '23', '9.99', '9.99', 1, 184, 6, 'Arbuz'),
+(189, '10', '22.26', '23', '20.00', '30.00', 1, 185, 3, 'Jabłka Ligol');
 
 -- --------------------------------------------------------
 
@@ -247,7 +280,9 @@ CREATE TABLE `magazines_goods` (
 --
 
 INSERT INTO `magazines_goods` (`id`, `id_magazines`, `id_goods`, `amount`) VALUES
-(12, 4, 4, 61);
+(12, 4, 4, 11),
+(58, 4, 3, 90),
+(59, 4, 6, 100);
 
 -- --------------------------------------------------------
 
@@ -370,13 +405,13 @@ ALTER TABLE `contractors`
 -- AUTO_INCREMENT dla tabeli `documents`
 --
 ALTER TABLE `documents`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=157;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=186;
 
 --
 -- AUTO_INCREMENT dla tabeli `documents_goods`
 --
 ALTER TABLE `documents_goods`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=177;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=190;
 
 --
 -- AUTO_INCREMENT dla tabeli `goods`
@@ -394,7 +429,7 @@ ALTER TABLE `magazines`
 -- AUTO_INCREMENT dla tabeli `magazines_goods`
 --
 ALTER TABLE `magazines_goods`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=58;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=60;
 
 --
 -- AUTO_INCREMENT dla tabeli `producers`
