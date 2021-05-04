@@ -6,7 +6,7 @@ $id = $_GET['id'];
 $sql = mysqli_query($conn,"SELECT * FROM documents LEFT OUTER JOIN users ON documents.id_author = users.id WHERE documents.id=$id");
 $resultat = mysqli_fetch_array($sql);
 $sql2 = mysqli_query($conn,"SELECT * FROM documents_goods LEFT OUTER JOIN goods ON documents_goods.`id_goods` = goods.id WHERE `id_documents`=$id");
-
+$razem=0;
 
 
 $pdf = new TCPDF('P','mm','A4');
@@ -45,6 +45,7 @@ $tab3 = "
 	<th>j.m.</th> 
 	<th>cena</th>
 	<th>VAT</th>
+	<th>rabat</th>
 	<th>wartosc Netto</th>
 	<th>wartość brutto </th>
  </tr>
@@ -52,15 +53,21 @@ $tab3 = "
 </table> 
 ";
 while ($resultat2=mysqli_fetch_array($sql2)){
+	$vat=($resultat2['vat']/100)+1;
+	$discount=($resultat2['discount']/100);
+	$brutto=$resultat2['total_value']*$vat-($discount*$resultat2['total_value']);
+	$brutto= round($brutto, 2);
+	$razem=$razem+$brutto;
 	$tab3 .="
 	<tr>
 	<th>".$resultat2['good_name_used_in_creation']."</th> 
 	<th>".$resultat2['amount']."</th> 
 	<th>".$resultat2['unit_of_measure']."</th> 
 	<th>".$resultat2['unit_price']."</th>
-	<th>".$resultat2['VAT']."</th>
-	<th>".$resultat2['unit_price']."</th>
+	<th>".$resultat2['vat']."%</th>
+	<th>".$resultat2['discount']."%</th>
 	<th>".$resultat2['total_value']."</th>
+	<th>".$brutto."</th>
  </tr>
  ";
 }
@@ -83,7 +90,7 @@ $pdf->Ln(20);
 
 $pdf -> WriteHTMLCell(190,5,'','',"$tab3",1);
 $pdf->Ln();
-$pdf -> WriteHTMLCell(50,5,150,'',"Razem ".$resultat['value']." zł.",1);
+$pdf -> WriteHTMLCell(50,5,150,'',"Razem ".$razem." zł.",1);
 $pdf->Ln();
 $pdf -> WriteHTMLCell(50,5,'','',"wystawił: ".$resultat['login']." dnia ".$resultat['date'],1);
 $pdf->Output();

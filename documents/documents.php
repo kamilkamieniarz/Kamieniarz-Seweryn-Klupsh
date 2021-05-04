@@ -26,7 +26,7 @@
 		require_once('../header.php');
 		echo "<a href='../stocks/stocks.php' class='effect effect-add document'>Dodaj dokument</a><br>";  
 		/*Tutaj będzie wyszukiwarka*/
-		$records = mysqli_query($conn,"select * from documents"); // fetch data from database
+		$records = mysqli_query($conn,"select * from documents WHERE `value` !=0"); // fetch data from database
 		$ile = mysqli_num_rows($records);  //ilosc wszystkich rekordow (nie stron !!)
 		$na_strone = 6; //tu podajesz ile rekordow na stronie max.
 		$stron = ceil ($ile / $na_strone);   //tutaj masz ilosc stron zaokraglanych w gore

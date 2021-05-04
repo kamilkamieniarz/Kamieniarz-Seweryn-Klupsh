@@ -52,7 +52,7 @@
 			$id = $_GET['id'];
 			$magazine = $_GET['magazine'];
 			//tutaj łączymy 3 tabele w jedną i pobieramy TYLKO te produkty, które są w danym magazynie
-			$sql1 = mysqli_query($conn,"SELECT m.id, m.name, mg.id, mg.id_magazines, mg.id_goods, mg.amount, g.id, g.name, g.unit_price, g.unit_of_measure, g.id_producer FROM magazines as m LEFT OUTER JOIN magazines_goods as mg ON mg.id_magazines = m.id INNER JOIN goods as g ON mg.id_goods=g.id WHERE m.id='$magazine'");
+			$sql1 = mysqli_query($conn,"SELECT m.id, m.name, mg.id, mg.id_magazines, mg.id_goods, SUM(mg.amount) as amount, g.id, g.name, g.unit_price, g.unit_of_measure, g.id_producer FROM magazines as m LEFT OUTER JOIN magazines_goods as mg ON mg.id_magazines = m.id INNER JOIN goods as g ON mg.id_goods=g.id WHERE m.id='$magazine' GROUP by g.name");
 			while ($row = mysqli_fetch_array($sql1)){
 				echo "<option value='".$row['id']."'>".$row['name']." (".$row['amount']." ".$row['unit_of_measure'].")(".$row['unit_price']." zł)</option>";
 			}

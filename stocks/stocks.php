@@ -42,7 +42,7 @@
 			$stron = ceil ($ile / $na_strone);   //tutaj masz ilosc stron zaokraglanych w gore
 			if (!isset($_GET['strona'])) ($strona = 1); 
 			else ($strona = (int)$_GET['strona']);
-			$sql = mysqli_query($conn,"SELECT goods.name,goods.unit_price, goods.unit_of_measure ,magazines_goods.amount ,magazines.shortcut FROM magazines_goods LEFT OUTER JOIN goods ON goods.id = magazines_goods.id_goods LEFT OUTER JOIN magazines ON magazines.id = magazines_goods.id_magazines WHERE magazines_goods.amount != '0'  AND magazines_goods.id_magazines = '$magazyn' LIMIT ".(($strona-1)*$na_strone).','.$na_strone);	// tak odczytujesz;
+			$sql = mysqli_query($conn,"SELECT m.id, m.name, mg.id, mg.id_magazines, mg.id_goods, SUM(mg.amount) as amount, g.id, g.name, g.unit_price, g.unit_of_measure, g.id_producer FROM magazines as m LEFT OUTER JOIN magazines_goods as mg ON mg.id_magazines = m.id INNER JOIN goods as g ON mg.id_goods=g.id WHERE m.id='$magazyn' GROUP by g.name LIMIT ".(($strona-1)*$na_strone).','.$na_strone);	// tak odczytujesz;
 			echo "Strona: <a href='?strona=1' style='color:#00F !important;'> 1</a> ";
 			for ($i = 1; $i < $stron; $i++) {echo '<a href="?strona='.($i+1).'"> '.($i+1).'</a>';}  //tak wyswietlasz numery;
 		}				
