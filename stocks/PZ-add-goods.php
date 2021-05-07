@@ -27,8 +27,7 @@
 		$id = $_GET['id'];
 		//wybór magazynu
 		if(!isset($_GET['magazine'])){
-			echo"
-			<form name='form1' method='post' action=''>
+			echo"<form name='form1' method='post' action=''>
 				</select>
 				Wybierz magazyn:</br>
 				<select name='magazin'>";
@@ -48,17 +47,22 @@
 			$sql = mysqli_query($conn,"SELECT id_client FROM `documents` WHERE `id`=$id");
 			$resultat = mysqli_fetch_array($sql);
 			$prod=$resultat['id_client'];
-			echo"<form name='form1' method='post' action=''>
+			echo"<div class='row pl-2'>
+					<div class='col-4'>
+					<form name='form1' method='post' action=''>
 					Wybierz towar:</br> <select name='good'>";
 			$sql1 = mysqli_query($conn,"SELECT * FROM `goods` WHERE `id_producer`=$prod");
 			while ($row = mysqli_fetch_array($sql1)){echo "<option value='".$row['id']."'>".$row['name']."</option>";}
 			echo"</select></br></br>
+				<input type='submit' name='dodaj' class='btn btn-warning m-1' value='Dodaj towar'></div>
+				<div class='col-4'>
 				Ilość</br>
-				<input type='number'  name='amount' size='14'  require></br></br>
+				<input type='number'  name='amount' size='14'  require></br>
 				VAT(%)</br>
-				<input type='number' name='vat' size='3' value='27' step='1' require></br></br>
-				<input type='submit' name='dodaj' value='Dodaj towar'>		
-			</form>";
+				<input type='number' name='vat' size='3' value='27' step='1' require>
+				</div>
+			</form>
+			</div>";
 			if(isset($_POST['dodaj'])){
 				if(is_numeric($_POST['amount']) && is_numeric($_POST['vat'])){
 					$sql2 = mysqli_query($conn,"SELECT * FROM `goods` WHERE `id`= '".$_POST['good']."'");
@@ -74,11 +78,16 @@
 				}
 			}
 			$sql4 = mysqli_query($conn,"SELECT documents_goods.id, documents_goods.amount,documents_goods.total_value, documents_goods.vat, documents_goods.id_goods, documents_goods.good_name_used_in_creation, goods.unit_of_measure FROM documents_goods LEFT OUTER JOIN goods ON documents_goods.id_goods = goods.id WHERE documents_goods.id_documents=$id");
-			echo"</br></br><form name='form2' method='post' action=''>
-					Data dokumentu obcego (opcjonalne)</br>
-					<input type='datetime-local' name='date'></br>
-					<input type='submit' name='accept' value='Zatwierdź listę towarów'>		
-				</form></br>Dodane towary:
+			echo"</br><div class='row pl-2'>
+				<div class='col-4'>
+					<form name='form2' method='post' action=''>
+						Data dokumentu obcego (opcjonalne)</br>
+						<input type='datetime-local' name='date'></br></br>
+						<input type='submit' name='accept' value='Zatwierdź listę towarów'>		
+					</form>
+				</div>
+				</div></br>
+				Dodane towary:
 				
 				<table class='table table-striped table-hover text-center'>
 					<tr>	

@@ -46,7 +46,9 @@
 		}
 		//po wyborze magazynu
 		if(isset($_GET['magazine'])){
-			echo"<form name='form1' method='post' action=''>
+			echo"<div class='row'>
+					<div class='col-4'>
+					<form name='form1' method='post' action='' class='pl-2'>
 					Wybierz towar:</br>
 					<select name='good' id='good'>";
 			$id = $_GET['id'];
@@ -61,43 +63,27 @@
 			while ($row = mysqli_fetch_array($sql1)){
 				echo "<input type='hidden' id='".$row['id']."' value='".$row['unit_price']."'>";
 			}
-			echo"<div class='row p-3'>
-					<div class='col-4'>
-					 
-					 </div>
-					 
+			echo"	Ilość</br>
+						<input type='number' name='amount' id='amount' size='14' require></br></br></br>
+						<input type='submit' class='btn btn-warning m-1' name='dodaj' value='Dodaj towar'>	
+					</div>
+						
 					<div class= 'col-4'>
 						Cena wyjściowa NETTO(zł)</br>
 						<input type='number' name='end_price' id='end_price' value='' disabled></br>
-					</div>
-					<div class= 'col-4'>
-						Cena wyjściowa Brutto(zł)</br>
-						<input type='number' name='end_price' id='end_price_brutto' value='' disabled></br>
-					</div>
-					<div class= 'col-4' >
-						Ilość</br>
-						<input type='number' name='amount' id='amount' size='14' require>
-					</div>
-					<div class= 'col-4' >
-						Rabat(np. 6,5%)(Doliczany do ceny z marżą)</br>
-						<input type='number' name='discount' id='discount' size='3' step='0.1'></br>
+						Marża(np 6,5%)</br>
+						<input type='number' name='markup' id='markup' size='3' step='0.1' value='0'></br>
+						Rabat(np. 6,5%)</br>(Doliczany do ceny z marżą)</br>
+						<input type='number' name='discount' id='discount' size='3' step='0.1' value='0'></br>
 					</div>
 					
 					<div class= 'col-4'>
 						VAT(%)</br>
 						<input type='number' name='vat' id='vat' size='3' value='23' step='1' require></br>
-					</div><div class='col-4'>
-					 
-					 </div>
-					<div class= 'col-4'>
-						Marża(np 6,5%)</br>
-						<input type='number' name='markup' id='markup' size='3' step='0.1'></br>
+						Cena wyjściowa Brutto(zł)</br>
+						<input type='number' name='end_price' id='end_price_brutto' value='' disabled></br>
 					</div>
-
-					<div class='col-12 m-1'>
-						<input type='submit' class='btn btn-default m-1' name='dodaj' value='Dodaj towar'>	
-					</div>
-					</div>	
+				</div>	
 				</form>";
 			if(isset($_POST['dodaj'])){
 				if(is_numeric($_POST['amount']) && is_numeric($_POST['markup']) && is_numeric($_POST['discount'])){
@@ -121,16 +107,15 @@
 						if($discount>0.00){
 							$price=$price-($price*($discount/100));
 						}
-						
-						echo"<script>alert(".$markup.")</script>";
-						echo"<script>alert(".$discount.")</script>";
 						$sql3="INSERT INTO `documents_goods`(`amount`, `total_value`, `vat`, `markup`, `discount`, `id_author`, `id_documents`, `id_goods`, `good_name_used_in_creation`) VALUES ('".$_POST['amount']."','$price', '".$vat."' ,'".$markup."','".$discount."','".$_SESSION['logged_id']."','$id','".$_POST['good']."','".$resultat['name']."')";
-						if($conn->query($sql3) === TRUE){}
-						else{ echo "Error: " . $sql3 . "</br>" . $conn->error . "</br>";}
+						if($conn->query($sql3) === TRUE){
+							echo "<script>window.location.href = window.location.href</script>";
+						}
 						//zmniejszamy ilość towaru w wybranym magazynie o podaną ilość
 						$amount -= $_POST['amount'];
 						$sql10 = mysqli_query($conn,"UPDATE magazines_goods SET `amount` = '$amount' WHERE `id_magazines`='$magazine' AND `id_goods`='$good_id'");
-						if($sql10){}
+						if($sql10){
+						}
 					}
 					else{
 						echo"<script>alert('Na magazynie jest tylko ".$amount."')</script>";
@@ -141,7 +126,7 @@
 				}
 			}
 			$sql4 = mysqli_query($conn,"SELECT documents_goods.id, documents_goods.amount,documents_goods.total_value, documents_goods.vat, documents_goods.id_goods, documents_goods.good_name_used_in_creation, goods.unit_of_measure FROM documents_goods LEFT OUTER JOIN goods ON documents_goods.id_goods = goods.id WHERE documents_goods.id_documents=$id");
-			echo"<div class='row p-2'>
+			echo"<div class='row pl-2'>
 						<div class='col-5'>
 						</br><form name='form2' method='post' action=''>
 						Data dokumentu obcego (opcjonalne)</br>
