@@ -25,6 +25,55 @@
   	<?php	
 		require_once('../header.php');
 		echo "<a href='../stocks/stocks.php' class='effect effect-add document'>Dodaj dokument</a><br>";  
+		?>
+		<form method="Get">
+		 <input type="text" name="word" size="30">
+		 <input type="submit" name="submit" value="przeszukaj">		
+		 </form>
+		<?php
+		
+if (isset($_GET['submit'])){
+
+
+	$keyword = "";
+	if(isset($_GET['word'])) {
+	   $keyword = $_GET['word'];
+	 
+	}
+	
+	
+
+	$na_strone = 6; //tu podajesz ile rekordow na stronie max.	
+	if (!isset($_GET['strona'])) $strona = 1; else $strona = (int)$_GET['strona'];
+	$sql2 = mysqli_query($conn, "select * from documents WHERE `value` !=0 AND (`type` LIKE '%$keyword%' or number LIKE '%$keyword%' or date LIKE '%$keyword%')");
+	$sql1 = mysqli_query($conn, "select * from documents WHERE `value` !=0 AND (type LIKE '%$keyword%' or number LIKE '%$keyword%' or date LIKE '%$keyword%') LIMIT ".(($strona-1)*$na_strone).','.$na_strone );
+	// $records = mysqli_query($conn,"select * from goods WHERE name LIKE '%$keyword%'"); // fetch data from database
+	   $ile = mysqli_num_rows($sql2);  //ilosc wszystkich rekordow (nie stron !!)
+	   $stron = ceil ($ile / $na_strone);   //tutaj masz ilosc stron zaokraglanych w gore
+	echo 'Strona: <a href="documents.php?word='.$keyword.'&submit=przeszukaj&strona=1"> 1</a> ';
+	for ($i = 1; $i < $stron; $i++) echo '<a href="documents.php?word='.$keyword.'&submit=przeszukaj&strona='.($i+1).'"> '.($i+1).'</a> ';  //tak wyswietlasz numery;
+		echo '<table class="table table-striped table-hover text-center">
+				<tr>	
+					<th>Typ</th>
+					<th>Nr</th>
+					<th>Wartość NETTO</th>
+					<th>Data utworzenia</th>					
+					<th>Opcje</th>
+				</tr>';
+		while ($row=mysqli_fetch_array($sql1)){
+			echo"
+				<tr>
+					<td>".$row['type']."</td>
+					<td>".$row['number']."</td>
+					<td>".$row['value']." zł</td>
+					<td>".$row['date']."</td>
+					<td><a class='effect effect-edit download' href='documents-dowload.php?id=".$row['id']."'>Pobierz</a>
+					<a class='effect effect-edit' href='documents-edit.php?id=".$row['id']."'>Edytuj</a>
+					<a class='effect effect-delete' href='documents-delete.php?id=".$row['id']."'>Usuń</a></td>
+				</tr>";
+	}
+}
+else{
 		/*Tutaj będzie wyszukiwarka*/
 		$records = mysqli_query($conn,"select * from documents WHERE `value` !=0"); // fetch data from database
 		$ile = mysqli_num_rows($records);  //ilosc wszystkich rekordow (nie stron !!)
@@ -54,6 +103,7 @@
 				</tr>";
 		}
 		echo "</table>";
+}
 	?> 
 </body> 
 </html>

@@ -21,8 +21,57 @@
 </head>
  <body> 
   	<?php
+	
 		require_once('../header.php');
 		echo "<a href='goods-add-form.php' class='effect effect-add goods'>Dodaj Towar</a><br>";
+		?>
+		<form method="Get">
+		 <input type="text" name="word" size="30">
+		 <input type="submit" name="submit" value="przeszukaj">		
+		 </form>
+		<?php
+		
+if (isset($_GET['submit'])){
+
+
+	$keyword = "";
+	if(isset($_GET['word'])) {
+	   $keyword = $_GET['word'];
+	 
+	}
+	
+	
+
+	$na_strone = 6; //tu podajesz ile rekordow na stronie max.	
+	if (!isset($_GET['strona'])) $strona = 1; else $strona = (int)$_GET['strona'];
+	$sql = mysqli_query($conn, "SELECT goods.id, goods.name, goods.unit_price, goods.unit_of_measure, producers.Name FROM goods LEFT OUTER JOIN producers ON producers.ID = goods.id_producer WHERE goods.name LIKE '%$keyword%' or producers.Name LIKE '%$keyword%'");
+	$sql1 = mysqli_query($conn, "SELECT goods.id, goods.name, goods.unit_price, goods.unit_of_measure, producers.Name FROM goods LEFT OUTER JOIN producers ON producers.ID = goods.id_producer WHERE goods.name LIKE '%$keyword%' or producers.Name LIKE '%$keyword%' LIMIT ".(($strona-1)*$na_strone).','.$na_strone );
+	// $records = mysqli_query($conn,"select * from goods WHERE name LIKE '%$keyword%'"); // fetch data from database
+	   $ile = mysqli_num_rows($sql);  //ilosc wszystkich rekordow (nie stron !!)
+	   $stron = ceil ($ile / $na_strone);   //tutaj masz ilosc stron zaokraglanych w gore
+	echo 'Strona: <a href="goods.php?word='.$keyword.'&submit=przeszukaj&strona=1"> 1</a> ';
+	for ($i = 1; $i < $stron; $i++) echo '<a href="goods.php?word='.$keyword.'&submit=przeszukaj&strona='.($i+1).'"> '.($i+1).'</a> ';  //tak wyswietlasz numery;
+		echo '<table class="table table-striped table-hover text-center">
+				<tr>	
+					<th>Nazwa</th>	
+					<th>Producent</th>
+					<th>Cena jednostkowa netto </th>					
+					<th>Jednostka miary</th>
+					<th>Opcje</th>
+				</tr>';
+		while ($row=mysqli_fetch_array($sql1)){
+			echo"
+				<tr>
+					<td>".$row['name']."</td>
+					<td>".$row['Name']."</td>
+					<td>".$row['unit_price']."</td>
+					<td>".$row['unit_of_measure']."</td>   													
+					<td><a href='goods-edit-form.php?id=".$row['id']."' class='effect effect-edit'>Edytuj</a>
+					<a href='goods-delete.php?id=".$row['id']."' class='effect effect-delete'>Usuń</a><br></td>
+				</tr>";
+	}
+}
+else{
 		$records = mysqli_query($conn,"select * from goods"); // fetch data from database
 		$ile = mysqli_num_rows($records);  //ilosc wszystkich rekordow (nie stron !!)
 		$na_strone = 6; //tu podajesz ile rekordow na stronie max.
@@ -50,6 +99,7 @@
 					<a href='goods-delete.php?id=".$resultat['id']."' class='effect effect-delete'>Usuń</a><br></td>
 				</tr>";
 		}
+}
 	?>
 		</table>
 </body> 

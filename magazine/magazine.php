@@ -25,6 +25,45 @@
   	<?php
 		require_once('../header.php');
 		echo "<a href='magazine-add-form.php' class='effect effect-add magazine'>Dodaj magazyn</a><br>";
+			?>
+		<form method="Get">
+		 <input type="text" name="word" size="30">
+		 <input type="submit" name="submit" value="przeszukaj">		
+		 </form>
+		<?php
+		
+if (isset($_GET['submit'])){
+
+
+	$keyword = "";
+	if(isset($_GET['word'])) {
+	$keyword = $_GET['word'];
+	$sql = mysqli_query($conn, "SELECT * FROM  magazines WHERE name LIKE '%$keyword%' or description LIKE '%$keyword%'  " );
+	if(mysqli_num_rows($sql)==0){
+		echo "Brak wynikow!";
+			}
+			else{
+		echo '<table class="table table-striped table-hover text-center">
+				<tr>	
+					<th>Nazwa</th>
+					<th>opis</th>						
+					<th>adres</th>
+					<th>miasto</th>
+					<th>opcje</th>
+				</tr>';
+		while ($row=mysqli_fetch_array($sql)){
+			echo"
+				<tr>
+					<td>".$row['name']."</td>
+		
+					<td>".$row['description']."</td>
+					<td>ul. ".$row['street']." ".$row['house_number']."/".$row['apartment_number']."</td>
+					<td>".$row['town']." ".$row['zip_code']."</td> 													
+					<td><a href='producers-edit-form.php?id=".$row['id']."' class='effect effect-edit'>Edytuj</a>
+					<a href='producers-delete.php?id=".$row['id']."' class='effect effect-delete'>Usuń</a><br></td>
+				</tr>";
+		}}}}
+else{
 		$records = mysqli_query($conn,"select * from magazines"); // fetch data from database
 		echo '<table class="table table-striped table-hover text-center">
 				<tr>	
@@ -53,7 +92,7 @@
 					<td><a href='magazine-edit-form.php?id=".$resultat['id']."' class='effect effect-edit'>Edytuj</a>
 					<a href='magazine-delete.php?id=".$resultat['id']."' class='effect effect-delete'>Usuń</a><br></td>
 				</tr>";
-		}
+}}
 	?>
 			</table>
 </body> 
