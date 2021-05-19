@@ -25,10 +25,10 @@
 <body>
 	<header class="page-header">
 		<a href='contractors.php' class='effect effect-add back'>Wróć</a><br>
-		<h1 class="page-title">Dodaj kontrahtenta</h1>
+		<h1 class="page-title text-center">Dodaj kontrahtenta</h1>
 	</header>	
 	
-	<form name="form1" method="post" action='contractors-add-accept.php'>
+	<form name="form1" method="post" action='contractors-add-accept.php' class='text-center'>
 		<p>Nazwa: </p> 
 		<input type="text" name="contractorname" size="150" placeholder="KowCem betorniarnia Sp. z o.o." require>
 		<p>Skrót: </p> 
@@ -48,7 +48,7 @@
 		<p>Miejscowość: </p> 
 		<input type="text" name="contractortown" size="50" placeholder="Leszno" require></br>
 		</br>
-			<input type="submit" name="update" value="Dodaj">		
+			<input type="submit" name="update" class='btn btn-primary' value="Dodaj">		
 		</form>
 </body>
 </html>

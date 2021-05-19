@@ -27,14 +27,13 @@
 		$id = $_GET['id'];
 		//wybór magazynu
 		if(!isset($_GET['magazine'])){
-			echo"<form name='form1' method='post' action=''>
-				</select>
+			echo"<form name='form1' method='post' action='' class='text-center'>
 				Wybierz magazyn:</br>
 				<select name='magazin'>";
 			$sql = mysqli_query($conn,"SELECT * FROM `magazines` ");
 			while ($row = mysqli_fetch_array($sql)){echo "<option value='".$row['id']."'>".$row['name']."</option>";}
 			echo"</select></br>
-				<input type='submit' name='accept1' value='Wybierz'>
+				<input type='submit' name='accept1' class='btn btn-primary' value='Wybierz'>
 			</form></br>";
 		};
 		//akceptacja wyboru magazynu
@@ -83,7 +82,7 @@
 					<form name='form2' method='post' action=''>
 						Data dokumentu obcego (opcjonalne)</br>
 						<input type='datetime-local' name='date'></br></br>
-						<input type='submit' name='accept' value='Zatwierdź listę towarów'>		
+						<input type='submit' name='accept' class='btn btn-primary m-2' value='Zatwierdź listę towarów'>		
 					</form>
 				</div>
 				</div></br>

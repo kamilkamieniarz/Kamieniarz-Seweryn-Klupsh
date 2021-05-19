@@ -25,10 +25,10 @@
 <body>
 	<header class="page-header">
 		<a href='goods.php' class='effect effect-add back'>Wróć</a><br>
-		<h1 class="page-title">Dodaj Towar</h1>
+		<h1 class="page-title text-center">Dodaj Towar</h1>
 	</header>	
 		
-	<form name="form1" method="post" action='goods-add-accept.php'>
+	<form name="form1" method="post" action='goods-add-accept.php' class="text-center">
 		<p>Nazwa:</p> <input type="text" name="goodname" size="100" require>
 		<p>Producent:</p> <select name="goodproducer">
 		<?php 
@@ -50,7 +50,7 @@
 			<option>szklanki</option>
 		</select>
 		</br>
-		<input type="submit" name="update" value="Dodaj">		
+		<input type="submit" name="update" class="btn btn-primary m-2" value="Dodaj">		
 	</form>
 </body>
 </html>

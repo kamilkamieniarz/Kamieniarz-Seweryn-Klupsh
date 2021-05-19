@@ -29,14 +29,13 @@
 		//wybór magazynu
 		if(!isset($_GET['magazine'])){
 			echo"
-			<form name='form1' method='post' action=''>
-				</select>
+			<form name='form1' method='post' action='' class='text-center'>
 				Wybierz magazyn:</br>
 				<select name='magazin'>";
 			$sql = mysqli_query($conn,"SELECT * FROM `magazines` ");
 			while ($row = mysqli_fetch_array($sql)){echo "<option value='".$row['id']."'>".$row['name']."</option>";}
 			echo"</select></br>
-				<input type='submit' name='accept1' value='Wybierz'>
+				<input type='submit' name='accept1' class='btn btn-primary' value='Wybierz'>
 			</form></br>";
 		};
 		//akceptacja wyboru magazynu
@@ -54,7 +53,7 @@
 			$id = $_GET['id'];
 			$magazine = $_GET['magazine'];
 			//tutaj łączymy 3 tabele w jedną i pobieramy TYLKO te produkty, które są w danym magazynie
-			$sql1 = mysqli_query($conn,"SELECT m.id, m.name, mg.id, mg.id_magazines, mg.id_goods, SUM(mg.amount) as amount, g.id, g.name, g.unit_price, g.unit_of_measure, g.id_producer FROM magazines as m LEFT OUTER JOIN magazines_goods as mg ON mg.id_magazines = m.id INNER JOIN goods as g ON mg.id_goods=g.id WHERE m.id='$magazine' GROUP by g.name");
+			$sql1 = mysqli_query($conn,"SELECT m.id, m.name, mg.id, mg.id_magazines, mg.id_goods, SUM(mg.amount) as amount, g.id, g.name, g.unit_price, g.unit_of_measure, g.id_producer FROM magazines as m LEFT OUTER JOIN magazines_goods as mg ON mg.id_magazines = m.id INNER JOIN goods as g ON mg.id_goods=g.id WHERE m.id='$magazine' AND amount>0 GROUP by g.name");
 			while ($row = mysqli_fetch_array($sql1)){
 				echo "<option value='".$row['id']."'>".$row['name']." (".$row['amount']." ".$row['unit_of_measure'].")(".$row['unit_price']." zł)</option>";
 			}
@@ -131,7 +130,7 @@
 						</br><form name='form2' method='post' action=''>
 						Data dokumentu obcego (opcjonalne)</br>
 						<input type='datetime-local' name='date'></br>
-						<input type='submit' name='accept' value='Zatwierdź listę towarów'>
+						<input type='submit' name='accept' class='btn btn-primary m-2' value='Zatwierdź listę towarów'>
 						</form></br></div>
 					</div>
 				Dodane towary:

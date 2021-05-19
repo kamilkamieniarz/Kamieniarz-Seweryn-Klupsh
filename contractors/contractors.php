@@ -24,11 +24,11 @@
  <body> 
   	<?php
 		require_once('../header.php');
-		echo "<a href='contractors-add-form.php' class='effect effect-add person'>Dodaj kontrahenta</a><br>";
+		echo "<div class='text-center'><a href='contractors-add-form.php' class='effect effect-add person'>Dodaj kontrahenta</a></div><br>";
 			?>
-		<form method="Get">
+		<form method="Get" class='text-center'>
 		 <input type="text" name="word" size="30">
-		 <input type="submit" name="submit" value="przeszukaj">		
+		 <input type="submit" name="submit" value="Szukaj">		
 		 </form>
 		<?php
 		
@@ -71,12 +71,13 @@ else{
 		$ile = mysqli_num_rows($records);  //ilosc wszystkich rekordow (nie stron !!)
 		$na_strone = 10; //tu podajesz ile rekordow na stronie max.
 		$stron = ceil ($ile / $na_strone);   //tutaj masz ilosc stron zaokraglanych w gore
-		echo 'Strona:';
+		echo '<div class="text-center">Strona:';
 		if (!isset($_GET['strona'])) $strona = 1; else $strona = (int)$_GET['strona'];
 		echo ' <a href="?strona=1"> 1</a> ';
 		for ($i = 1; $i < $stron; $i++) echo ' <a href="?strona='.($i+1).'"> '.($i+1).'</a> ';  //tak wyswietlasz numery;
 		$sql = mysqli_query($conn,"SELECT * FROM contractors LIMIT ".(($strona-1)*$na_strone).','.$na_strone);	// tak odczytujesz
-		echo '<table class="table table-striped table-hover text-center">
+		echo '</div>
+			<table class="table table-striped table-hover text-center">
 				<tr>	
 					<th>Nazwa</th>
 					<th>skrót</th>

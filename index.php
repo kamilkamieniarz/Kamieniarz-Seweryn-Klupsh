@@ -22,8 +22,8 @@ if (isset($_SESSION['logged_id'])) {
 </head>
 
  <body>
-	<div class=" col-12 d-inline-flex justify-content-center">
-		<form method="post" action="main.php">
+	<div class="d-flex align-items-center justify-content-center" style="background-color:rgba(160, 160, 160, 0.5); border-radius: 20px; padding: 20px; width: auto; left:40%; top:50%;">
+		<form method="post" action="main.php" class='text-center'>
 			<h2>Zaloguj się</h2>
 			<input type="text" name="login" placeholder="Login" class="mb-3"><br>
 			<input type="password" name="pass" placeholder="Hasło" class="mb-3"></br>

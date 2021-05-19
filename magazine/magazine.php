@@ -24,11 +24,11 @@
  <body> 
   	<?php
 		require_once('../header.php');
-		echo "<a href='magazine-add-form.php' class='effect effect-add magazine'>Dodaj magazyn</a><br>";
+		echo "<div class='text-center'><a href='magazine-add-form.php' class='effect effect-add magazine'>Dodaj magazyn</a></div><br>";
 			?>
-		<form method="Get">
+		<form method="Get" class="text-center">
 		 <input type="text" name="word" size="30">
-		 <input type="submit" name="submit" value="przeszukaj">		
+		 <input type="submit" name="submit" value="Szukaj">		
 		 </form>
 		<?php
 		
@@ -77,9 +77,10 @@ else{
 		$ile = mysqli_num_rows($records);  //ilosc wszystkich rekordow (nie stron !!)
 		$na_strone = 6; //tu podajesz ile rekordow na stronie max.
 		$stron = ceil ($ile / $na_strone);   //tutaj masz ilosc stron zaokraglanych w gore
-		echo 'Strona:';
+		echo '<div class="text-center">Strona:';
 		echo '<a href="?strona=1"> 1</a> ';
 		for ($i = 1; $i < $stron; $i++) echo '	<a href="?strona='.($i+1).'"> '.($i+1).'</a> ';  //tak wyswietlasz numery;
+		echo "</div>";
 		if (!isset($_GET['strona'])) $strona = 1; else $strona = (int)$_GET['strona'];
 		$sql = mysqli_query($conn,"SELECT * FROM magazines LIMIT ".(($strona-1)*$na_strone).','.$na_strone);	// tak odczytujesz
 		while ($resultat=mysqli_fetch_array($sql)){

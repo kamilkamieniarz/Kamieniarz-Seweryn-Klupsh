@@ -36,10 +36,10 @@
 <body>
 	<header class="page-header">
 		<a href='goods.php' class='effect effect-add back'>Wróć</a><br>
-		<h1 class="page-title">Edycja danych towaru</h1>
+		<h1 class="page-title text-center">Edycja danych towaru</h1>
 	</header>	
 	
-	<form name="form1" method="post" action=''>
+	<form name="form1" method="post" action='' class='text-center'>
 		<p>Nazwa: </p> <input type="text" name="goodname" size="100" value="<?php echo $data['name'] ?>" require>
 		<p>producer: </p> <select name="goodproducer">
 		<?php 
@@ -60,7 +60,7 @@
 			<option>szklanki</option>
 		</select>
 			</br>
-			<input type="submit" name="update" value="edytuj">
+			<input type="submit" name="update" class='btn btn-primary' value="edytuj">
 		</form>
 </body>
 </html>

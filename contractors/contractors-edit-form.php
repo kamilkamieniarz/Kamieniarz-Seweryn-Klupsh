@@ -32,10 +32,10 @@
 <body>
 	<header class="page-header">
 		<a href='contractors.php' class='effect effect-add back'>Wróć</a><br>
-		<h1 class="page-title">Edycja danych kontrahtenta</h1>
+		<h1 class="page-title text-center">Edycja danych kontrahtenta</h1>
 	</header>	
 	
-	<form name="form1" method="post" action=''>
+	<form name="form1" method="post" action='' class='text-center'>
 		<p>Nazwa: </p> 
 		<input type="text" name="contractorname" size="30" value="<?php echo $data['name'] ?>" require>
 		<p>Skrót: </p> 
@@ -54,7 +54,7 @@
 		<input type="text" name="contractorzip_code" size="6" value="<?php echo $data['zip_code'] ?>" require></br>
 		<p>Miejscowość: </p> 
 		<input type="text" name="contractortown" size="50" value="<?php echo $data['town'] ?>" require></br></br>
-		<input type="submit" name="update" value="Edytuj"></left>		
+		<input type="submit" name="update" class='btn btn-primary' value="Edytuj"></left>		
 	</form>
 </body>
 </html>

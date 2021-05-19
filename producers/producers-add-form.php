@@ -26,10 +26,10 @@
 	<header class="page-header">
 		
 		<a href='producers.php' class='effect effect-add back'>Wróć</a><br>
-			<h1 class="page-title">Dodaj Producenta</h1>
+			<h1 class="page-title text-center">Dodaj Producenta</h1>
 	</header>	
 		
-	<form name="form1" method="post" action='producers-add-accept.php'>
+	<form name="form1" method="post" action='producers-add-accept.php' class='text-center'>
 		<p>Nazwa: </p> 
 		<input type="text" name="producername" size="150" placeholder="KowCem betorniarnia Sp. z o.o." require>
 		<p>Skrót: </p> 
@@ -48,7 +48,7 @@
 		<input type="text" name="producerzip_code" size="15" placeholder="64-100" require></br>
 		<p>Miejscowość: </p> 
 		<input type="text" name="producertown" size="50" placeholder="Leszno" require></br></br>
-		<input type="submit" name="update" value="Dodaj">		
+		<input type="submit" name="update" class='btn btn-primary' value="Dodaj">		
 	</form>
 </body>
 </html>

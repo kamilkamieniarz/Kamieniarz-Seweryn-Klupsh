@@ -23,11 +23,11 @@
 </head>
 <body>
 	<header class="page-header">
-		<h1 class="page-title">Dodaj magazyn</h1>
 		<a href='magazine.php' class='effect effect-add back'>Wróć</a><br>
+		<h1 class="page-title text-center">Dodaj magazyn</h1>
 	</header>	
 	
-	<form name="form1" method="post" action='magazine-add-accept.php'>
+	<form name="form1" method="post" action='magazine-add-accept.php' class="text-center">
 		<p>Nazwa:</p> <input type="text" name="magazinename" size="150" placeholder="KowCem betorniarnia Sp. z o.o." require>
 		<p>Skrót:</p> <input type="text" name="magazineshortcut" size="10" placeholder="KowBud" require></br>
 		<p>Opis:</p> <input type="text" name="magazinedescription" size="50" placeholder="Materiały budowlane"></br>
@@ -37,7 +37,7 @@
 		<p>Kod pocztowy:</p> <input type="text" name="magazinezip_code" size="15" placeholder="64-100" require></br>
 		<p>Miejscowość:</p> <input type="text" name="magazinetown" size="50" placeholder="Leszno" require></br>
 		</br>
-		<input type="submit" name="update" value="Dodaj"></left>		
+		<input type="submit" name="update" class='btn btn-primary' value="Dodaj"></left>		
 	</form>
 </body>
 </html>

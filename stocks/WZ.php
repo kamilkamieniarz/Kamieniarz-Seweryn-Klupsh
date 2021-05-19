@@ -25,15 +25,14 @@
  	<?php
 		require_once('../header.php');
 		//wybór klienta
-		echo"<form name='form1' method='post' action=''>
-				</select>
+		echo"<form name='form1' method='post' action='' class='text-center'>
 				Wybierz kontrahenta:</br>
 				<select name='contractor'>";
 		if(!$conn){die("Connection failed: " . mysqli_connect_error());}
 		$sql2 = mysqli_query($conn,"SELECT * FROM `contractors` ");
 		while ($row = mysqli_fetch_array($sql2)){echo "<option value='".$row['id']."'>".$row['shortcut']."</option>";}
 		echo"	</select></br>
-				<input type='submit' name='create' value='Wybierz'>	
+				<input type='submit' name='create' class='btn btn-primary' value='Wybierz'>	
 			</form>";
 		if(isset($_POST['create'])){
 			$sql = mysqli_query($conn,"SELECT * FROM `contractors` WHERE id='".$_POST['contractor']."'");

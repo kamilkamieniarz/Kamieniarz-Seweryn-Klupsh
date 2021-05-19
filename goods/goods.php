@@ -23,11 +23,11 @@
   	<?php
 	
 		require_once('../header.php');
-		echo "<a href='goods-add-form.php' class='effect effect-add goods'>Dodaj Towar</a><br>";
+		echo "<div class='text-center'><a href='goods-add-form.php' class='effect effect-add goods'>Dodaj Towar</a></div><br>";
 		?>
-		<form method="Get">
+		<form method="Get" class='text-center'>
 		 <input type="text" name="word" size="30">
-		 <input type="submit" name="submit" value="przeszukaj">		
+		 <input type="submit" name="submit" value="Szukaj">		
 		 </form>
 		<?php
 		
@@ -49,9 +49,10 @@ if (isset($_GET['submit'])){
 	// $records = mysqli_query($conn,"select * from goods WHERE name LIKE '%$keyword%'"); // fetch data from database
 	   $ile = mysqli_num_rows($sql);  //ilosc wszystkich rekordow (nie stron !!)
 	   $stron = ceil ($ile / $na_strone);   //tutaj masz ilosc stron zaokraglanych w gore
-	echo 'Strona: <a href="goods.php?word='.$keyword.'&submit=przeszukaj&strona=1"> 1</a> ';
+	echo '<div class="text-center">Strona: <a href="goods.php?word='.$keyword.'&submit=przeszukaj&strona=1"> 1</a> ';
 	for ($i = 1; $i < $stron; $i++) echo '<a href="goods.php?word='.$keyword.'&submit=przeszukaj&strona='.($i+1).'"> '.($i+1).'</a> ';  //tak wyswietlasz numery;
-		echo '<table class="table table-striped table-hover text-center">
+		echo '</div>
+			<table class="table table-striped table-hover text-center">
 				<tr>	
 					<th>Nazwa</th>	
 					<th>Producent</th>
@@ -78,9 +79,10 @@ else{
 		$stron = ceil ($ile / $na_strone);   //tutaj masz ilosc stron zaokraglanych w gore
 		if (!isset($_GET['strona'])) $strona = 1; else $strona = (int)$_GET['strona'];
 		$sql = mysqli_query($conn,"SELECT goods.id, goods.name, goods.unit_price, goods.unit_of_measure, producers.Name FROM goods LEFT OUTER JOIN producers ON producers.ID = goods.id_producer LIMIT ".(($strona-1)*$na_strone).','.$na_strone);	// tak odczytujesz
-		echo 'Strona: <a href="?strona=1"> 1</a> ';
+		echo '<div class="text-center">Strona: <a href="?strona=1"> 1</a> ';
 		for ($i = 1; $i < $stron; $i++) echo '<a href="?strona='.($i+1).'"> '.($i+1).'</a> ';  //tak wyswietlasz numery;
-		echo '<table class="table table-striped table-hover text-center">
+		echo '</div>
+			<table class="table table-striped table-hover text-center">
 				<tr>	
 					<th>Nazwa</th>	
 					<th>Producent</th>

@@ -29,11 +29,11 @@
 </head>
 <body>
 	<header class="page-header">
-		<h1 class="page-title">Edycja danych magazynu</h1>
 		<a href='magazine.php' class='effect effect-add back'>Wróć</a><br>
+		<h1 class="page-title text-center">Edycja danych magazynu</h1>
 	</header>	
 	
-	<form name="form1" method="post" action=''>
+	<form name="form1" method="post" action='' class="text-center">
 		<p>Nazwa:</p> <input type="text" name="magazinename" size="150" value="<?php echo $data['name'] ?>" require> </br>
 		<p>Skrót:</p> <input type="text" name="magazineshortcut" size="10" value="<?php echo $data['shortcut'] ?>"> </br>
 		<p>Opis:</p> <input type="text" name="magazinedescription" size="50" value="<?php echo $data['description'] ?>"></br>
@@ -43,7 +43,7 @@
 		<p>Kod pocztowy:</p> <input type="text" name="magazinezip_code" size="15" value="<?php echo $data['zip_code'] ?>" require></br>
 		<p>Miejscowość:</p> <input type="text" name="magazinetown" size="50" value="<?php echo $data['town'] ?>" require></br>
 		</br>
-		<input type="submit" name="update" value="Edytuj" class='effect effect-edit'>
+		<input type="submit" name="update" value="Edytuj" class='btn btn-primary'>
 	</form>
 </body>
 </html>

@@ -32,10 +32,10 @@
 <body>
 	<header class="page-header">	
 		<a href='producers.php' class='effect effect-add back'>Wróć</a><br>
-		<h1 class="page-title">Edytuj Producenta</h1>
+		<h1 class="page-title text-center">Edytuj Producenta</h1>
 	</header>	
 		
-	<form name="form1" method="post" action=''>
+	<form name="form1" method="post" action='' class='text-center'>
 		<p>Nazwa: </p> 
 		<input type="text" name="producername" size="150"  value="<?php echo $data['name'] ?>" require>
 		<p>Skrót: </p> 
@@ -54,7 +54,7 @@
 		<input type="text" name="producerzip_code" size="15"  value="<?php echo $data['zip_code'] ?>"  require></br>
 		<p>Miejscowość: </p> 
 		<input type="text" name="producertown" size="50"  value="<?php echo $data['town'] ?>" require></br></br>
-		<input type="submit" name="update" value="Edytuj">		
+		<input type="submit" name="update" class='btn btn-primary' value="Edytuj">		
 	</form>
 </body>
 </html>
