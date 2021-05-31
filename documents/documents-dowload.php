@@ -15,11 +15,8 @@ $pdf -> AddPage();
 //add content
 $pdf -> SetFont('freesans','',14); 
 $pdf -> Cell(190,10,"Dokument ".$resultat['type']."  nr.".$resultat['number'],1,1,'C');
-
 $pdf -> SetFont('freesans','',8);
-$pdf -> Cell(95,5,"Sprzedawca",1);
-$pdf -> Cell(95,5,"Nabywca",1);
-$pdf->Ln();
+
 
 $tab1 = "
 <table>
@@ -52,6 +49,29 @@ $tab3 = "
  
 </table> 
 ";
+$tab4 = "
+<table>
+ <tr><th>".$resultat['client_name_used_in_creation']." </th></tr>
+ <tr> <th>".$resultat['client_adress_used_in_creation']." </th> </tr>
+
+</table> 
+";
+$sql4 = mysqli_query($conn,"SELECT * FROM `magazines` WHERE `id`='".$resultat['id_magazine']."'");
+$resultat4 = mysqli_fetch_array($sql4);
+if(isset($resultat['apartment_number'])){
+				$adres = "ul. ".$resultat4['street']." ".$resultat4['house_number']."/".$resultat4['apartment_number']." ,".$resultat4['zip_code']." ".$resultat4['town'];
+			}
+			else{
+				$adres = "ul. ".$resultat4['street']." ".$resultat4['house_number']." ,".$resultat4['zip_code']." ".$resultat4['town'];
+			}
+
+$tab5 = "
+<table>
+ <tr><th>".$resultat4['name']." </th></tr>
+ <tr> <th>".$adres." </th> </tr>
+
+</table> 
+";
 while ($resultat2=mysqli_fetch_array($sql2)){
 	$vat=($resultat2['vat']/100)+1;
 	$discount=($resultat2['discount']/100);
@@ -73,18 +93,29 @@ while ($resultat2=mysqli_fetch_array($sql2)){
 }
 if ( $resultat['type'] == 'PZ') // dokiment PZ
 {
+
+$pdf -> Cell(95,5,"Sprzedawca",1);
+$pdf -> Cell(95,5,"Nabywca",1);
+$pdf->Ln();
 $pdf -> WriteHTMLCell(95,5,'','',"$tab1",1);
 $pdf -> WriteHTMLCell(95,5,'','',"$tab2",1);
 }
 if ( $resultat['type'] == 'WZ') // dokiment WZ
 {
+
+$pdf -> Cell(95,5,"Sprzedawca",1);
+$pdf -> Cell(95,5,"Nabywca",1);
+$pdf->Ln();
 $pdf -> WriteHTMLCell(95,5,'','',"$tab2",1);
 $pdf -> WriteHTMLCell(95,5,'','',"$tab1",1);
 }
 if ( $resultat['type'] == 'PM') // dokiment PM
 {
-$pdf -> WriteHTMLCell(95,5,'','',"w takcie pisania",1);  
-$pdf -> WriteHTMLCell(95,5,'','',"$w trakcie pisania",1);
+$pdf -> Cell(95,5,"Magazyn wydający",1);
+$pdf -> Cell(95,5,"Magazyn przyjmujący",1);
+$pdf->Ln();
+$pdf -> WriteHTMLCell(95,5,'','',"$tab5",1);  
+$pdf -> WriteHTMLCell(95,5,'','',"$tab4",1);
 }
 $pdf->Ln(20);
 

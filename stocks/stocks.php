@@ -29,7 +29,7 @@
 		echo "<div class='text-center'>
 				<a href='pz.php' class='effect effect-add pz'>Przyjęcie towaru</a>
 				<a href='wz.php' class='effect effect-add wz'>Wydanie towaru </a>
-				<a href='' class='effect effect-add shift'>Przesunięcie</a><br>
+				<a href='pm.php' class='effect effect-add shift'>Przesunięcie</a><br>
 				<form name='form1' method='Get' action=''>
 				<p>Magazyn:  <select name='choosemagasin'>";
 		$sql = mysqli_query($conn,"SELECT * FROM `magazines`");

@@ -26,17 +26,19 @@
 	<?php
 		require_once('../header.php');
 		$id = $_GET['id'];
+		$sql8 = mysqli_query($conn,"SELECT  `id_client` FROM documents WHERE `id`='$id'");
+						$resultat = mysqli_fetch_array($sql8);	
+						$magazine2=$resultat['id_client'];
 		//wybór magazynu
 		if(!isset($_GET['magazine'])){
 			echo"
-			<form name='form1' method='post' action=''>
-				</select>
-				Wybierz magazyn żródłowy:</br>
+			<form name='form1' method='post' action='' class='text-center'>
+				Wybierz magazyn wydający:</br>
 				<select name='magazin'>";
 			$sql = mysqli_query($conn,"SELECT * FROM `magazines` ");
-			while ($row = mysqli_fetch_array($sql)){echo "<option value='".$row['id']."'>".$row['name']."</option>";}
+			while ($row = mysqli_fetch_array($sql)){echo "<option value='".$row['id']."'>".$row['shortcut']."</option>";}
 			echo"</select></br>
-				<input type='submit' name='accept1' value='Wybierz'>
+				<input type='submit' name='accept1' class='btn btn-primary' value='Wybierz'>
 			</form></br>";
 		};
 		//akceptacja wyboru magazynu
@@ -54,7 +56,7 @@
 			$id = $_GET['id'];
 			$magazine = $_GET['magazine'];
 			//tutaj łączymy 3 tabele w jedną i pobieramy TYLKO te produkty, które są w danym magazynie
-			$sql1 = mysqli_query($conn,"SELECT m.id, m.name, mg.id, mg.id_magazines, mg.id_goods, SUM(mg.amount) as amount, g.id, g.name, g.unit_price, g.unit_of_measure, g.id_producer FROM magazines as m LEFT OUTER JOIN magazines_goods as mg ON mg.id_magazines = m.id INNER JOIN goods as g ON mg.id_goods=g.id WHERE m.id='$magazine' GROUP by g.name");
+			$sql1 = mysqli_query($conn,"SELECT m.id, m.name, mg.id, mg.id_magazines, mg.id_goods, SUM(mg.amount) as amount, g.id, g.name, g.unit_price, g.unit_of_measure, g.id_producer FROM magazines as m LEFT OUTER JOIN magazines_goods as mg ON mg.id_magazines = m.id INNER JOIN goods as g ON mg.id_goods=g.id WHERE m.id='$magazine' AND amount!=0 GROUP by g.name");
 			while ($row = mysqli_fetch_array($sql1)){
 				echo "<option value='".$row['id']."'>".$row['name']." (".$row['amount']." ".$row['unit_of_measure'].")(".$row['unit_price']." zł)</option>";
 			}
@@ -68,16 +70,20 @@
 						<input type='submit' class='btn btn-warning m-1' name='dodaj' value='Dodaj towar'>	
 					</div>
 						
+					<div class= 'col-4'>
+						Cena wyjściowa NETTO(zł)</br>
+						<input type='number' name='end_price' id='end_price' value='' disabled></br>
+					</div>
 					
 					
 				</div>	
 				</form>";
 			if(isset($_POST['dodaj'])){
-				if(is_numeric($_POST['amount']) && is_numeric($_POST['markup']) && is_numeric($_POST['discount'])){
+				if(is_numeric($_POST['amount']) ){
 					$magazine = $_GET['magazine'];
 					$good_id = $_POST['good'];
 					//sprawdzamy ilość towaru, którego chcemy dodać, na wybranym magazynie
-					$sql9 = mysqli_query($conn,"SELECT m.id, mg.id, mg.id_magazines, mg.id_goods, mg.amount FROM magazines as m LEFT OUTER JOIN magazines_goods as mg ON mg.id_magazines = m.id WHERE m.id='$magazine' AND mg.id_goods='$good_id'");
+					$sql9 = mysqli_query($conn,"SELECT m.id, mg.id, mg.id_magazines, mg.id_goods,SUM(mg.amount) as amount FROM magazines as m LEFT OUTER JOIN magazines_goods as mg ON mg.id_magazines = m.id WHERE m.id='$magazine' AND mg.id_goods='$good_id'");
 					$amount = mysqli_fetch_array($sql9);
 					$amount = $amount['amount'];
 					//sprawdzamy czy jest tyle w magazynie ile chcemy dodać do WZ
@@ -85,24 +91,18 @@
 						$sql2 = mysqli_query($conn,"SELECT * FROM `goods` WHERE `id`= '".$_POST['good']."'");
 						$resultat = mysqli_fetch_array($sql2);
 						$price=$resultat['unit_price']*$_POST['amount'];
-						$vat=$_POST['vat'];
-						$markup=$_POST['markup'];
-						$discount=$_POST['discount'];
-						if($markup>0.00){
-							$price=$price+($price*($markup/100));
-						}
-						if($discount>0.00){
-							$price=$price-($price*($discount/100));
-						}
-						$sql3="INSERT INTO `documents_goods`(`amount`, `total_value`, `vat`, `markup`, `discount`, `id_author`, `id_documents`, `id_goods`, `good_name_used_in_creation`) VALUES ('".$_POST['amount']."','$price', '".$vat."' ,'".$markup."','".$discount."','".$_SESSION['logged_id']."','$id','".$_POST['good']."','".$resultat['name']."')";
+						$sql3="INSERT INTO `documents_goods`(`amount`, `total_value`, `id_author`, `id_documents`, `id_goods`, `good_name_used_in_creation`) VALUES ('".$_POST['amount']."','$price','".$_SESSION['logged_id']."','$id','".$_POST['good']."','".$resultat['name']."')";
 						if($conn->query($sql3) === TRUE){
 							echo "<script>window.location.href = window.location.href</script>";
 						}
-						//zmniejszamy ilość towaru w wybranym magazynie o podaną ilość
-						$amount -= $_POST['amount'];
-						$sql10 = mysqli_query($conn,"UPDATE magazines_goods SET `amount` = '$amount' WHERE `id_magazines`='$magazine' AND `id_goods`='$good_id'");
-						if($sql10){
-						}
+					
+						$amount = $_POST['amount'];
+						$amount2 = 0 - $amount;
+						$sql10 = mysqli_query($conn,"INSERT INTO `magazines_goods`( `id_magazines`, `id_goods`, `amount`) VALUES ($magazine,$good_id,$amount2)");
+					
+						$sql19 = mysqli_query($conn,"INSERT INTO `magazines_goods`( `id_magazines`, `id_goods`, `amount`) VALUES ($magazine2,$good_id,$amount)");
+						
+						
 					}
 					else{
 						echo"<script>alert('Na magazynie jest tylko ".$amount."')</script>";
@@ -112,13 +112,13 @@
 					echo"<script>alert('Uzupełnij poprawnie formularz')</script>";
 				}
 			}
-			$sql4 = mysqli_query($conn,"SELECT documents_goods.id, documents_goods.amount,documents_goods.total_value, documents_goods.vat, documents_goods.id_goods, documents_goods.good_name_used_in_creation, goods.unit_of_measure FROM documents_goods LEFT OUTER JOIN goods ON documents_goods.id_goods = goods.id WHERE documents_goods.id_documents=$id");
+			$sql4 = mysqli_query($conn,"SELECT documents_goods.id, documents_goods.amount,documents_goods.total_value, documents_goods.id_goods, documents_goods.good_name_used_in_creation, goods.unit_of_measure FROM documents_goods LEFT OUTER JOIN goods ON documents_goods.id_goods = goods.id WHERE documents_goods.id_documents=$id");
 			echo"<div class='row pl-2'>
 						<div class='col-5'>
 						</br><form name='form2' method='post' action=''>
 						Data dokumentu obcego (opcjonalne)</br>
 						<input type='datetime-local' name='date'></br>
-						<input type='submit' name='accept' value='Zatwierdź listę towarów'>
+						<input type='submit' name='accept' class='btn btn-primary m-2' value='Zatwierdź listę towarów'>
 						</form></br></div>
 					</div>
 				Dodane towary:
@@ -127,18 +127,18 @@
 						<th>Nazwa towaru</th>	
 						<th>Ilość</th>
 						<th>Cena NETTO</th>
-						<th>VAT</th>
-						<th>Cena BRUTTO</th>
+				
+				
 						<th>Opcje</th>
 					</tr>";
 			while ($resultat=mysqli_fetch_array($sql4)){
-				$brutto=round($brutto=$resultat['total_value']+($resultat['total_value']*($resultat['vat']/100)),2);
+				
 				echo"<tr>
 						<td>".$resultat['good_name_used_in_creation']."</td>
 						<td>".$resultat['amount']." ".$resultat['unit_of_measure']."</td>   
 						<td>".$resultat['total_value']." zł</td>
-						<td>".$resultat['vat']." %</td>		
-						<td>".$brutto." zł</td>	  													
+	
+					  													
 						<td><a href='goods-delete.php?id=".$resultat['id']."&amount=".$resultat['amount']."&magazine=".$_GET['magazine']."&good_id=".$resultat['id_goods']."&type=wz' class='effect effect-delete'>Usuń</a><br></td> 
 					</tr>";
 			}
@@ -150,7 +150,7 @@
 				if(isset($_POST['date'])){$date_foreign_documents = $_POST['date'];}
 				else{$date_foreign_documents = NULL;}
 				if($sql7){
-					$sql8 = "UPDATE documents SET `value` = '$value', `date_foreign_documents` = '$date_foreign_documents' WHERE `id` = '$id'";
+					$sql8 = "UPDATE documents SET `value` = '$value', `date_foreign_documents` = '$date_foreign_documents', `id_magazine`='$magazine' WHERE `id` = '$id'";
 					if($conn->query($sql8)){
 						echo"<script>window.location.href = '../documents/documents.php';</script>";
 					}
