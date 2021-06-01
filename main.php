@@ -87,7 +87,7 @@ if (!isset($_SESSION['logged_id'])) {
 		</nav>
 	</header>
 
-	<div class ="witaj" style="z-index:-1">
+	<div class='d-flex align-items-center justify-content-center witaj' style="z-index:-1 ">
 		<h1>
 			Witaj
 			<?php 
@@ -95,6 +95,8 @@ if (!isset($_SESSION['logged_id'])) {
 			?>
 			!
 		</h1>
+		
 	</div>
+
 </body> 
 </html>
