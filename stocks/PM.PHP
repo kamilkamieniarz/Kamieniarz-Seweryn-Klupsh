@@ -31,6 +31,11 @@
 		$sql2 = mysqli_query($conn,"SELECT * FROM `magazines` ");
 		while ($row = mysqli_fetch_array($sql2)){echo "<option value='".$row['id']."'>".$row['shortcut']."</option>";}
 		echo"	</select></br>
+			Wybierz magazyn wydający:</br>
+				<select name='magazin2'>";
+				$sql2 = mysqli_query($conn,"SELECT * FROM `magazines` ");
+			while ($row = mysqli_fetch_array($sql2)){echo "<option value='".$row['id']."'>".$row['shortcut']."</option>";}
+			echo"</select></br>
 				<input type='submit' name='create' class='btn btn-primary' value='Wybierz'>	
 			</form>";
 		if(isset($_POST['create'])){
@@ -43,7 +48,7 @@
 				$adres_used_in_creation = "ul. ".$resultat['street']." ".$resultat['house_number']." ,".$resultat['zip_code']." ".$resultat['town'];
 			}
 			$date = date("Y-m-d H:i:s");
-			$query ="INSERT INTO `documents`( `type`, `date`, `date_foreign_documents`, `id_author`, `id_client`, `client_name_used_in_creation`, `client_adress_used_in_creation`, `client_NIP_used_in_creation`) VALUES ('PM', '".$date."', NULL, '".$_SESSION['logged_id']."','".$resultat['id']."','".$resultat['name']."','".$adres_used_in_creation."','".$resultat['NIP']."')";
+			$query ="INSERT INTO `documents`( `type`, `date`, `date_foreign_documents`, `id_author`, `id_client`, `client_name_used_in_creation`, `client_adress_used_in_creation`, `client_NIP_used_in_creation`, `id_magazine`) VALUES ('PM', '".$date."', NULL, '".$_SESSION['logged_id']."','".$resultat['id']."','".$resultat['name']."','".$adres_used_in_creation."','".$resultat['NIP']."','".$_POST['magazin2']."')";
 			if($conn->query($query) === TRUE){
 				$id=mysqli_insert_id($conn);
 				$sql3 = "UPDATE documents SET `number` = (SELECT max(`number`) FROM documents) +1 WHERE `id`='$id'";
