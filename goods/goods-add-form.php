@@ -27,10 +27,11 @@
 		<a href='goods.php' class='effect effect-add back'>Wróć</a><br>
 		<h1 class="page-title text-center">Dodaj Towar</h1>
 	</header>	
-		
-	<form name="form1" method="post" action='goods-add-accept.php' class="text-center">
-		<p>Nazwa:</p> <input type="text" name="goodname" size="100" require>
-		<p>Producent:</p> <select name="goodproducer">
+
+	<div class="container d-flex justify-content-center bg-light">
+	<form name="form1" method="post" action='goods-add-accept.php' class= "col-12 " 
+		<p>Nazwa:</p> <input type="text" name="goodname" size="100" class="mb-2" require>
+		<p>Producent:</p> <select class="mb-2" name="goodproducer">
 		<?php 
 			$sql = mysqli_query($conn,"SELECT * FROM `producers`");
 			while ($row = mysqli_fetch_array($sql)){
@@ -39,9 +40,9 @@
 		?> 
 		</select>
 		<p>Cena jednostkowa:</p> 
-		<input type="number" step=".01" name="good_unit_price" size="14"  require>
+		<input type="number" step=".01" name="good_unit_price" size="14" class="mb-2"  require>
 		<p>Jednostka miary:</p> 
-		<select name="good_unit_of_measure" require>
+		<select name="good_unit_of_measure" class="mb-2" require>
 			<option>kg</option>
 			<option>g</option>
 			<option>m</option>
@@ -52,5 +53,6 @@
 		</br>
 		<input type="submit" name="update" class="btn btn-primary m-2" value="Dodaj">		
 	</form>
+	</div>
 </body>
 </html>

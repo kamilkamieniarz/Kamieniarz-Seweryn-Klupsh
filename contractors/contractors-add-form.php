@@ -27,28 +27,29 @@
 		<a href='contractors.php' class='effect effect-add back'>Wróć</a><br>
 		<h1 class="page-title text-center">Dodaj kontrahtenta</h1>
 	</header>	
-	
-	<form name="form1" method="post" action='contractors-add-accept.php' class='text-center'>
-		<p>Nazwa: </p> 
-		<input type="text" name="contractorname" size="150" placeholder="KowCem betorniarnia Sp. z o.o." require>
-		<p>Skrót: </p> 
-		<input type="text" name="contractorshortcut" size="10" placeholder="KowBud" require></br>
-		<p>Opis: </p>
-		<input type="text" name="contractorshortcut" size="10" placeholder="KowBud" require></br>
-		<p>NIP: </p> 	
-		<input type="text" name="contractorNIP" size="50" placeholder="1111111111"></br>
-		<p>Ulica: </p> 
-		<input type="text" name="contractorstreet" size="50" placeholder="Główna" require></br>
-		<p>Nr domu: </p> 
-		<input type="text" name="contractorhouse_number" size="5" placeholder="12/A" require></br>
-		<p>Nr mieszkania: </p> 
-		<input type="text" name="contractorapartment_number" size="5" placeholder="" ></br>
-		<p>Kod pocztowy: </p> 
-		<input type="text" name="contractorzip_code" size="15" placeholder="64-100" require></br>
-		<p>Miejscowość: </p> 
-		<input type="text" name="contractortown" size="50" placeholder="Leszno" require></br>
-		</br>
-			<input type="submit" name="update" class='btn btn-primary' value="Dodaj">		
-		</form>
+	<div class="container d-flex justify-content-center bg-light">
+		<form name="form1" method="post" action='contractors-add-accept.php' >
+			<p>Nazwa: </p> 
+			<input type="text" name="contractorname" size="150" placeholder="KowCem betorniarnia Sp. z o.o."class="mb-2" require>
+			<p>Skrót: </p> 
+			<input type="text" name="contractorshortcut" size="10" placeholder="KowBud" class="mb-2" require></br>
+			<p>Opis: </p>
+			<input type="text" name="contractorshortcut" size="10" placeholder="KowBud" class="mb-2" require></br>
+			<p>NIP: </p> 	
+			<input type="text" name="contractorNIP" size="50" placeholder="1111111111" class="mb-2"></br>
+			<p>Ulica: </p> 
+			<input type="text" name="contractorstreet" size="50" placeholder="Główna" class="mb-2" require></br>
+			<p>Nr domu: </p> 
+			<input type="text" name="contractorhouse_number" size="5" placeholder="12/A" class="mb-2" require></br>
+			<p>Nr mieszkania: </p> 
+			<input type="text" name="contractorapartment_number" size="5" placeholder=""  class="mb-2"></br>
+			<p>Kod pocztowy: </p> 
+			<input type="text" name="contractorzip_code" size="15" placeholder="64-100" class="mb-2" require></br>
+			<p>Miejscowość: </p> 
+			<input type="text" name="contractortown" size="50" placeholder="Leszno" class="mb-2" require></br>
+			</br>
+				<input type="submit" name="update" class='btn btn-primary' value="Dodaj">		
+			</form>
+		</div>
 </body>
 </html>

@@ -24,11 +24,11 @@ a:link{
 }
 
 .witaj {
-	display: inline-block;
-    vertical-align: middle;
-    float: none;
 	font-weight: bold;
 	color: SlateBlue;
+	position: absolute;
+  bottom: 45%;
+  right :40%;
 	
 }
 

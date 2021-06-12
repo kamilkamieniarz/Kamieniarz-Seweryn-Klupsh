@@ -33,11 +33,11 @@
 		$sql11 = mysqli_query($conn,"SELECT  * FROM magazines WHERE `id`='$magazine'");
 		$resultat2 = mysqli_fetch_array($sql11);	
 			echo"<div class='row'>
-					<div class='col-4'>
-					Magazyn wydający:</br>
-					".$resultat2['name']."</br>
+					<div class='col-4 m-3'>
+					Magazyn wydający:</br>		
+					<h4>".$resultat2['name']."</h4></br>
 					
-					<form name='form1' method='post' action='' class='pl-2'>
+					<form name='form1' method='post' action='' class='pt-2'>
 					Wybierz towar:</br>
 					<select name='good' id='good'>";
 			//tutaj łączymy 3 tabele w jedną i pobieramy TYLKO te produkty, które są w danym magazynie
@@ -55,9 +55,9 @@
 						<input type='submit' class='btn btn-warning m-1' name='dodaj' value='Dodaj towar'>	
 					</div>
 						
-					<div class= 'col-4'>
+					<div class= 'col-4 m-3'>
 					Magazyn przyjmujący:</br>
-					".$resultat['client_name_used_in_creation']."</br>
+					<h4>".$resultat['client_name_used_in_creation']."</h4></br>
 					
 					</div>
 					
