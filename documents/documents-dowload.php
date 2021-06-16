@@ -78,12 +78,14 @@ while ($resultat2=mysqli_fetch_array($sql2)){
 	$brutto=$resultat2['total_value']*$vat-($discount*$resultat2['total_value']);
 	$brutto= round($brutto, 2);
 	$razem=$razem+$brutto;
+	$cena=$resultat2['total_value']/$resultat2['amount'];
+	
 	$tab3 .="
 	<tr>
 	<th>".$resultat2['good_name_used_in_creation']."</th> 
 	<th>".$resultat2['amount']."</th> 
 	<th>".$resultat2['unit_of_measure']."</th> 
-	<th>".$resultat2['unit_price']."</th>
+	<th>".$cena."</th>
 	<th>".$resultat2['vat']."%</th>
 	<th>".$resultat2['discount']."%</th>
 	<th>".$resultat2['total_value']."</th>
