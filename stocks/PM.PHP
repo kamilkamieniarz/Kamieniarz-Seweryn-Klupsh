@@ -11,7 +11,7 @@
 <head>
     <meta charset="utf-8">
 	<link rel="icon" href="../images/karton.ico" type="image/x-icon"/>
-    <title>Wydanie Zewnętrzne</title>
+    <title>Przesunięcie magazynowe</title>
 	<!--css i bootstrap-->
 	<link rel="stylesheet" href="../view/bootstrap.min.css">
 	<link rel="stylesheet" href="../view/main.css" type="text/css" />
